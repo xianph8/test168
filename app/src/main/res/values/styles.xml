@@ -1,0 +1,129 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- toolbar（actionbar）颜色 -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!-- 状态栏颜色 -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- 窗口的背景颜色 -->
+        <item name="android:windowBackground">@color/white</item>
+        <!--<item name="android:background">@color/white</item>-->
+        <!--设置控件的选中颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--设置波纹颜色-->
+        <!--<item name="colorControlHighlight">@color/colorControlHighlight</item>-->
+    </style>
+
+    <style name="mAppTheme" parent="BaseAppTheme"></style>
+
+    <!--material design style-->
+    <style name="mAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="mAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--material design font style -->
+    <style name="md_spacing">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp40</item>
+        <!--<item name="android:background">@drawable/bg_spacing</item>-->
+    </style>
+
+    <style name="md_font_base">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="md_display4" parent="md_font_base">
+        <item name="android:alpha">0.5</item>
+        <item name="android:textSize">@dimen/display4</item>
+    </style>
+
+    <style name="md_display3" parent="md_font_base">
+        <item name="android:alpha">0.5</item>
+        <item name="android:textSize">@dimen/display3</item>
+    </style>
+
+    <style name="md_display2" parent="md_font_base">
+        <item name="android:alpha">0.5</item>
+        <item name="android:textSize">@dimen/display2</item>
+    </style>
+
+    <style name="md_display1" parent="md_font_base">
+        <item name="android:alpha">0.5</item>
+        <item name="android:textSize">@dimen/display1</item>
+    </style>
+
+    <style name="md_head_line" parent="md_font_base">
+        <item name="android:alpha">0.9</item>
+        <item name="android:textSize">@dimen/head_line</item>
+    </style>
+
+    <style name="md_title" parent="md_font_base">
+        <item name="android:alpha">0.9</item>
+        <item name="android:textSize">@dimen/title</item>
+    </style>
+
+    <style name="md_subhead" parent="md_font_base">
+        <item name="android:alpha">0.9</item>
+        <item name="android:textSize">@dimen/subhead</item>
+    </style>
+
+    <style name="md_body1" parent="md_font_base">
+        <item name="android:alpha">0.9</item>
+        <item name="android:textSize">@dimen/body1</item>
+    </style>
+
+    <style name="md_body2" parent="md_font_base">
+        <item name="android:alpha">0.9</item>
+        <item name="android:textSize">@dimen/body2</item>
+    </style>
+
+    <style name="md_caption" parent="md_font_base">
+        <item name="android:alpha">0.5</item>
+        <item name="android:textSize">@dimen/caption</item>
+    </style>
+
+    <style name="md_menu" parent="md_font_base">
+        <item name="android:alpha">0.9</item>
+        <item name="android:textSize">@dimen/menu</item>
+    </style>
+
+    <style name="md_button" parent="md_font_base">
+        <item name="android:alpha">0.9</item>
+        <item name="android:textSize">@dimen/button</item>
+    </style>
+
+    <style name="md_edit" parent="md_display2">
+        <item name="android:textColorHint">@color/light_gray</item>
+    </style>
+
+
+    <!-- view style -->
+
+
+    <!--text style -->
+    <style name="navUserHeadTextName">
+        <item name="android:textSize">@dimen/default_font1</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="navUserHeadTextSignature" parent="navUserHeadTextName">
+        <item name="android:textSize">@dimen/default_font2</item>
+        <item name="android:textColor">@color/default_font5</item>
+    </style>
+
+    <style name="activityTitleText">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="activitySubmitText">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--material design font style -->
+    <color name="black8A">#8a000000</color><!--light-->
+    <color name="blackE6">#E6000000</color><!--regular-->
+    <color name="def_bg">#ffffff</color>
+
+    <!-- default color -->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#02a6d8</color>
+    <color name="colorAccent1">#ff117aa7</color>
+    <color name="colorControlHighlight">#dd3F51B5</color>
+
+    <!--custom color-->
+    <color name="google_red">#d62d20</color>
+    <color name="google_blue">#0057e7</color>
+    <color name="google_green">#008744</color>
+    <color name="google_yellow">#ffa700</color>
+    <color name="default_font1">#ff666666</color>
+    <color name="default_font2">#ff888888</color>
+    <color name="default_font3">#ffaaaaaa</color>
+    <color name="default_font4">#ffcccccc</color>
+    <color name="default_font5">#ffdddddd</color>
+    <color name="default_background">#fff3f3f3</color>
+
+    <color name="logout_bg_normal">#ffd86060</color>
+    <color name="logout_bg_selector">#ffac1c1c</color>
+    <color name="login_bg_normal">#02a6d8</color>
+    <color name="login_bg_selector">#ff117aa7</color>
+    <color name="register_bg_normal">#ff82c85f</color>
+    <color name="register_bg_selector">#ff679726</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="black_overlay1">#99000000</color>
+
+    <color name="list_view_cache_color">#00000000</color>
+    <color name="list_view_item_divider">#ffdddddd</color>
+
+    <color name="light_gray2">#ffe3e3e3</color>
+    <color name="t_gray">#cc7f7f7f</color>
+    <color name="t_light_gray">#22ececec</color>
+
+    <!--beforehand color-->
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="silver">#ffecebe8</color>
+    <color name="light_gray">#ffececec</color>
+    <color name="dark_gray">#ff999999</color>
+    <color name="gray">#ff7f7f7f</color>
+    <color name="black">#ff000000</color>
+    <color name="red">#ffff0000</color>
+    <color name="dark_red">#ff8c1c1c</color>
+    <color name="green">#ff95c81c</color>
+    <color name="orange">#ffefa600</color>
+    <color name="blue">#31a4e5</color>
+
+
+</resources>

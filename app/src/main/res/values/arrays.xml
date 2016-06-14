@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="main_menu">
+        <item>SlideView-无限自动轮播</item>
+        <item>RxJava学习</item>
+        <item>RecyclerView的简单适配器</item>
+        <item>SwipeRefreshLayout的上拉加载接口</item>
+    </array>
+
+</resources>

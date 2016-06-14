@@ -1,0 +1,12 @@
+<resources>
+
+    <style name="mAppTheme" parent="BaseAppTheme">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!-- status Bar Color-->
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <!--Navigation bar color-->
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <!-- 允许使用transitions -->
+        <!--<item name="windowContentTransitions">true</item>-->
+    </style>
+</resources>
