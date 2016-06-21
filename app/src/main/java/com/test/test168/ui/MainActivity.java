@@ -56,9 +56,12 @@ public class MainActivity extends AppCompatActivity
                         startActivity(new Intent(mContext, SlideActivity.class));
                         break;
                     case 1:
-                        startActivity(new Intent(mContext, TestRxJavaActivity.class));
+                        startActivity(new Intent(mContext, LitePalActivity.class));
                         break;
                     case 2:
+                        startActivity(new Intent(mContext, RxJavaActivity.class));
+                        break;
+                    case 3:
                         startActivity(new Intent(mContext, CommonAdapterActivity.class));
                         break;
                 }

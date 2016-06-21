@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.test.test168.ui.TestRxJavaActivity">
+    tools:context="com.test.test168.ui.RxJavaActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_test_rx_java" />
+    <include layout="@layout/content_rx_java" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

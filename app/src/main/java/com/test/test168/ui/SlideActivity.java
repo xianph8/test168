@@ -3,11 +3,9 @@ package com.test.test168.ui;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
-import com.test.test168.utils.ImageUtils;
 import com.test.test168.utils.L;
 import com.test.test168.view.SlideView;
 
@@ -39,8 +37,8 @@ public class SlideActivity extends BaseActivity {
         slideView = $(R.id.sv_banner);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ImageView imageView = $(R.id.iv_test);
-        ImageUtils.displayUrl(mActivity, "http://365jia.cn/uploads/13/0926/5244094a0cdda.jpg", imageView);
+//        ImageView imageView = $(R.id.iv_test);
+//        ImageUtils.displayUrl(mActivity, "http://365jia.cn/uploads/13/0926/5244094a0cdda.jpg", imageView);
     }
 
     private void initData() {

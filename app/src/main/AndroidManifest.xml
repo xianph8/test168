@@ -19,13 +19,14 @@
         </activity>
         <activity android:name=".ui.SlideActivity" />
         <activity
-            android:name=".ui.TestRxJavaActivity"
+            android:name=".ui.RxJavaActivity"
             android:label="@string/title_activity_test_rx_java"
             android:theme="@style/mAppTheme" />
         <activity
             android:name=".ui.CommonAdapterActivity"
             android:label="@string/title_activity_common_adapter"
-            android:theme="@style/mAppTheme"></activity>
+            android:theme="@style/mAppTheme" />
+        <activity android:name=".ui.LitePalActivity"></activity>
     </application>
 
 </manifest>
