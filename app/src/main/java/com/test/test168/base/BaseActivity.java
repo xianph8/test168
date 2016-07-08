@@ -16,6 +16,7 @@ import com.test.test168.view.dialog.LoadingDialog;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
+
     protected Context mContext;
 
     protected Activity mActivity;

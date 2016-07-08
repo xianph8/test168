@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.test.test168.ui.SlideActivity">
+    tools:context="com.test.test168.ui.activity.SlideActivity">
 
     <include layout="@layout/include_activity_head" />
 
-    <com.test.test168.view.SlideView
+    <com.test.test168.view.slide.SlideView
         android:id="@+id/sv_banner"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp500" />

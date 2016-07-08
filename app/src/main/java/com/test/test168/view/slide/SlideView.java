@@ -1,21 +1,17 @@
-package com.test.test168.view;
+package com.test.test168.view.slide;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Scroller;
 
 import com.test.test168.R;
 import com.test.test168.utils.ImageUtils;
@@ -32,7 +28,6 @@ import java.util.List;
  * @author me
  */
 public class SlideView extends FrameLayout {
-
 
     // 调用控件页的上下文
     private Context mContext;
@@ -75,14 +70,10 @@ public class SlideView extends FrameLayout {
 
     public SlideView(Context context) {
         super(context);
-        this.mContext = context;
-        initUI(mContext);
     }
 
     public SlideView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.mContext = context;
-        initUI(mContext);
     }
 
     public SlideView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -95,6 +86,7 @@ public class SlideView extends FrameLayout {
      * 初始化控件所需的ui
      */
     private void initUI(Context context) {
+        L.i("slide view init ui : ");
         // 图片列表的来源
         imageViewList = new ArrayList<>();
 
@@ -106,14 +98,7 @@ public class SlideView extends FrameLayout {
 
         // 轮播的主体 ViewPager
         mViewPager = (ViewPager) findViewById(R.id.slideShowViewPager);
-        mViewPager.setOnTouchListener(onTouchListener);
-        mViewPager.addOnPageChangeListener(onPageChangeListener);
-        mViewPager.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                L.i("view pager onClick : " + v.getId());
-            }
-        });
+        setListener(mViewPager);
     }
 
     /**
@@ -157,7 +142,7 @@ public class SlideView extends FrameLayout {
         imageViewList.add(last);
 
         mViewPager.setFocusable(true);
-        mViewPager.setAdapter(new MyPagerAdapter());
+        mViewPager.setAdapter(new MyPagerAdapter(imageViewList));
 
         mViewPager.setCurrentItem(1);// 让第一次显示在列表的第二张图片，也就是图片来源的第一张
         pointLayout.getChildAt(0).setEnabled(true);// 同步设置指示器
@@ -213,36 +198,6 @@ public class SlideView extends FrameLayout {
         }
     }
 
-    /**
-     * 可以改变ViewPager 的滑动速度的类
-     */
-    private class FixedSpeedScroller extends Scroller {
-        private int mDuration = 200;
-
-        public FixedSpeedScroller(Context context, Interpolator interpolator) {
-            super(context, interpolator);
-        }
-
-        @Override
-        public void startScroll(int startX, int startY, int dx, int dy, int duration) {
-            // Ignore received duration, use fixed one instead
-            super.startScroll(startX, startY, dx, dy, mDuration);
-        }
-
-        @Override
-        public void startScroll(int startX, int startY, int dx, int dy) {
-            // Ignore received duration, use fixed one instead
-            super.startScroll(startX, startY, dx, dy, mDuration);
-        }
-
-        public void setmDuration(int time) {
-            mDuration = time;
-        }
-
-        public int getmDuration() {
-            return mDuration;
-        }
-    }
 
     /**
      * 轮播控件的点击接口
@@ -255,14 +210,6 @@ public class SlideView extends FrameLayout {
     public void setOnImageClickListener(OnImageClickListener l) {
         this.l = l;
     }
-
-    /**
-     * 对外提供的点击接口
-     */
-    public interface OnImageClickListener {
-        void onClick(int position);
-    }
-
 
     /**
      * 设置是否自动轮播
@@ -302,6 +249,10 @@ public class SlideView extends FrameLayout {
         handler.removeCallbacks(runnable);
     }
 
+
+    /**
+     * 操作一次轮播
+     */
     private void play() {
 
         if (isAutoPlay) {
@@ -325,106 +276,79 @@ public class SlideView extends FrameLayout {
     }
 
     /**
-     * 轮播控件的监听器（无限轮播的主要逻辑）
+     * 为 主体ViewPager设置两个监听器
+     * <p>
+     * OnPageChangeListener
+     * <p>
+     * OnTouchListener
+     *
+     * @param viewPager
      */
-    private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    private void setListener(ViewPager viewPager) {
 
-        }
+        //     * 轮播控件的监听器（无限轮播的主要逻辑）
+        viewPager.setOnPageChangeListener(new OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-        @Override
-        public void onPageSelected(int position) {
-            currentItem = position;
-            changePoint();
-        }
+            }
 
-        @Override
-        public void onPageScrollStateChanged(int state) {
-            if (state == 0) {
+            @Override
+            public void onPageSelected(int position) {
+                currentItem = position;
+                changePoint();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == 0) {
+                    if (currentItem == imageViewList.size() - 1) {
+                        mViewPager.setCurrentItem(1, false);
+                    } else if (currentItem == 0) {
+                        mViewPager.setCurrentItem(imageViewList.size() - 2, false);
+                    }
+                }
+            }
+
+            private void changePoint() {
+                for (int i = 0; i < pointLayout.getChildCount(); i++) {
+                    pointLayout.getChildAt(i).setEnabled(false);
+                }
                 if (currentItem == imageViewList.size() - 1) {
-                    mViewPager.setCurrentItem(1, false);
+                    pointLayout.getChildAt(0).setEnabled(true);//R.drawable.main_dot_light
                 } else if (currentItem == 0) {
-                    mViewPager.setCurrentItem(imageViewList.size() - 2, false);
+                    pointLayout.getChildAt(pointLayout.getChildCount() - 1).setEnabled(true);//R.drawable.main_dot_light
+                } else {
+                    pointLayout.getChildAt(currentItem - 1).setEnabled(true);//R.drawable.main_dot_light
                 }
             }
-        }
+        });
 
-        private void changePoint() {
-            for (int i = 0; i < pointLayout.getChildCount(); i++) {
-                pointLayout.getChildAt(i).setEnabled(false);
-            }
-            if (currentItem == imageViewList.size() - 1) {
-                pointLayout.getChildAt(0).setEnabled(true);//R.drawable.main_dot_light
-            } else if (currentItem == 0) {
-                pointLayout.getChildAt(pointLayout.getChildCount() - 1).setEnabled(true);//R.drawable.main_dot_light
-            } else {
-                pointLayout.getChildAt(currentItem - 1).setEnabled(true);//R.drawable.main_dot_light
-            }
-        }
-    };
-
-    /**
-     * 轮播控件的触摸监听器
-     */
-    private OnTouchListener onTouchListener = new OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN: {//按住事件发生后
+        //     * 轮播控件的触摸监听器
+        viewPager.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {//按住事件发生后
 //                    stopPlay();
-                    setAutoPlay(false);
-                    break;
-                }
-                case MotionEvent.ACTION_MOVE: {//移动事件发生后
+                        setAutoPlay(false);
+                        break;
+                    }
+                    case MotionEvent.ACTION_MOVE: {//移动事件发生后
 //                    stopPlay();
-                    setAutoPlay(false);
-                    break;
-                }
-                case MotionEvent.ACTION_UP: {//松开事件发生后
+                        setAutoPlay(false);
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {//松开事件发生后
 //                    startPlay();
-                    setAutoPlay(true);
-                    break;
+                        setAutoPlay(true);
+                        break;
+                    }
+                    default:
+                        break;
                 }
-                default:
-                    break;
+                return false;
             }
-            return false;
-        }
-    };
-
-    /**
-     * 轮播控件的主要逻辑
-     */
-    private class MyPagerAdapter extends PagerAdapter {
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            if (imageViewList.size() <= 0) return;
-//            container.removeView(imageViewList.get(position));
-            container.removeView((View) object);
-//            L.i("destroyItem : " + position);
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            if (imageViewList.size() <= 0) return null;
-            container.addView(imageViewList.get(position));
-//            L.i("instantiateItem : " + position);
-            return imageViewList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            if (imageViewList.size() <= 0) return 0;
-            return imageViewList.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
-        }
-
+        });
     }
-
 }

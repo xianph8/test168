@@ -17,9 +17,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!--设置波纹颜色-->
         <!--<item name="colorControlHighlight">@color/colorControlHighlight</item>-->
+        <!--让进程初始化的时候，窗口是透明的-->
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="mAppTheme" parent="BaseAppTheme"></style>
+    <style name="mAppTheme" parent="BaseAppTheme"/>
 
     <!--material design style-->
     <style name="mAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -105,7 +107,7 @@
     <!-- view style -->
 
 
-    <!--text style -->
+    <!-- text style -->
     <style name="navUserHeadTextName">
         <item name="android:textSize">@dimen/default_font1</item>
         <item name="android:textColor">@color/white</item>

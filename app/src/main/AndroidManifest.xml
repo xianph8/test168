@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/mAppTheme">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,16 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SlideActivity" />
+        <activity android:name=".ui.activity.SlideActivity" />
         <activity
-            android:name=".ui.RxJavaActivity"
+            android:name=".ui.activity.RxJavaActivity"
             android:label="@string/title_activity_test_rx_java"
             android:theme="@style/mAppTheme" />
+        <activity android:name=".ui.activity.LitePalActivity" />
         <activity
-            android:name=".ui.CommonAdapterActivity"
-            android:label="@string/title_activity_common_adapter"
-            android:theme="@style/mAppTheme" />
-        <activity android:name=".ui.LitePalActivity"></activity>
+            android:name=".ui.activity.RecyclerViewActivity"
+            android:label="@string/title_activity_recycle_view"
+            android:theme="@style/mAppTheme"></activity>
     </application>
 
 </manifest>

@@ -1,11 +1,11 @@
-package com.test.test168.ui;
+package com.test.test168.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.test.test168.R;
+import com.test.test168.base.BaseActivity;
 
-public class LitePalActivity extends AppCompatActivity {
+public class LitePalActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

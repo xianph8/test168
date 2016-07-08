@@ -1,33 +1,25 @@
-package com.test.test168.ui;
+package com.test.test168.ui.activity;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.test.test168.R;
-import com.test.test168.adapter.RVAdapter;
-import com.test.test168.adapter.ViewHolder;
-
-import java.util.Arrays;
-import java.util.List;
+import com.test.test168.ui.fragment.MainFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView recyclerView;
     private Context mContext;
 
     @Override
@@ -36,53 +28,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mContext = this;
         initView();
-        initData();
     }
-
-    private void initData() {
-
-        String[] menu = mContext.getResources().getStringArray(R.array.main_menu);
-
-        recyclerView.setAdapter(new RVAdapter<String>(mContext, Arrays.asList(menu), R.layout.item_main_menu) {
-            @Override
-            public void onBindViewHolder(ViewHolder holder, List<String> list, int position) {
-                holder.setText(R.id.list_item, list.get(position));
-            }
-
-            @Override
-            public void onItemClick(List<String> list, int position) {
-                switch (position) {
-                    case 0:
-                        startActivity(new Intent(mContext, SlideActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(mContext, LitePalActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(mContext, RxJavaActivity.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(mContext, CommonAdapterActivity.class));
-                        break;
-                }
-            }
-        });
-
-    }
-
     private void initView() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -93,9 +43,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // init fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_main, new MainFragment(), MainFragment.class.getName())
+                .commit();
 
-        recyclerView = (RecyclerView) findViewById(R.id.rv_main_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
 
@@ -154,5 +106,36 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(event.getRepeatCount() == 0){
+            switch (keyCode){
+                case KeyEvent.KEYCODE_BACK:
+                    //do something...  这里是返回键
+                    new AlertDialog.Builder(this)
+                            .setTitle("Tips")
+                            .setMessage("是否退出？")
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    MainActivity.this.finish();
+                                    System.exit(0);
+                                }
+                            })
+                            .setNegativeButton("取消", null)
+                            .show();
+                    break;
+                case KeyEvent.KEYCODE_HOME:
+                    //do something...  这里是主页键
+                    break;
+                case KeyEvent.KEYCODE_MENU:
+                    //do something...  这里是菜单键
+                    break;
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

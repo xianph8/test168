@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.test.test168.ui.activity.RxJavaActivity">
+    android:orientation="vertical"
+    tools:context="com.test.test168.ui.activity.RecyclerViewActivity">
 
-    <include layout="@layout/include_activity_head" />
+    <include
+        android:id="@+id/head"
+        layout="@layout/include_activity_head" />
 
-    <include layout="@layout/content_rx_java" />
+    <FrameLayout
+        android:id="@+id/content_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -17,5 +24,4 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email" />
-
-</android.support.design.widget.CoordinatorLayout>
+</android.widget.FrameLayout>
