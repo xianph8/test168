@@ -8,8 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.test.test168.ui.activity.MainActivity"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="25dp"
-    tools:showIn="@layout/app_bar_main">
+    tools:layout_editor_absoluteY="25dp">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_main_list"

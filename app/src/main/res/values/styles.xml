@@ -24,9 +24,9 @@
     <style name="mAppTheme" parent="BaseAppTheme"/>
 
     <!--material design style-->
-    <style name="mAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="mAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="mAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="mAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <!--material design font style -->
     <style name="md_spacing">
@@ -127,5 +127,28 @@
         <item name="android:textSize">@dimen/text_title</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+
+    <!--dialog theme -->
+    <style name="AppTheme.AlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- NeutralButtonStyle -->
+        <item name="buttonBarNeutralButtonStyle">@style/buttonBarNeutral</item>
+        <!-- NegativeButtonStyle -->
+        <item name="buttonBarNegativeButtonStyle">@style/buttonBarNegative</item>
+        <!-- PositiveButtonStyle -->
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="buttonBarNeutral" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+
+    <style name="buttonBarNegative" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
 
 </resources>

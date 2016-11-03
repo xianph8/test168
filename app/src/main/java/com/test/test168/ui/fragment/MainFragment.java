@@ -20,6 +20,7 @@ import com.test.test168.ui.activity.LitePalActivity;
 import com.test.test168.ui.activity.RecyclerViewActivity;
 import com.test.test168.ui.activity.RxJavaActivity;
 import com.test.test168.ui.activity.SlideActivity;
+import com.test.test168.ui.activity.TestIntentServiceActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -160,6 +161,7 @@ public class MainFragment extends Fragment {
                     case 5:
                         break;
                     case 6:
+                        startActivity(new Intent(mContext, TestIntentServiceActivity.class));
                         break;
                 }
             }
