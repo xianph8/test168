@@ -1,4 +1,4 @@
-package com.test.test168.IntentService;
+package com.test.test168.service;
 
 import android.app.IntentService;
 import android.content.Context;

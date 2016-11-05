@@ -29,11 +29,11 @@
             android:theme="@style/mAppTheme"/>
 
         <service
-            android:name=".IntentService.MyIntentService"
+            android:name=".service.MyIntentService"
             android:exported="false">
         </service>
         <service
-            android:name=".IntentService.TestIntentService"
+            android:name=".service.TestIntentService"
             android:exported="false">
         </service>
 

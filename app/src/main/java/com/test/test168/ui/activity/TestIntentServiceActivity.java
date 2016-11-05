@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.test.test168.IntentService.TestIntentService;
+import com.test.test168.service.TestIntentService;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.view.LoadingDialog;
