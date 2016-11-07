@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.test.test168.R;
-import com.test.test168.adapter.RVAdapter;
+import com.test.test168.adapter.RecycleViewAdapter;
 import com.test.test168.adapter.ViewHolder;
 import com.test.test168.ui.activity.LitePalActivity;
 import com.test.test168.ui.activity.RecyclerViewActivity;
@@ -135,7 +135,7 @@ public class MainFragment extends Fragment {
 
         String[] menu = mContext.getResources().getStringArray(R.array.main_menu);
 
-        recyclerView.setAdapter(new RVAdapter<String>(mContext, Arrays.asList(menu), R.layout.item_main_menu) {
+        recyclerView.setAdapter(new RecycleViewAdapter<String>(mContext, Arrays.asList(menu), R.layout.item_main_menu) {
             @Override
             public void onBindViewHolder(ViewHolder holder, List<String> list, int position) {
                 holder.setText(R.id.list_item, list.get(position));

@@ -46,4 +46,5 @@ local.properties
   
   
 # Log Files  
-*.log  
+*.log
+/.idea/

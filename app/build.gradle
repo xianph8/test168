@@ -17,6 +17,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        normal {
+            manifestPlaceholders = [APP_NAME: "测试应用"]
+        }
+        lkl {
+            manifestPlaceholders = [APP_NAME: "测试应用1"]
+        }
+    }
 }
 
 dependencies {

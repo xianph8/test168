@@ -12,7 +12,7 @@ import java.util.List;
  * Created by King on 2016/4/9.
  * RecyclerView 的万能适配器
  */
-public abstract class RVAdapter<T> extends RecyclerView.Adapter<RVHolder> {
+public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<RecycleViewHolder> {
 
 
     private List<T> list;
@@ -21,20 +21,20 @@ public abstract class RVAdapter<T> extends RecyclerView.Adapter<RVHolder> {
 
     private int layoutId;
 
-    public RVAdapter(Context context, List<T> list, int layoutId) {
+    public RecycleViewAdapter(Context context, List<T> list, int layoutId) {
         this.list = list;
         this.context = context;
         this.layoutId = layoutId;
     }
 
     @Override
-    public RVHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(layoutId, null);
-        return new RVHolder(view);
+        return new RecycleViewHolder(view);
     }
 
     @Override
-    public void onViewRecycled(final RVHolder holder) {
+    public void onViewRecycled(final RecycleViewHolder holder) {
         super.onViewRecycled(holder);
     }
 
@@ -44,7 +44,7 @@ public abstract class RVAdapter<T> extends RecyclerView.Adapter<RVHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RVHolder holder, final int position) {
+    public void onBindViewHolder(RecycleViewHolder holder, final int position) {
         onBindViewHolder(holder.getViewHolder(), list, position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

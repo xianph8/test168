@@ -13,13 +13,13 @@ import java.util.List;
  *
  * ListView GridView 的万能适配器
  */
-public abstract class LGAdapter<T> extends BaseAdapter {
+public abstract class ListGridViewAdapter<T> extends BaseAdapter {
     protected LayoutInflater mInflater;
     protected Context mContext;
     protected List<T> mData;
     protected final int mItemLayoutId;
 
-    public LGAdapter(Context context, List<T> mData, int itemLayoutId) {
+    public ListGridViewAdapter(Context context, List<T> mData, int itemLayoutId) {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(mContext);
         this.mData = mData;

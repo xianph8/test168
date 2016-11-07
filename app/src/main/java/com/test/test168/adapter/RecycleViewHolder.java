@@ -7,11 +7,11 @@ import android.view.View;
  * Created by King on 2016/4/9.
  * RecycleView 的 ViewHolder
  */
-public class RVHolder extends RecyclerView.ViewHolder {
+public class RecycleViewHolder extends RecyclerView.ViewHolder {
 
     private ViewHolder viewHolder;
 
-    public RVHolder(View itemView) {
+    public RecycleViewHolder(View itemView) {
         super(itemView);
         viewHolder = ViewHolder.getViewHolder(itemView);
     }
