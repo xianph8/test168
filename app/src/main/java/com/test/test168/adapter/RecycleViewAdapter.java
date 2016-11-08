@@ -14,24 +14,22 @@ import java.util.List;
  */
 public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<RecycleViewHolder> {
 
-
     private List<T> list;
 
     private Context context;
 
-    private int layoutId;
-
-    public RecycleViewAdapter(Context context, List<T> list, int layoutId) {
+    public RecycleViewAdapter(Context context, List<T> list) {
         this.list = list;
         this.context = context;
-        this.layoutId = layoutId;
     }
 
     @Override
     public RecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(layoutId, null);
+        View view = LayoutInflater.from(context).inflate(getItemLayoutId(), null);
         return new RecycleViewHolder(view);
     }
+
+    public abstract int getItemLayoutId();
 
     @Override
     public void onViewRecycled(final RecycleViewHolder holder) {

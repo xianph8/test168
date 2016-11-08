@@ -1,7 +1,6 @@
 package com.test.test168.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,21 +8,16 @@ import android.widget.BaseAdapter;
 import java.util.List;
 
 /**
- * Created by Administrator on 2015/7/29 0029.
- *
- * ListView GridView 的万能适配器
+ * Created by Administrator on 2015/7/29 0029 10:59
+ * Usage : ListView GridView 的万能适配器
  */
-public abstract class ListGridViewAdapter<T> extends BaseAdapter {
-    protected LayoutInflater mInflater;
+public abstract class CommonAdapter<T> extends BaseAdapter {
     protected Context mContext;
     protected List<T> mData;
-    protected final int mItemLayoutId;
 
-    public ListGridViewAdapter(Context context, List<T> mData, int itemLayoutId) {
+    public CommonAdapter(Context context, List<T> mData) {
         this.mContext = context;
-        this.mInflater = LayoutInflater.from(mContext);
         this.mData = mData;
-        this.mItemLayoutId = itemLayoutId;
     }
 
     @Override
@@ -52,7 +46,8 @@ public abstract class ListGridViewAdapter<T> extends BaseAdapter {
     public abstract void convert(ViewHolder holder, T item, int position);
 
     private ViewHolder getViewHolder(int position, View convertView, ViewGroup parent) {
-        return ViewHolder.get(mContext, convertView, parent, mItemLayoutId, position);
+        return ViewHolder.get(mContext, convertView, parent, getItemLayoutId(), position);
     }
 
+    public abstract int getItemLayoutId();
 }

@@ -16,7 +16,6 @@ public class RecycleViewHolder extends RecyclerView.ViewHolder {
         viewHolder = ViewHolder.getViewHolder(itemView);
     }
 
-
     public ViewHolder getViewHolder() {
         return viewHolder;
     }

@@ -18,6 +18,7 @@ android {
         }
     }
 
+    //////在 第一个 activity 中不能有 label , 否则不能有效果
     productFlavors {
         normal {
             manifestPlaceholders = [APP_NAME: "测试应用"]
