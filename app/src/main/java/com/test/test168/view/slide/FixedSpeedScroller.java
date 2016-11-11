@@ -9,7 +9,7 @@ import android.widget.Scroller;
  * 可以改变ViewPager 的滑动速度的类
  */
 class FixedSpeedScroller extends Scroller {
-    private int mDuration = 200;
+    private int mDuration = 200;////持续滑动时间
 
     public FixedSpeedScroller(Context context) {
         super(context);
@@ -31,7 +31,7 @@ class FixedSpeedScroller extends Scroller {
         super.startScroll(startX, startY, dx, dy, mDuration);
     }
 
-    public void setmDuration(int time) {
+    public void setDuration(int time) {
         mDuration = time;
     }
 

@@ -8,8 +8,8 @@ import android.view.View;
 
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
-import com.test.test168.ui.test.DummyContent;
 import com.test.test168.ui.fragment.RecycleFragment;
+import com.test.test168.ui.test.DummyContent;
 import com.test.test168.utils.L;
 
 public class RecyclerViewActivity extends BaseActivity implements RecycleFragment.OnListFragmentInteractionListener {

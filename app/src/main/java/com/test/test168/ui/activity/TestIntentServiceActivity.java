@@ -34,7 +34,7 @@ public class TestIntentServiceActivity extends BaseActivity {
 
     @OnClick(R.id.btn_start_intent_service)
     public void onStartService() {
-        progressDialog = LoadingDialog.getInstance(mContext, "asdfagdfsgdgf", false, false);
+        progressDialog = LoadingDialog.getInstance(mContext, "显示 loading dialog ", false, false);
         progressDialog.show();
         Intent in = new Intent(mContext, TestIntentService.class);
         startService(in);

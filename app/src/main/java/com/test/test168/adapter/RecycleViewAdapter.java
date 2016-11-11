@@ -29,8 +29,6 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycle
         return new RecycleViewHolder(view);
     }
 
-    public abstract int getItemLayoutId();
-
     @Override
     public void onViewRecycled(final RecycleViewHolder holder) {
         super.onViewRecycled(holder);
@@ -55,5 +53,8 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycle
     public abstract void onBindViewHolder(ViewHolder holder, List<T> list, int position);
 
     public abstract void onItemClick(List<T> list, int position);
+
+    public abstract int getItemLayoutId();
+
 
 }

@@ -140,7 +140,7 @@ public class RefreshLayout extends SwipeRefreshLayout {
         }
     }
 
-    public void setmOnRefreshLoadListener(OnRefreshLoadListener onRefreshLoadListener) {
+    public void setOnRefreshLoadListener(OnRefreshLoadListener onRefreshLoadListener) {
         mOnRefreshLoadListener = onRefreshLoadListener;
     }
 

@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
 
 
     <android.support.design.widget.AppBarLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/mAppTheme.AppBarOverlay">
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:theme="@style/mAppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/mAppTheme.PopupOverlay" />
+            app:popupTheme="@style/mAppTheme.PopupOverlay"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -32,7 +33,7 @@
         <FrameLayout
             android:id="@+id/fl_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
 
         <android.support.design.widget.NavigationView
@@ -42,7 +43,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_main_drawer" />
+            app:menu="@menu/activity_main_drawer"/>
 
     </android.support.v4.widget.DrawerLayout>
 

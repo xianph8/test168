@@ -9,18 +9,19 @@ build/
 */build/  
   
   
-# IDEA  
+# IDEA
+/.idea/
 *.iml  
-.idea/.name  
-.idea/encodings.xml  
-.idea/inspectionProfiles/Project_Default.xml  
-.idea/inspectionProfiles/profiles_settings.xml  
-.idea/misc.xml  
-.idea/modules.xml  
-.idea/scopes/scope_settings.xml  
-.idea/vcs.xml  
-.idea/workspace.xml  
-.idea/libraries  
+#.idea/.name
+#.idea/encodings.xml
+#.idea/inspectionProfiles/Project_Default.xml
+#.idea/inspectionProfiles/profiles_settings.xml
+#.idea/misc.xml
+#.idea/modules.xml
+#.idea/scopes/scope_settings.xml
+#.idea/vcs.xml
+#.idea/workspace.xml
+#.idea/libraries
   
   
 # Built application files  
@@ -47,4 +48,3 @@ local.properties
   
 # Log Files  
 *.log
-/.idea/

@@ -92,7 +92,7 @@ public class RxJavaActivity extends RxActivity {
 //        setSupportActionBar(toolbar);
 
         tv_test1.setText("runnable + handle的轮询器：\n" + count++ + "");
-        tv_test2.setText("Rx 的轮询器：");
+        tv_test2.setText(R.string.rx_timer);
         handler.postDelayed(runnable, 1000); // 开始Timer
 
         // rx 的点击事件
