@@ -8,12 +8,12 @@ import android.support.annotation.StyleRes;
 import android.support.v7.widget.ListPopupWindow;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ListAdapter;
 
 
 /**
- * 功能描述：标题按钮上的弹窗（继承自PopupWindow）
- * 用 public void show(View anchor, float x, float y) 方法，可以使用listpopup显示在（x,y）
- * xy 监听控件的  public boolean onTouchMore(View view, MotionEvent motionEvent) 用 MotionEvent 即可得到
+ * @author ddh
+ *         功能描述：标题按钮上的弹窗（继承自PopupWindow）
  */
 public class ListPopup extends ListPopupWindow {
 
@@ -34,31 +34,37 @@ public class ListPopup extends ListPopupWindow {
     }
 
     /**
-     * show popup in anchor right
+     * show popup on (x,-y)
      *
      * @param anchor show view anchor
-     */
-    public void show(View anchor) {
-        setAnchorView(anchor);
-        setHorizontalOffset(anchor != null ? anchor.getWidth() : 0);///水平
-        setVerticalOffset(anchor != null ? -anchor.getHeight() / 3 * 2 : 0);///垂直
-        show();
-    }
-
-
-    /**
-     * show popup on (x, -y)
-     * <p>
-     * add touch listener to the anchor
-     *
-     * @param anchor show view anchor
-     * @param x      on touch getX
-     * @param y      on touch getY
+     * @param x      x
+     * @param y      y
      */
     public void show(View anchor, float x, float y) {
         setAnchorView(anchor);
         setHorizontalOffset((int) x);///水平
+//        setVerticalOffset((int) y - anchor.getHeight());///垂直
         setVerticalOffset(-(int) y);///垂直
         show();
     }
+
+    /**
+     * 该方法，已经计算了adapter的每个子项，取其中最大的宽度
+     *
+     * @param listAdapter 设置好的适配器
+     */
+    public void setAdapter(@Nullable ListAdapter listAdapter) {
+        super.setAdapter(listAdapter);
+        int width = 0;/////宽度
+        int padding = 10;/////左右内边距
+        if (listAdapter != null) {
+            for (int i = 0; i < listAdapter.getCount(); i++) {
+                View listItem = listAdapter.getView(i, null, this.getListView());
+                listItem.measure(0, 0);
+                width = listItem.getMeasuredWidth() > width ? listItem.getMeasuredWidth() : width;
+            }
+        }
+        setWidth(width + padding);///////添加一个内边距
+    }
+
 }
