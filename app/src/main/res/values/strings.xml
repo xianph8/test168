@@ -13,4 +13,6 @@
     <string name="title_activity_recycle_view">RecycleViewActivity</string>
     <string name="head">头像</string>
     <string name="rx_timer">Rx 的轮询器：</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
 </resources>

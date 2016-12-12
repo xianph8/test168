@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.test.test168.R;
 import com.test.test168.adapter.RecycleViewAdapter;
 import com.test.test168.adapter.ViewHolder;
+import com.test.test168.ui.activity.ItemListActivity;
 import com.test.test168.ui.activity.LitePalActivity;
 import com.test.test168.ui.activity.RecyclerViewActivity;
 import com.test.test168.ui.activity.RxJavaActivity;
@@ -167,6 +168,9 @@ public class MainFragment extends Fragment {
                         break;
                     case 6:
                         startActivity(new Intent(mContext, TestIntentServiceActivity.class));
+                        break;
+                    case 7:
+                        startActivity(new Intent(mContext, ItemListActivity.class));
                         break;
                 }
             }

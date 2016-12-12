@@ -10,8 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/mAppTheme"
         tools:replace="android:label">
-        <activity
-            android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -39,6 +38,20 @@
         </service>
 
         <activity android:name=".ui.activity.TestIntentServiceActivity">
+        </activity>
+        <activity
+            android:name=".ui.activity.ItemListActivity"
+            android:label="@string/title_item_list"
+            android:theme="@style/mAppTheme">
+        </activity>
+        <activity
+            android:name=".ui.activity.ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".ui.activity.ItemListActivity"
+            android:theme="@style/mAppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.test.test168.ui.activity.ItemListActivity"/>
         </activity>
     </application>
 

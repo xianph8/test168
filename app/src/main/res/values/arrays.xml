@@ -9,6 +9,7 @@
         <item>RecyclerViewActivity</item>
         <item>SwipeRefreshLayout的上拉加载接口</item>
         <item>启动IntentService</item>
+        <item>item list activity</item>
     </array>
 
 </resources>

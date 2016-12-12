@@ -1,4 +1,4 @@
-package com.test.test168.ui.test;
+package com.test.test168.bean;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -11,9 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.test.test168.R;
-import com.test.test168.ui.test.DummyContent;
-import com.test.test168.ui.test.DummyContent.DummyItem;
-import com.test.test168.ui.test.MyRecycleRecyclerViewAdapter;
+import com.test.test168.adapter.MyRecycleRecyclerViewAdapter;
+import com.test.test168.bean.DummyContent;
 
 
 /**
@@ -106,6 +105,6 @@ public class RecycleFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(DummyContent.DummyItem item);
     }
 }
