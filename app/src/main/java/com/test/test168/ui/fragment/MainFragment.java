@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.test.test168.R;
 import com.test.test168.adapter.RecycleViewAdapter;
@@ -171,6 +173,18 @@ public class MainFragment extends Fragment {
                         break;
                     case 7:
                         startActivity(new Intent(mContext, ItemListActivity.class));
+                        break;
+                    case 8:
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.BaseDialog);
+                        builder.setCustomTitle(new TextView(getActivity()));
+                        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_test_dialog, null);
+                        builder.setView(view);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        break;
+                    case 9:
+                        TestDialogFragment dialogFragment = new TestDialogFragment();
+                        dialogFragment.show(getFragmentManager(), "");
                         break;
                 }
             }

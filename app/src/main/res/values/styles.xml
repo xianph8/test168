@@ -130,7 +130,7 @@
 
 
     <!--dialog theme -->
-    <style name="AppTheme.AlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="BaseAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!-- NeutralButtonStyle -->
@@ -150,5 +150,7 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-
+    <style name="BaseDialog" parent="BaseAlertDialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

@@ -10,6 +10,8 @@
         <item>SwipeRefreshLayout的上拉加载接口</item>
         <item>启动IntentService</item>
         <item>item list activity</item>
+        <item>show dialog</item>
+        <item>dialog fragment</item>
     </array>
 
 </resources>

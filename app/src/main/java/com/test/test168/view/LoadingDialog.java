@@ -24,7 +24,7 @@ public class LoadingDialog extends ProgressDialog {
                                              String message,
                                              boolean canTouchOutside,
                                              boolean canCancelable) {
-        ProgressDialog progressDialog = new ProgressDialog(mContext, R.style.AppTheme_AlertDialog);
+        ProgressDialog progressDialog = new ProgressDialog(mContext, R.style.BaseAlertDialog);
         progressDialog.setMessage(message);
         progressDialog.setCanceledOnTouchOutside(canTouchOutside);
         progressDialog.setCancelable(canCancelable);

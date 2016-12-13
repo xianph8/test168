@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/red"
+                android:orientation="vertical"
+                android:padding="@dimen/fab_margin">
+
+    <ImageView
+        android:id="@+id/dialog_recharge_confirm_iv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"/>
+
+    <TextView
+        android:id="@+id/dialog_recharge_confirm_tv_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_recharge_confirm_iv_cancel"
+        android:gravity="center_horizontal"
+        android:text="asdf"/>
+
+    <TextView
+        android:id="@+id/dialog_recharge_confirm_tv_presented"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_recharge_confirm_tv_amount"
+        android:gravity="center_horizontal"
+        android:text="asdf"/>
+
+    <TextView
+        android:id="@+id/dialog_recharge_confirm_btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_recharge_confirm_tv_presented"
+        android:gravity="center"
+        android:minEms="20"
+        android:text="4564"/>
+
+</RelativeLayout>
