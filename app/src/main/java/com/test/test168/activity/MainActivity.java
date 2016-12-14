@@ -1,4 +1,4 @@
-package com.test.test168.ui.activity;
+package com.test.test168.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.test.test168.R;
-import com.test.test168.ui.fragment.MainFragment;
+import com.test.test168.fragment.MainFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

@@ -1,4 +1,4 @@
-package com.test.test168.ui.activity;
+package com.test.test168.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 import com.test.test168.R;
-import com.test.test168.ui.fragment.ItemDetailFragment;
+import com.test.test168.fragment.ItemDetailFragment;
 
 /**
  * An activity representing a single Item detail screen. This

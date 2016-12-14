@@ -1,4 +1,4 @@
-package com.test.test168.ui.activity;
+package com.test.test168.activity;
 
 import android.content.Context;
 import android.os.Bundle;

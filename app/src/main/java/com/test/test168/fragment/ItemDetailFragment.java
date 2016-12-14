@@ -1,4 +1,4 @@
-package com.test.test168.ui.fragment;
+package com.test.test168.fragment;
 
 import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.test.test168.R;
 import com.test.test168.bean.DummyContent;
-import com.test.test168.ui.activity.ItemDetailActivity;
-import com.test.test168.ui.activity.ItemListActivity;
+import com.test.test168.activity.ItemDetailActivity;
+import com.test.test168.activity.ItemListActivity;
 
 /**
  * A fragment representing a single Item detail screen.

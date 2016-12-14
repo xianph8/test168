@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.test.test168.ui.fragment.RecycleFragment"
+    tools:context=".fragment.RecycleFragment"
     tools:listitem="@layout/fragment_recycle" />

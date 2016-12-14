@@ -1,4 +1,4 @@
-package com.test.test168.ui.activity;
+package com.test.test168.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,7 +9,7 @@ import android.view.View;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.bean.DummyContent;
-import com.test.test168.ui.fragment.RecycleFragment;
+import com.test.test168.fragment.RecycleFragment;
 import com.test.test168.utils.L;
 
 public class RecyclerViewActivity extends BaseActivity implements RecycleFragment.OnListFragmentInteractionListener {

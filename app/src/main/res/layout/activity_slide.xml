@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.test.test168.ui.activity.SlideActivity">
+    tools:context=".activity.SlideActivity">
 
     <include layout="@layout/include_activity_head" />
 

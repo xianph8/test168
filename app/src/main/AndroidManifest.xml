@@ -10,21 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/mAppTheme"
         tools:replace="android:label">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.SlideActivity"/>
+        <activity android:name=".activity.SlideActivity"/>
         <activity
-            android:name=".ui.activity.RxJavaActivity"
+            android:name=".activity.RxJavaActivity"
             android:label="@string/title_activity_test_rx_java"
             android:theme="@style/mAppTheme"/>
-        <activity android:name=".ui.activity.LitePalActivity"/>
+        <activity android:name=".activity.LitePalActivity"/>
         <activity
-            android:name=".ui.activity.RecyclerViewActivity"
+            android:name=".activity.RecyclerViewActivity"
             android:label="@string/title_activity_recycle_view"
             android:theme="@style/mAppTheme"/>
 
@@ -37,21 +37,21 @@
             android:exported="false">
         </service>
 
-        <activity android:name=".ui.activity.TestIntentServiceActivity">
+        <activity android:name=".activity.TestIntentServiceActivity">
         </activity>
         <activity
-            android:name=".ui.activity.ItemListActivity"
+            android:name=".activity.ItemListActivity"
             android:label="@string/title_item_list"
             android:theme="@style/mAppTheme">
         </activity>
         <activity
-            android:name=".ui.activity.ItemDetailActivity"
+            android:name=".activity.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ui.activity.ItemListActivity"
+            android:parentActivityName=".activity.ItemListActivity"
             android:theme="@style/mAppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.test.test168.ui.activity.ItemListActivity"/>
+                android:value=".activity.ItemListActivity"/>
         </activity>
     </application>
 

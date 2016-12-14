@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.test.test168.R;
 import com.test.test168.bean.DummyContent;
-import com.test.test168.ui.fragment.RecycleFragment;
+import com.test.test168.fragment.RecycleFragment;
 
 import java.util.List;
 

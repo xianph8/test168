@@ -4,7 +4,7 @@
     android:id="@+id/activity_lite_pal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.test.test168.ui.activity.LitePalActivity">
+    tools:context=".activity.LitePalActivity">
 
     <include layout="@layout/include_activity_head" />
 

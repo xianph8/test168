@@ -1,4 +1,4 @@
-package com.test.test168.ui.fragment;
+package com.test.test168.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,14 +16,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.test.test168.R;
+import com.test.test168.activity.ItemListActivity;
+import com.test.test168.activity.LitePalActivity;
+import com.test.test168.activity.RecyclerViewActivity;
+import com.test.test168.activity.RxJavaActivity;
+import com.test.test168.activity.SlideActivity;
+import com.test.test168.activity.TestIntentServiceActivity;
 import com.test.test168.adapter.RecycleViewAdapter;
 import com.test.test168.adapter.ViewHolder;
-import com.test.test168.ui.activity.ItemListActivity;
-import com.test.test168.ui.activity.LitePalActivity;
-import com.test.test168.ui.activity.RecyclerViewActivity;
-import com.test.test168.ui.activity.RxJavaActivity;
-import com.test.test168.ui.activity.SlideActivity;
-import com.test.test168.ui.activity.TestIntentServiceActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -151,45 +151,40 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onItemClick(List<String> list, int position) {
-                switch (position) {
-                    case 0:
-                        startActivity(new Intent(mContext, SlideActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(mContext, LitePalActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(mContext, RxJavaActivity.class));
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        startActivity(new Intent(mContext, RecyclerViewActivity.class));
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        startActivity(new Intent(mContext, TestIntentServiceActivity.class));
-                        break;
-                    case 7:
-                        startActivity(new Intent(mContext, ItemListActivity.class));
-                        break;
-                    case 8:
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.BaseDialog);
-                        builder.setCustomTitle(new TextView(getActivity()));
-                        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_test_dialog, null);
-                        builder.setView(view);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                        break;
-                    case 9:
-                        TestDialogFragment dialogFragment = new TestDialogFragment();
-                        dialogFragment.show(getFragmentManager(), "");
-                        break;
+                if (position == 7) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.BaseDialog);
+                    builder.setCustomTitle(new TextView(getActivity()));
+                    View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_test_dialog, null);
+                    builder.setView(view);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                } else if (position == 8) {
+                    TestDialogFragment dialogFragment = new TestDialogFragment();
+                    dialogFragment.show(getFragmentManager(), "");
+                } else {
+                    startActivity(mMoreClass[position]);
                 }
             }
         });
 
+    }
+
+    private Class[] mMoreClass = new Class[]{
+            SlideActivity.class,
+            LitePalActivity.class,
+            RxJavaActivity.class,
+            RecyclerViewActivity.class,
+            null,
+            TestIntentServiceActivity.class,
+            ItemListActivity.class,
+            null,
+            null,
+    };
+
+    private void startActivity(Class c) {
+        if (c == null) return;
+        Intent intent = new Intent(mContext, c);
+        startActivity(intent);
     }
 
 

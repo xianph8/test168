@@ -1,4 +1,4 @@
-package com.test.test168.ui.fragment;
+package com.test.test168.fragment;
 
 import android.content.Context;
 import android.os.Bundle;

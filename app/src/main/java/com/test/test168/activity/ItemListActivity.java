@@ -1,4 +1,4 @@
-package com.test.test168.ui.activity;
+package com.test.test168.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.test.test168.R;
 
 import com.test.test168.bean.DummyContent;
-import com.test.test168.ui.fragment.ItemDetailFragment;
+import com.test.test168.fragment.ItemDetailFragment;
 
 import java.util.List;
 

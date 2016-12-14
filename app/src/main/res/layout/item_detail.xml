@@ -6,4 +6,4 @@
           android:layout_height="match_parent"
           android:padding="16dp"
           android:textIsSelectable="true"
-          tools:context="com.test.test168.ui.fragment.ItemDetailFragment"/>
+          tools:context=".fragment.ItemDetailFragment"/>
