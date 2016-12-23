@@ -119,15 +119,15 @@
         <!--<item name="android:textColor">@color/default_font5</item>-->
     <!--</style>-->
 
-    <!--<style name="activityTitleText">-->
-        <!--<item name="android:textSize">@dimen/text_title</item>-->
-        <!--<item name="android:textColor">@color/white</item>-->
-    <!--</style>-->
+    <style name="activityTitleText">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
-    <!--<style name="activitySubmitText">-->
-        <!--<item name="android:textSize">@dimen/text_title</item>-->
-        <!--<item name="android:textColor">@color/white</item>-->
-    <!--</style>-->
+    <style name="activitySubmitText">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
 
     <!--dialog theme -->
@@ -153,5 +153,16 @@
 
     <style name="BaseDialog" parent="BaseAlertDialog">
         <item name="android:windowNoTitle">true</item>
+    </style>
+
+
+
+    <style name="MemberInquiryItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minEms">10</item>
+        <item name="android:maxEms">10</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

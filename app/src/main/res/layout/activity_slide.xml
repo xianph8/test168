@@ -13,7 +13,7 @@
     <com.test.test168.view.slide.SlideView
         android:id="@+id/sv_banner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp500" />
+        android:layout_height="300dp" />
 
 
     <Button
