@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_panel_recycle_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.test.test168.activity.PanelRecycleViewActivity">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--<include layout="@layout/item_member_inquiry_result_list"/>-->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_member_category_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </HorizontalScrollView>
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/rv_member_category_result"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"/>-->
+
+    <!--<com.kelin.scrollablepanel.library.ScrollablePanel-->
+    <!--android:id="@+id/scrollable_panel"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
+
+    <!--<com.test.test168.view.tablefixheaders.TableFixHeaders-->
+    <!--android:id="@+id/table"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:scrollbars="horizontal|vertical"/>-->
+
+</RelativeLayout>

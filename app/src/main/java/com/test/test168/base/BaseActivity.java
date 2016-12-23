@@ -1,9 +1,7 @@
 package com.test.test168.base;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +24,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mContext = getApplicationContext();
         mActivity = this;
+        initViews();
     }
+
+    protected abstract void initViews();
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -37,6 +38,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     //bn = $(R.id.bn1);
     protected <T extends View> T $(int id) {
@@ -104,44 +107,4 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /**
-     * 含有标题和内容的对话框
-     **/
-    protected AlertDialog showAlertDialog(String title, String message) {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle(title)
-                .setMessage(message).show();
-        return alertDialog;
-    }
-
-    /**
-     * 含有标题、内容、两个按钮的对话框
-     **/
-    protected AlertDialog showAlertDialog(String title, String message,
-                                          String positiveText,
-                                          DialogInterface.OnClickListener onPositiveClickListener,
-                                          String negativeText,
-                                          DialogInterface.OnClickListener onNegativeClickListener) {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle(title)
-                .setMessage(message)
-                .setPositiveButton(positiveText, onPositiveClickListener)
-                .setNegativeButton(negativeText, onNegativeClickListener)
-                .show();
-        return alertDialog;
-    }
-
-    /**
-     * 含有标题、内容、图标、两个按钮的对话框
-     **/
-    protected AlertDialog showAlertDialog(String title, String message,
-                                          int icon, String positiveText,
-                                          DialogInterface.OnClickListener onPositiveClickListener,
-                                          String negativeText,
-                                          DialogInterface.OnClickListener onNegativeClickListener) {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle(title)
-                .setMessage(message).setIcon(icon)
-                .setPositiveButton(positiveText, onPositiveClickListener)
-                .setNegativeButton(negativeText, onNegativeClickListener)
-                .show();
-        return alertDialog;
-    }
 }

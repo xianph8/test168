@@ -30,8 +30,8 @@ public class SlideActivity extends BaseActivity {
     private ImageView iv_test;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initViews() {
+
         setContentView(R.layout.activity_slide);
         ButterKnife.bind(this);
         L.i("onCreate :　");
@@ -39,7 +39,6 @@ public class SlideActivity extends BaseActivity {
         initView();
 
         initData();
-
     }
 
     private void initView() {

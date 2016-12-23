@@ -15,8 +15,8 @@ import com.test.test168.utils.L;
 public class RecyclerViewActivity extends BaseActivity implements RecycleFragment.OnListFragmentInteractionListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initViews() {
+
         setContentView(R.layout.activity_recycler_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

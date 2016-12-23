@@ -10,47 +10,45 @@
     <dimen name="toolbar_height">?attr/actionBarSize</dimen>
 
     <!--custom size -->
-    <dimen name="nav_header_height_custom">@dimen/dp450</dimen>
-
-    <dimen name="promoted_actions_library_size">@dimen/dp180</dimen>
-    <dimen name="promoted_actions_library_btn_margin">@dimen/dp50</dimen>
 
     <!-- user info app bar-->
     <dimen name="app_bar_height">180dp</dimen>
     <!-- include head bar submit margin-->
     <dimen name="text_margin">16dp</dimen>
     <!-- include head bar title text size -->
-    <dimen name="text_title">@dimen/sp56</dimen>
-    <dimen name="text_title_submit">@dimen/sp34</dimen>
+    <!--<dimen name="text_title">@dimen/sp56</dimen>-->
+
+    <!--table-->
+    <!--<dimen name="shadow_size">8dip</dimen>-->
 
 
     <!-- default font size -->
-    <dimen name="default_font1">@dimen/sp45</dimen>
-    <dimen name="default_font2">@dimen/sp40</dimen>
-    <dimen name="default_font3">@dimen/sp35</dimen>
-    <dimen name="default_font4">@dimen/sp30</dimen>
-    <dimen name="default_font5">@dimen/sp25</dimen>
-    <dimen name="default_font6">@dimen/sp20</dimen>
-    <dimen name="default_font7">@dimen/sp15</dimen>
+    <!--<dimen name="default_font1">@dimen/sp45</dimen>-->
+    <!--<dimen name="default_font2">@dimen/sp40</dimen>-->
+    <!--<dimen name="default_font3">@dimen/sp35</dimen>-->
+    <!--<dimen name="default_font4">@dimen/sp30</dimen>-->
+    <!--<dimen name="default_font5">@dimen/sp25</dimen>-->
+    <!--<dimen name="default_font6">@dimen/sp20</dimen>-->
+    <!--<dimen name="default_font7">@dimen/sp15</dimen>-->
 
     <!--<dimen name="titleBarHeight">@dimen/dp130</dimen>-->
     <!--<dimen name="defaultHeadSize">@dimen/dp180</dimen>-->
     <!--<dimen name="defaultSecondMenuHeight">@dimen/dp130</dimen>-->
 
     <!--material design font style -->
-    <dimen name="display4">@dimen/sp112</dimen><!--light-->
-    <dimen name="display3">@dimen/sp56</dimen><!--regular-->
-    <dimen name="display2">@dimen/sp45</dimen><!--regular-->
-    <dimen name="display1">@dimen/sp34</dimen><!--regular-->
-    <dimen name="head_line">@dimen/sp24</dimen><!--regular-->
-    <dimen name="title">@dimen/sp20</dimen><!--medium-->
-    <dimen name="subhead">@dimen/sp16</dimen><!--regular-->
-    <dimen name="body1">@dimen/sp14</dimen><!--regular-->
-    <dimen name="body2">@dimen/sp14</dimen><!--medium-->
-    <dimen name="caption">@dimen/sp12</dimen><!--regular-->
-    <dimen name="menu">@dimen/sp14</dimen><!--medium-->
-    <dimen name="button">@dimen/sp14</dimen>
-    <dimen name="item_width">200dp</dimen><!--medium-->
+    <!--<dimen name="display4">@dimen/sp112</dimen>&lt;!&ndash;light&ndash;&gt;-->
+    <!--<dimen name="display3">@dimen/sp56</dimen>&lt;!&ndash;regular&ndash;&gt;-->
+    <!--<dimen name="display2">@dimen/sp45</dimen>&lt;!&ndash;regular&ndash;&gt;-->
+    <!--<dimen name="display1">@dimen/sp34</dimen>&lt;!&ndash;regular&ndash;&gt;-->
+    <!--<dimen name="head_line">@dimen/sp24</dimen>&lt;!&ndash;regular&ndash;&gt;-->
+    <!--<dimen name="title">@dimen/sp20</dimen>&lt;!&ndash;medium&ndash;&gt;-->
+    <!--<dimen name="subhead">@dimen/sp16</dimen>&lt;!&ndash;regular&ndash;&gt;-->
+    <!--<dimen name="body1">@dimen/sp14</dimen>&lt;!&ndash;regular&ndash;&gt;-->
+    <!--<dimen name="body2">@dimen/sp14</dimen>&lt;!&ndash;medium&ndash;&gt;-->
+    <!--<dimen name="caption">@dimen/sp12</dimen>&lt;!&ndash;regular&ndash;&gt;-->
+    <!--<dimen name="menu">@dimen/sp14</dimen>&lt;!&ndash;medium&ndash;&gt;-->
+    <!--<dimen name="button">@dimen/sp14</dimen>-->
+    <!--<dimen name="item_width">200dp</dimen>&lt;!&ndash;medium&ndash;&gt;-->
 
 
 </resources>

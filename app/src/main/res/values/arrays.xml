@@ -11,6 +11,7 @@
         <item>item list activity</item>
         <item>show dialog</item>
         <item>dialog fragment</item>
+        <item>panel recycle view</item>
     </array>
 
 </resources>

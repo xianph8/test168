@@ -2,13 +2,12 @@ package com.test.test168.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.test.test168.service.TestIntentService;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
+import com.test.test168.service.TestIntentService;
 import com.test.test168.view.LoadingDialog;
 
 import butterknife.Bind;
@@ -25,8 +24,8 @@ public class TestIntentServiceActivity extends BaseActivity {
     RelativeLayout mActivityTestIntentService;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initViews() {
+
         setContentView(R.layout.activity_test_intent_service);
         ButterKnife.bind(this);
         mContext = this;

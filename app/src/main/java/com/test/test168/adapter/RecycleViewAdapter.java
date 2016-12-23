@@ -14,7 +14,7 @@ import java.util.List;
  */
 public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<RecycleViewHolder> {
 
-    private List<T> list;
+    List<T> list;
 
     private Context context;
 

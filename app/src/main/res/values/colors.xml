@@ -57,5 +57,8 @@
     <color name="orange">#ffefa600</color>
     <color name="blue">#31a4e5</color>
 
+    <!--table-->
+    <color name="shadow_start">#80000000</color>
+    <color name="shadow_end">#00000000</color>
 
 </resources>

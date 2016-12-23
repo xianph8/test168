@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <!--<TextView-->
+    <!--style="@style/MemberInquiryItem"-->
+    <!--android:text="序"/>-->
+
+    <TextView
+        android:id="@+id/tv_member_type"
+        style="@style/MemberInquiryItem"
+        android:text="会员类型"/>
+
+    <TextView
+        android:id="@+id/tv_member_name"
+        style="@style/MemberInquiryItem"
+        android:text="姓名"/>
+
+    <TextView
+        android:id="@+id/tv_member_discount"
+        style="@style/MemberInquiryItem"
+        android:text="折扣"/>
+
+    <TextView
+        android:id="@+id/tv_member_member_card_num"
+        style="@style/MemberInquiryItem"
+        android:text="会员卡号"/>
+
+    <TextView
+        android:id="@+id/tv_member_phone"
+        style="@style/MemberInquiryItem"
+        android:text="手机"/>
+
+    <TextView
+        android:id="@+id/tv_member_address"
+        style="@style/MemberInquiryItem"
+        android:text="地址"/>
+
+    <TextView
+        android:id="@+id/tv_member_qq"
+        style="@style/MemberInquiryItem"
+        android:text="qq号"/>
+
+    <TextView
+        android:id="@+id/tv_member_email"
+        style="@style/MemberInquiryItem"
+        android:text="邮箱"/>
+
+    <TextView
+        android:id="@+id/tv_member_wechat"
+        style="@style/MemberInquiryItem"
+        android:text="微信号"/>
+
+    <TextView
+        android:id="@+id/tv_member_sex"
+        style="@style/MemberInquiryItem"
+        android:text="性别"/>
+
+    <TextView
+        android:id="@+id/tv_member_tel"
+        style="@style/MemberInquiryItem"
+        android:text="电话"/>
+
+    <TextView
+        android:id="@+id/tv_member_zipcode"
+        style="@style/MemberInquiryItem"
+        android:text="邮编"/>
+
+    <TextView
+        android:id="@+id/tv_member_create_date"
+        style="@style/MemberInquiryItem"
+        android:text="创建日期"/>
+
+    <TextView
+        android:id="@+id/tv_member_stop_date"
+        style="@style/MemberInquiryItem"
+        android:text="停用日期"/>
+
+</LinearLayout>

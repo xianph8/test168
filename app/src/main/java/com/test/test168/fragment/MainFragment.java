@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.test.test168.R;
 import com.test.test168.activity.ItemListActivity;
 import com.test.test168.activity.LitePalActivity;
+import com.test.test168.activity.PanelRecycleViewActivity;
 import com.test.test168.activity.RecyclerViewActivity;
 import com.test.test168.activity.RxJavaActivity;
 import com.test.test168.activity.SlideActivity;
@@ -179,6 +180,7 @@ public class MainFragment extends Fragment {
             ItemListActivity.class,
             null,
             null,
+            PanelRecycleViewActivity.class
     };
 
     private void startActivity(Class c) {

@@ -53,6 +53,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.ItemListActivity"/>
         </activity>
+        <activity android:name=".activity.PanelRecycleViewActivity">
+        </activity>
+        <activity android:name=".activity.ThreadPoolActivity">
+        </activity>
     </application>
 
 </manifest>
