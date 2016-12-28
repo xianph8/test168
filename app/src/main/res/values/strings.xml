@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">test168</string>
 
+    <string name="loading">加载中…</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

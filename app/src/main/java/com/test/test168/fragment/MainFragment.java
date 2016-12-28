@@ -7,21 +7,21 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.test.test168.R;
 import com.test.test168.activity.ItemListActivity;
 import com.test.test168.activity.LitePalActivity;
+import com.test.test168.activity.NineGirdActivity;
 import com.test.test168.activity.PanelRecycleViewActivity;
 import com.test.test168.activity.RecyclerViewActivity;
 import com.test.test168.activity.RxJavaActivity;
 import com.test.test168.activity.SlideActivity;
+import com.test.test168.activity.TestDialogFragmentActivity;
 import com.test.test168.activity.TestIntentServiceActivity;
 import com.test.test168.adapter.RecycleViewAdapter;
 import com.test.test168.adapter.ViewHolder;
@@ -89,6 +89,13 @@ public class MainFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_main_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
 
+        initFloatButton(view);
+
+        initData();
+        return view;
+    }
+
+    private void initFloatButton(View view) {
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,9 +104,6 @@ public class MainFragment extends Fragment {
                         .setAction("Action", null).show();
             }
         });
-
-        initData();
-        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -152,19 +156,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onItemClick(List<String> list, int position) {
-                if (position == 7) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.BaseDialog);
-                    builder.setCustomTitle(new TextView(getActivity()));
-                    View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_test_dialog, null);
-                    builder.setView(view);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                } else if (position == 8) {
-                    TestDialogFragment dialogFragment = new TestDialogFragment();
-                    dialogFragment.show(getFragmentManager(), "");
-                } else {
-                    startActivity(mMoreClass[position]);
-                }
+                startActivity(mMoreClass[position]);
             }
         });
 
@@ -178,9 +170,9 @@ public class MainFragment extends Fragment {
             null,
             TestIntentServiceActivity.class,
             ItemListActivity.class,
-            null,
-            null,
-            PanelRecycleViewActivity.class
+            TestDialogFragmentActivity.class,
+            PanelRecycleViewActivity.class,
+            NineGirdActivity.class
     };
 
     private void startActivity(Class c) {

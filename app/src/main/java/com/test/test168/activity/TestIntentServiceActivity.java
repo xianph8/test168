@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.service.TestIntentService;
-import com.test.test168.view.LoadingDialog;
+import com.test.test168.view.dialog.LoadingDialog;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,14 +28,14 @@ public class TestIntentServiceActivity extends BaseActivity {
 
         setContentView(R.layout.activity_test_intent_service);
         ButterKnife.bind(this);
-        mContext = this;
+        mActivity = this;
     }
 
     @OnClick(R.id.btn_start_intent_service)
     public void onStartService() {
-        progressDialog = LoadingDialog.getInstance(mContext, "显示 loading dialog ", false, false);
+        progressDialog = LoadingDialog.getInstance(mActivity, "显示 loading dialog ", false, false);
         progressDialog.show();
-        Intent in = new Intent(mContext, TestIntentService.class);
+        Intent in = new Intent(mActivity, TestIntentService.class);
         startService(in);
     }
 }

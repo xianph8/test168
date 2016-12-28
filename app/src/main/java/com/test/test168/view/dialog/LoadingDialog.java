@@ -2,100 +2,60 @@ package com.test.test168.view.dialog;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.view.KeyEvent;
 
-import com.test.test168.event.LoadingEvent;
-import com.test.test168.utils.L;
-
-import org.greenrobot.eventbus.EventBus;
+import com.test.test168.R;
 
 
 /**
- * Created by King on 2016/3/27.
+ * Created by Administrator on 2016-09-30.
  */
-public class LoadingDialog {
 
-    ProgressDialog progressDialog = null;
+public class LoadingDialog extends ProgressDialog {
 
-    public LoadingDialog() {
+    public LoadingDialog(Context context) {
+        super(context);
     }
 
-    //内部类，在装载该内部类时才会去创建单利对象
-    private static class LoadingDialogHolder {
-        public static LoadingDialog instance = new LoadingDialog();
+    public LoadingDialog(Context context, int theme) {
+        super(context, theme);
     }
 
-    public static LoadingDialog getInstance() {
-        return LoadingDialogHolder.instance;
+    public static ProgressDialog getInstance(Context mContext,
+                                             String message,
+                                             boolean canTouchOutside,
+                                             boolean canCancelable) {
+        ProgressDialog progressDialog = new ProgressDialog(mContext, R.style.BaseAlertDialog);
+        progressDialog.setMessage(message);
+        progressDialog.setCanceledOnTouchOutside(canTouchOutside);
+        progressDialog.setCancelable(canCancelable);
+        return progressDialog;
     }
 
-    public void show(Context mContext, String msg) {
-
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(mContext);
-        } else {
-            return;
-        }
-
-        if (msg != null && !msg.equals("")) {
-            progressDialog.setMessage(msg);
-        } else {
-            progressDialog.setMessage("正在加载中，请稍候…");
-        }
-
-        progressDialog.setCanceledOnTouchOutside(false);
-
-        progressDialog.setIndeterminate(true);
-
-        setListener();
-
-        progressDialog.show();
+    public static ProgressDialog getInstance(Context mContext,
+                                             int message,
+                                             boolean canTouchOutside,
+                                             boolean canCancelable) {
+        return getInstance(mContext, mContext.getString(message), canTouchOutside, canCancelable);
     }
 
-    public void dismiss() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-//            progressDialog.hide();
-            progressDialog = null;
-        }
+    public static ProgressDialog getInstance(Context mContext,
+                                             String message,
+                                             boolean canTouchOutside) {
+        return getInstance(mContext, message, canTouchOutside, true);
     }
 
-    private void setListener() {
-        progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                L.i("progressDialog onCancel : " + dialog);
-                EventBus.getDefault().post(new LoadingEvent(LoadingEvent.CANCEL));
-            }
-        });
+    public static ProgressDialog getInstance(Context mContext,
+                                             int message,
+                                             boolean canTouchOutside) {
+        return getInstance(mContext, message, canTouchOutside, true);
+    }
 
-        progressDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                L.i("progressDialog onDismiss : " + dialog);
-                EventBus.getDefault().post(new LoadingEvent(LoadingEvent.DISMISS));
-            }
-        });
+    public static ProgressDialog getInstance(Context mContext, String message) {
+        return getInstance(mContext, message, true, true);
+    }
 
-        progressDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                L.i("progressDialog onKey : " + dialog);
-                L.i("progressDialog onKey : " + keyCode);
-                L.i("progressDialog onKey : " + event);
-                EventBus.getDefault().post(new LoadingEvent(LoadingEvent.KEY));
-                return false;
-            }
-        });
-
-        progressDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                L.i("progressDialog onShow : " + dialog);
-                EventBus.getDefault().post(new LoadingEvent(LoadingEvent.SHOW));
-            }
-        });
+    public static ProgressDialog getInstance(Context mContext, int message) {
+        return getInstance(mContext, message, true, true);
     }
 
 }

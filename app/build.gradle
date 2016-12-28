@@ -16,14 +16,17 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled false
+        }
     }
 
-    //////在 第一个 activity 中不能有 label , 否则不能有效果
+    //////打包定义应用名，在 第一个 activity 中不能有 label , 否则不能有效果
     productFlavors {
-        normal {
+        normal {//正常
             manifestPlaceholders = [APP_NAME: "测试应用"]
         }
-        lkl {
+        ceshi {//测试
             manifestPlaceholders = [APP_NAME: "测试应用1"]
         }
     }
@@ -36,18 +39,18 @@ dependencies {
     compile 'com.android.support:design:25.0.1'
     compile 'com.android.support:support-v4:25.0.1'
     compile 'com.android.support:recyclerview-v7:25.0.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
+    compile 'com.github.Aspsine:SwipeToLoadLayout:v1.0.2'
+    compile 'com.google.code.gson:gson:2.7'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.squareup.okhttp3:okhttp:3.3.1'
-    compile 'com.github.Aspsine:SwipeToLoadLayout:v1.0.2'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+//    compile 'io.reactivex.rxjava2:rxandroid:1.2.4'
+//    compile 'io.reactivex.rxjava2:rxjava:1.2.1'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-design:0.4.0'
-    compile 'com.trello:rxlifecycle:0.4.0'
-    compile 'com.trello:rxlifecycle-components:0.4.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
 }

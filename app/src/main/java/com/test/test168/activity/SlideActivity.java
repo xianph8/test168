@@ -1,6 +1,5 @@
 package com.test.test168.activity;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -98,7 +97,7 @@ public class SlideActivity extends BaseActivity {
         slideView.setOnImageClickListener(new OnImageClickListener() {
             @Override
             public void onClick(int position) {        // 添加监听器，点击有反应
-                showShortToast("this is : " + position);
+                showToast("this is : " + position);
                 L.i("position : " + position);
             }
         });
@@ -131,12 +130,12 @@ public class SlideActivity extends BaseActivity {
             case R.id.btn_start:
                 startRotate();
                 slideView.setAutoPlay(true);
-                showShortToast("start");
+                showToast("start");
                 break;
             case R.id.btn_stop:
                 stopRotate();
                 slideView.setAutoPlay(false);
-                showShortToast("stop");
+                showToast("stop");
                 break;
         }
     }

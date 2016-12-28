@@ -1,45 +1,37 @@
 package com.test.test168.base;
 
 import android.app.Activity;
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
-import com.test.test168.utils.L;
+import com.test.test168.R;
 import com.test.test168.view.dialog.LoadingDialog;
 
 
+/**
+ * Created by ddh  on 2015/11/ 16:33 Usage : activity 基类
+ */
 public abstract class BaseActivity extends AppCompatActivity {
-
-    protected Context mContext;
-
-    protected Activity mActivity;
+    protected Activity mActivity = BaseActivity.this;
+    private ProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = getApplicationContext();
-        mActivity = this;
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         initViews();
     }
 
-    protected abstract void initViews();
-
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        L.i("onOptionsItemSelected : ");
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void onDestroy() {
+        super.onDestroy();
+        dismissLoadingDialog();
     }
-
-
 
     //bn = $(R.id.bn1);
     protected <T extends View> T $(int id) {
@@ -47,64 +39,65 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    protected void showLoadingDialog(String text) {
-        LoadingDialog.getInstance().show(mActivity, text);
+    public void BtnFinish(View view) {
+        finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    protected abstract void initViews();
+
+//    protected void setTitleText(int resId) {
+//        ((TextView) findViewById(R.id.tv_title)).setText(resId);
+//    }
+//
+//    protected void setTitleText(String title) {
+//        ((TextView) findViewById(R.id.tv_title)).setText(title);
+//    }
+
+    protected void startActivity(Class cls) {
+        Intent i = new Intent(mActivity, cls);
+        startActivity(i);
+    }
+
+    protected void showToast(String message) {
+        Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showToast(int message) {
+        showToast(getString(message));
+    }
+
+    protected void showLoadingDialog() {
+        showLoadingDialog(R.string.loading);
+    }
+
+    protected void showLoadingDialog(int resId) {
+        if (resId == 0) {
+            showLoadingDialog();
+        }
+        if (progressDialog == null) {
+            progressDialog = LoadingDialog.getInstance(mActivity, resId, false, false);
+        } else {
+            progressDialog.setMessage(mActivity.getString(resId));
+        }
+        if (!progressDialog.isShowing())
+            progressDialog.show();
     }
 
     protected void dismissLoadingDialog() {
-        LoadingDialog.getInstance().dismiss();
-    }
-
-    /**
-     * 短暂显示Toast提示(来自res)
-     **/
-    protected void showShortToast(int resId) {
-        showShortToast(getString(resId));
-    }
-
-    /**
-     * 短暂显示Toast提示(来自String)
-     **/
-    protected void showShortToast(String text) {
-        Toast.makeText(mActivity, text, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * 通过Class跳转界面
-     **/
-    protected void startActivity(Class<?> cls) {
-        startActivity(cls, null);
-    }
-
-    /**
-     * 含有Bundle通过Class跳转界面
-     **/
-    protected void startActivity(Class<?> cls, Bundle bundle) {
-        Intent intent = new Intent();
-        intent.setClass(this, cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+            progressDialog = null;
         }
-        startActivity(intent);
-    }
-
-    /**
-     * 通过Action跳转界面
-     **/
-    protected void startActivity(String action) {
-        startActivity(action, null);
-    }
-
-    /**
-     * 含有Bundle通过Action跳转界面
-     **/
-    protected void startActivity(String action, Bundle bundle) {
-        Intent intent = new Intent();
-        intent.setAction(action);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivity(intent);
     }
 
 }

@@ -57,6 +57,10 @@
         </activity>
         <activity android:name=".activity.ThreadPoolActivity">
         </activity>
+        <activity android:name=".activity.NineGirdActivity">
+        </activity>
+        <activity android:name=".activity.TestDialogFragmentActivity">
+        </activity>
     </application>
 
 </manifest>

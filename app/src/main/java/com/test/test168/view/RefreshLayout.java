@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.test.test168.utils.L;
-import com.test.test168.view.dialog.LoadingDialog;
+import com.test.test168.view.dialog.LoadingSingletonDialog;
 
 public class RefreshLayout extends SwipeRefreshLayout {
 
@@ -131,12 +131,12 @@ public class RefreshLayout extends SwipeRefreshLayout {
         if (set) {
 //            textMore.setText("加载中...");
 //            progressBar.setVisibility(VISIBLE);
-            LoadingDialog.getInstance().show(mContext, "加载中...");
+            LoadingSingletonDialog.getInstance().show(mContext, "加载中...");
         } else {
 //            setFootView();
 //            textMore.setText("加载更多");
 //            progressBar.setVisibility(GONE);
-            LoadingDialog.getInstance().dismiss();
+            LoadingSingletonDialog.getInstance().dismiss();
         }
     }
 
