@@ -1,7 +1,5 @@
 package com.test.test168.activity;
 
-import android.os.Bundle;
-
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 
