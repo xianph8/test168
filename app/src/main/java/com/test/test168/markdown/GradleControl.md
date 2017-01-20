@@ -12,7 +12,7 @@
         productFlavors {
             relase {
                 manifestPlaceholders = [
-                        BASE_API_ROOT     : "http://120.24.70.239:8037/aresbook"
+                        BASE_API_ROOT     : "http://192.168.1.3:8033/book"
                 ]
             }
         }
