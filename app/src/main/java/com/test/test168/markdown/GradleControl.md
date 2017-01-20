@@ -8,80 +8,91 @@
 
 ##### 1. 先在 project build.gradle 里面设置好需要控制的变量
 
-    android {
-        productFlavors {
-            relase {
-                manifestPlaceholders = [
-                        BASE_API_ROOT     : "http://192.168.1.3:8033/book"
-                ]
-            }
+```gradle
+android {
+    productFlavors {
+        relase {
+            manifestPlaceholders = [
+                BASE_API_ROOT     : "http://192.168.1.3:8033/book"
+            ]
         }
     }
+}
+```
 
 ##### 2. 在 AndroidManifest.xml 里面设置相同名字的变量
 
-    <meta-data
-        android:name="BASE_API_ROOT"
-        android:value="${BASE_API_ROOT}" />
+```xml
+<meta-data
+    android:name="BASE_API_ROOT"
+    android:value="${BASE_API_ROOT}" />
+```
 
 ##### 3. 在初始化的 activity 的页面里面读取出变量值，然后赋值给需要的变量，读取方法如下
 
-    public void initConstants() {
-        try {
-            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
-            String baseApiRoot = appInfo.metaData.getString("BASE_API_ROOT");
-            String baseApiImagePath = appInfo.metaData.getString("BASE_API_IMAGE_PATH");
-            if (baseApiRoot != null) {
-                Constants.BASE_API_ROOT = baseApiRoot;
-            }
-            if (baseApiImagePath != null) {
-                Constants.BASE_API_IMAGE_PATH = baseApiImagePath;
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+```java
+public void initConstants() {
+    try {
+        ApplicationInfo appInfo = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+        String baseApiRoot = appInfo.metaData.getString("BASE_API_ROOT");
+        String baseApiImagePath = appInfo.metaData.getString("BASE_API_IMAGE_PATH");
+        if (baseApiRoot != null) {
+            Constants.BASE_API_ROOT = baseApiRoot;
         }
+        if (baseApiImagePath != null) {
+            Constants.BASE_API_IMAGE_PATH = baseApiImagePath;
+        }
+    } catch (PackageManager.NameNotFoundException e) {
+        e.printStackTrace();
     }
+}
+```
 
 #### 方法二
 
 ##### 1. 先在 project build.gradle 里面设置好需要控制的变量
 
-    android {
-        productFlavors {
-            normal {//正常
-                buildConfigField "Boolean", "IS_DEBUG", "false"
-                buildConfigField "String", "SERVER_ADDRESS", "\"http://192.168.1.179:8090/\""
-            }
-            ceshi {//测试
-                 buildConfigField "Boolean", "IS_DEBUG", "true"
-                 buildConfigField "String", "SERVER_ADDRESS", "\"http://192.168.1.31:89/\""
-            }
+```gradle
+android {
+    productFlavors {
+        normal {//正常
+            buildConfigField "Boolean", "IS_DEBUG", "false"
+            buildConfigField "String", "SERVER_ADDRESS", "\"http://192.168.1.179:8090/\""
+        }
+        ceshi {//测试
+             buildConfigField "Boolean", "IS_DEBUG", "true"
+             buildConfigField "String", "SERVER_ADDRESS", "\"http://192.168.1.31:89/\""
         }
     }
+}
+```
 
 ##### 2. Rebuild Project ，然后会在项目的 build->source->buildConfig->normal 下自动生成如下文件
 
-    public final class BuildConfig {
-      public static final boolean DEBUG = Boolean.parseBoolean("true");
-      public static final String APPLICATION_ID = "com.example.test";
-      public static final String BUILD_TYPE = "debug";
-      public static final String FLAVOR = "normal";
-      public static final int VERSION_CODE = 100;
-      public static final String VERSION_NAME = "1.0.0";
-      // Fields from build type: normal
-      public static final Boolean IS_DEBUG = true;
-      public static final String SERVER_ADDRESS = "http://192.168.1.179:8090/";
-    }
+```java
+public final class BuildConfig {
+    public static final boolean DEBUG = Boolean.parseBoolean("true");
+    public static final String APPLICATION_ID = "com.example.test";
+    public static final String BUILD_TYPE = "debug";
+    public static final String FLAVOR = "normal";
+    public static final int VERSION_CODE = 100;
+    public static final String VERSION_NAME = "1.0.0";
+    // Fields from build type: normal
+    public static final Boolean IS_DEBUG = true;
+    public static final String SERVER_ADDRESS = "http://192.168.1.179:8090/";
+}
+```
 
 对应的 productFlavors 会生成对应的 BuildConfig
 
 ##### 3. 在初始化的 activity 的页面里面读取出变量值，然后赋值给需要的变量，读取方法如下
 
-    public void initConstants() {
-        Constants.IS_DEBUG = BuildConfig.IS_DEBUG;
-        Constants.SERVER_ADDRESS = BuildConfig.SERVER_ADDRESS;
-    }
-
+```java
+public void initConstants() {
+    Constants.IS_DEBUG = BuildConfig.IS_DEBUG;
+    Constants.SERVER_ADDRESS = BuildConfig.SERVER_ADDRESS;
+}
+```
 
 ---
 
