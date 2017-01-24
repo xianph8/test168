@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- grayscale -->
+    <color name="white">#FFFFFF</color>
+    <color name="gray_light_light">#ffececec</color>
+    <color name="gray_light">#DBDBDB</color>
+    <color name="gray">#939393</color>
+    <color name="gray_dark">#5F5F5F</color>
+    <color name="black">#323232</color>
+
+    <!-- basic colors -->
+    <color name="transparent">#00000000</color>
+    <color name="silver">#ffecebe8</color>
+    <color name="green">#27D34D</color>
+    <color name="blue">#2A91BD</color>
+    <color name="orange">#FF9D2F</color>
+    <color name="red">#FF432F</color>
+
+    <!--google colors-->
+    <color name="google_red">#d62d20</color>
+    <color name="google_blue">#0057e7</color>
+    <color name="google_green">#008744</color>
+    <color name="google_yellow">#ffa700</color>
+
+    <!-- *********************************************************************************** -->
 
     <!--material design font style -->
     <color name="black8A">#8a000000</color><!--light-->
@@ -15,10 +38,6 @@
     <color name="colorControlHighlight">#dd3F51B5</color>
 
     <!--custom color-->
-    <color name="google_red">#d62d20</color>
-    <color name="google_blue">#0057e7</color>
-    <color name="google_green">#008744</color>
-    <color name="google_yellow">#ffa700</color>
     <color name="default_font1">#ff666666</color>
     <color name="default_font2">#ff888888</color>
     <color name="default_font3">#ffaaaaaa</color>
@@ -43,22 +62,5 @@
     <color name="t_gray">#cc7f7f7f</color>
     <color name="t_light_gray">#22ececec</color>
 
-    <!--beforehand color-->
-    <color name="transparent">#00000000</color>
-    <color name="white">#ffffff</color>
-    <color name="silver">#ffecebe8</color>
-    <color name="light_gray">#ffececec</color>
-    <color name="dark_gray">#ff999999</color>
-    <color name="gray">#ff7f7f7f</color>
-    <color name="black">#ff000000</color>
-    <color name="red">#ffff0000</color>
-    <color name="dark_red">#ff8c1c1c</color>
-    <color name="green">#ff95c81c</color>
-    <color name="orange">#ffefa600</color>
-    <color name="blue">#31a4e5</color>
-
-    <!--table-->
-    <color name="shadow_start">#80000000</color>
-    <color name="shadow_end">#00000000</color>
 
 </resources>
