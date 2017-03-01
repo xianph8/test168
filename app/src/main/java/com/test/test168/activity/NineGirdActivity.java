@@ -60,7 +60,7 @@ public class NineGirdActivity extends BaseActivity {
     }
 
     private void changeFragment(Fragment target) {
-        if (target.equals(mCurrentFragment)) return;
+        if (target == null || target.equals(mCurrentFragment)) return;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         if (mCurrentFragment != null) fragmentTransaction.hide(mCurrentFragment);
         if (target.isAdded()) {
