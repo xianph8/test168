@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.test.test168.R;
 import com.test.test168.activity.ItemListActivity;
+import com.test.test168.activity.JuheActivity;
 import com.test.test168.activity.LitePalActivity;
 import com.test.test168.activity.NineGirdActivity;
 import com.test.test168.activity.PanelRecycleViewActivity;
@@ -26,8 +27,8 @@ import com.test.test168.activity.TestIntentServiceActivity;
 import com.test.test168.adapter.RecycleViewAdapter;
 import com.test.test168.adapter.ViewHolder;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -140,39 +141,40 @@ public class MainFragment extends Fragment {
 
 
     private void initData() {
-
-        String[] menu = mContext.getResources().getStringArray(R.array.main_menu);
-
-        recyclerView.setAdapter(new RecycleViewAdapter<String>(mContext, Arrays.asList(menu)) {
+        recyclerView.setAdapter(new RecycleViewAdapter<String>(mContext,new ArrayList<String>(menuList.keySet())) {
             @Override
             public int getItemLayoutId() {
                 return R.layout.item_main_menu;
             }
 
             @Override
-            public void onBindViewHolder(ViewHolder holder, List<String> list, int position) {
-                holder.setText(R.id.list_item, list.get(position));
+            public void onBindViewHolder(ViewHolder holder, String list, int position) {
+                holder.setText(R.id.list_item, list);
             }
 
             @Override
-            public void onItemClick(List<String> list, int position) {
-                startActivity(mMoreClass[position]);
+            public void onItemClick(String list, int position) {
+                startActivity(menuList.get(list));
             }
         });
 
     }
 
-    private Class[] mMoreClass = new Class[]{
-            SlideActivity.class,
-            LitePalActivity.class,
-            RxJavaActivity.class,
-            RecyclerViewActivity.class,
-            null,
-            TestIntentServiceActivity.class,
-            ItemListActivity.class,
-            TestDialogFragmentActivity.class,
-            PanelRecycleViewActivity.class,
-            NineGirdActivity.class
+
+    private HashMap<String, Class> menuList = new HashMap<String, Class>() {
+        {
+            put("SlideActivity", SlideActivity.class);
+            put("LitePalActivity", LitePalActivity.class);
+            put("RxJavaActivity", RxJavaActivity.class);
+            put("RecyclerViewActivity", RecyclerViewActivity.class);
+            put("SwipeRefreshLayout", null);
+            put("TestIntentServiceActivity", TestIntentServiceActivity.class);
+            put("ItemListActivity", ItemListActivity.class);
+            put("TestDialogFragmentActivity", TestDialogFragmentActivity.class);
+            put("PanelRecycleViewActivity", PanelRecycleViewActivity.class);
+            put("NineGirdActivity", NineGirdActivity.class);
+            put("JuheActivity", JuheActivity.class);
+        }
     };
 
     private void startActivity(Class c) {

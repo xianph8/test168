@@ -16,4 +16,7 @@
     <string name="rx_timer">Rx 的轮询器：</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
+
+    <string name="health_news_class_id_">id: %1$s</string>
+    <string name="health_news_class_name_">name: %1$s</string>
 </resources>

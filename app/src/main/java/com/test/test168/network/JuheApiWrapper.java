@@ -13,15 +13,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by test168 on 2016/7/28 14:02
  * Description : retrofit 封装类，单例模式
  */
-public class ApiWrapper {
+public class JuheApiWrapper {
 
     public static final int CONNECT_TIMEOUT = 60;// 延时设置得大一点，防止连接超时没得到结果
     //    public static String BASE_URL = Constants.BASE_URL;
-    public static String BASE_URL = "";
-    private static ApiWrapper instance;
+    public static String BASE_URL = "http://op.juhe.cn";
+    private static JuheApiWrapper instance;
     private Retrofit retrofit;
 
-    private ApiWrapper() {
+    private JuheApiWrapper() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -55,19 +55,19 @@ public class ApiWrapper {
                 .build();
     }
 
-    public static ApiWrapper getInstance() {
+    public static JuheApiWrapper getInstance() {
 
         if (instance == null) {
-            synchronized (ApiWrapper.class) {
+            synchronized (JuheApiWrapper.class) {
                 if (instance == null) {
-                    instance = new ApiWrapper();
+                    instance = new JuheApiWrapper();
                 }
             }
         }
         return instance;
     }
 
-    public static ApiWrapper getInstance(String url) {
+    public static JuheApiWrapper getInstance(String url) {
         BASE_URL = url;
         instance = null;
         return getInstance();
@@ -80,7 +80,7 @@ public class ApiWrapper {
      */
     public static void resetBaeUrl(String serverAddress) {
         BASE_URL = serverAddress;
-        instance = new ApiWrapper();
+        instance = new JuheApiWrapper();
     }
 
     public <T> T create(Class<T> services) {

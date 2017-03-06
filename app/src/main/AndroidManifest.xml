@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.test.test168">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.test.test168">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -12,38 +14,34 @@
         tools:replace="android:label">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SlideActivity"/>
+        <activity android:name=".activity.SlideActivity" />
         <activity
             android:name=".activity.RxJavaActivity"
             android:label="@string/title_activity_test_rx_java"
-            android:theme="@style/mAppTheme"/>
-        <activity android:name=".activity.LitePalActivity"/>
+            android:theme="@style/mAppTheme" />
+        <activity android:name=".activity.LitePalActivity" />
         <activity
             android:name=".activity.RecyclerViewActivity"
             android:label="@string/title_activity_recycle_view"
-            android:theme="@style/mAppTheme"/>
+            android:theme="@style/mAppTheme" />
 
         <service
             android:name=".service.MyIntentService"
-            android:exported="false">
-        </service>
+            android:exported="false"></service>
         <service
             android:name=".service.TestIntentService"
-            android:exported="false">
-        </service>
+            android:exported="false"></service>
 
-        <activity android:name=".activity.TestIntentServiceActivity">
-        </activity>
+        <activity android:name=".activity.TestIntentServiceActivity"></activity>
         <activity
             android:name=".activity.ItemListActivity"
             android:label="@string/title_item_list"
-            android:theme="@style/mAppTheme">
-        </activity>
+            android:theme="@style/mAppTheme"></activity>
         <activity
             android:name=".activity.ItemDetailActivity"
             android:label="@string/title_item_detail"
@@ -51,16 +49,13 @@
             android:theme="@style/mAppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.ItemListActivity"/>
+                android:value=".activity.ItemListActivity" />
         </activity>
-        <activity android:name=".activity.PanelRecycleViewActivity">
-        </activity>
-        <activity android:name=".activity.ThreadPoolActivity">
-        </activity>
-        <activity android:name=".activity.NineGirdActivity">
-        </activity>
-        <activity android:name=".activity.TestDialogFragmentActivity">
-        </activity>
+        <activity android:name=".activity.PanelRecycleViewActivity"></activity>
+        <activity android:name=".activity.ThreadPoolActivity"></activity>
+        <activity android:name=".activity.NineGirdActivity"></activity>
+        <activity android:name=".activity.TestDialogFragmentActivity"></activity>
+        <activity android:name=".activity.JuheActivity"></activity>
     </application>
 
 </manifest>

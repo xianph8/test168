@@ -3,6 +3,9 @@ package com.test.test168.network;
 import android.accounts.NetworkErrorException;
 import android.content.Context;
 
+import com.test.test168.bean.JuheResult;
+import com.test.test168.utils.L;
+
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeoutException;
@@ -14,15 +17,15 @@ import rx.Subscriber;
  * Created by w07 on 2016/9/14 14:04
  * Description : rxjava 的 订阅者 网络调用 的封装
  */
-public abstract class CustomSub<T> extends Subscriber<RequestResult<T>> {
+public abstract class CustomJuheSub<T> extends Subscriber<JuheResult<T>> {
 
     private Context mContext = null;
 
-    public CustomSub() {
+    public CustomJuheSub() {
 
     }
 
-    public CustomSub(Context mContext) {
+    public CustomJuheSub(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -48,6 +51,7 @@ public abstract class CustomSub<T> extends Subscriber<RequestResult<T>> {
 
     @Override
     public void onError(Throwable e) {
+        L.e(e);
         closeDialog();
         if (e instanceof ConnectException) {
             onFailure("网络连接错误");
@@ -61,11 +65,11 @@ public abstract class CustomSub<T> extends Subscriber<RequestResult<T>> {
     }
 
     @Override
-    public void onNext(RequestResult<T> o) {
-        if (o.isSuccess()) {
-            onSuccess(o.getData());
+    public void onNext(JuheResult<T> o) {
+        if (o.error_code == 0) {
+            onSuccess(o.result);
         } else {
-            onFailure(o.getMessage());
+            onFailure(o.reason);
         }
     }
 

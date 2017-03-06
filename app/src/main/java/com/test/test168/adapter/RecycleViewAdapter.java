@@ -16,16 +16,16 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycle
 
     List<T> list;
 
-    private Context context;
+    Context mContext;
 
     public RecycleViewAdapter(Context context, List<T> list) {
         this.list = list;
-        this.context = context;
+        this.mContext = context;
     }
 
     @Override
     public RecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(getItemLayoutId(), null);
+        View view = LayoutInflater.from(mContext).inflate(getItemLayoutId(), null);
         return new RecycleViewHolder(view);
     }
 
@@ -41,18 +41,18 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycle
 
     @Override
     public void onBindViewHolder(RecycleViewHolder holder, final int position) {
-        onBindViewHolder(holder.getViewHolder(), list, position);
+        onBindViewHolder(holder.getViewHolder(), list.get(position), position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClick(list, position);
+                onItemClick(list.get(position), position);
             }
         });
     }
 
-    public abstract void onBindViewHolder(ViewHolder holder, List<T> list, int position);
+    public abstract void onBindViewHolder(ViewHolder holder, T item, int position);
 
-    public abstract void onItemClick(List<T> list, int position);
+    public abstract void onItemClick(T item, int position);
 
     public abstract int getItemLayoutId();
 

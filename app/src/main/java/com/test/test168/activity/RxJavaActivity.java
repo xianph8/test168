@@ -7,13 +7,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
+import com.test.test168.utils.L;
+import com.test.test168.utils.T;
 
-import org.reactivestreams.Subscription;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * 在这个Activity学习使用RxAndroid
@@ -94,31 +101,31 @@ public class RxJavaActivity extends BaseActivity {
         handler.postDelayed(runnable, 1000); // 开始Timer
 
 //        // rx 的点击事件
-//        RxView.clicks(btn_click2)
-//                .subscribe(new Action1<Void>() {
-//                    @Override
-//                    public void call(Void aVoid) {
-//                        handler.removeCallbacks(runnable);
-//                    }
-//                });
-//        RxView.clicks(btn_click3)
-//                .subscribe(new Action1<Void>() {
-//                    @Override
-//                    public void call(Void aVoid) {
-//                        handler.postDelayed(runnable, 1000);
-//                    }
-//                });
+        RxView.clicks(btn_click2)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        handler.removeCallbacks(runnable);
+                    }
+                });
+        RxView.clicks(btn_click3)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        handler.postDelayed(runnable, 1000);
+                    }
+                });
 //
 //        // Rx
 //        // 防止重复点击
-//        RxView.clicks(btn_click)
-//                .throttleFirst(interval, TimeUnit.SECONDS)
-//                .subscribe(new Action1<Void>() {
-//                    @Override
-//                    public void call(Void aVoid) {
-//                        T.showShort(mContext, interval + "秒后就可以点击一次");
-//                    }
-//                });
+        RxView.clicks(btn_click)
+                .throttleFirst(interval, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        T.showShort(mContext, interval + "秒后就可以点击一次");
+                    }
+                });
 
         // 轮询器启动
         startLoop();
@@ -134,29 +141,31 @@ public class RxJavaActivity extends BaseActivity {
     // Rx 的轮询器
     // 启动轮询
     void startLoop() {
-//        if (null == subscribe || subscribe.isUnsubscribed()) {
-//            subscribe = Observable.interval(0, interval, TimeUnit.SECONDS)
-//                    //延时0 ，每间隔interval，时间单位 秒
-////                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(new Action1<Long>() {
-//                        @Override
-//                        public void call(Long aLong) {
-//                            interval--;
-////                            tv_test2.setText(tv_test2.getText() + "\n现在点击没用，还有" + interval + "秒才可以再点击！");
-//                            tv_test2.setText(tv_test2.getText().toString() + "\n" + interval + "、" + interval + "秒一次，点击文字重新跑");
-//                            if (interval == 0) {
-//                                stopLoop();
-//                            }
-//                        }
-//                    });
-//        }
+        L.i("start loop :");
+        if (null == subscribe || subscribe.isUnsubscribed()) {
+            subscribe = Observable.interval(0, interval, TimeUnit.SECONDS)
+                    //延时0 ，每间隔interval，时间单位 秒
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<Long>() {
+                        @Override
+                        public void call(Long aLong) {
+                            interval--;
+//                            tv_test2.setText(tv_test2.getText() + "\n现在点击没用，还有" + interval + "秒才可以再点击！");
+                            tv_test2.setText(tv_test2.getText().toString() + "\n" + interval + "、" + interval + "秒一次，点击文字重新跑");
+                            if (interval == 0) {
+                                stopLoop();
+                            }
+                        }
+                    });
+        }
     }
 
     // 停止轮询
     void stopLoop() {
-//        if (null != subscribe && !subscribe.isUnsubscribed()) {
-//            interval = 4;
-//            subscribe.unsubscribe();
-//        }
+        L.i("stop loop :");
+        if (null != subscribe && !subscribe.isUnsubscribed()) {
+            interval = 4;
+            subscribe.unsubscribe();
+        }
     }
 }
