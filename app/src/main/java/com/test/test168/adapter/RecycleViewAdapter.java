@@ -14,12 +14,12 @@ import java.util.List;
  */
 public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<RecycleViewHolder> {
 
-    List<T> list;
+    List<T> mList;
 
     Context mContext;
 
     public RecycleViewAdapter(Context context, List<T> list) {
-        this.list = list;
+        this.mList = list;
         this.mContext = context;
     }
 
@@ -36,16 +36,16 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycle
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return mList == null ? 0 : mList.size();
     }
 
     @Override
     public void onBindViewHolder(RecycleViewHolder holder, final int position) {
-        onBindViewHolder(holder.getViewHolder(), list.get(position), position);
+        onBindViewHolder(holder.getViewHolder(), mList.get(position), position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClick(list.get(position), position);
+                onItemClick(mList.get(position), position);
             }
         });
     }

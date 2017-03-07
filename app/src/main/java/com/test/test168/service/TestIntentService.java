@@ -2,7 +2,7 @@ package com.test.test168.service;
 
 import android.content.Intent;
 
-import com.test.test168.utils.L;
+import com.test.test168.utils.XLog;
 
 public class TestIntentService extends BaseIntentService {
 
@@ -22,11 +22,11 @@ public class TestIntentService extends BaseIntentService {
             while (true) {
                 try {
                     time++;
-                    L.i("sleep : " + time);
+                    XLog.i("sleep : " + time);
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                    L.e("exception : " + e);
+                    XLog.e("exception : " + e);
                 }
             }
         }

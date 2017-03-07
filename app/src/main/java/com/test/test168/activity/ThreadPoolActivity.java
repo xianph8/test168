@@ -2,7 +2,7 @@ package com.test.test168.activity;
 
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
-import com.test.test168.utils.L;
+import com.test.test168.utils.XLog;
 import com.test.test168.utils.ThreadPool;
 
 import java.util.concurrent.ExecutorService;
@@ -17,7 +17,7 @@ public class ThreadPoolActivity extends BaseActivity {
         ThreadPool.getInstance().executeTask(new Runnable() {
             @Override
             public void run() {
-                L.i("run run run run : ");
+                XLog.i("run run run run : ");
             }
         });
 

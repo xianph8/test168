@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.view.KeyEvent;
 
 import com.test.test168.event.LoadingEvent;
-import com.test.test168.utils.L;
+import com.test.test168.utils.XLog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -65,7 +65,7 @@ public class LoadingSingletonDialog {
         progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                L.i("progressDialog onCancel : " + dialog);
+                XLog.i("progressDialog onCancel : " + dialog);
                 EventBus.getDefault().post(new LoadingEvent(LoadingEvent.CANCEL));
             }
         });
@@ -73,7 +73,7 @@ public class LoadingSingletonDialog {
         progressDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                L.i("progressDialog onDismiss : " + dialog);
+                XLog.i("progressDialog onDismiss : " + dialog);
                 EventBus.getDefault().post(new LoadingEvent(LoadingEvent.DISMISS));
             }
         });
@@ -81,9 +81,9 @@ public class LoadingSingletonDialog {
         progressDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
             @Override
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                L.i("progressDialog onKey : " + dialog);
-                L.i("progressDialog onKey : " + keyCode);
-                L.i("progressDialog onKey : " + event);
+                XLog.i("progressDialog onKey : " + dialog);
+                XLog.i("progressDialog onKey : " + keyCode);
+                XLog.i("progressDialog onKey : " + event);
                 EventBus.getDefault().post(new LoadingEvent(LoadingEvent.KEY));
                 return false;
             }
@@ -92,7 +92,7 @@ public class LoadingSingletonDialog {
         progressDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                L.i("progressDialog onShow : " + dialog);
+                XLog.i("progressDialog onShow : " + dialog);
                 EventBus.getDefault().post(new LoadingEvent(LoadingEvent.SHOW));
             }
         });

@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.test.test168.R;
 import com.test.test168.activity.ItemListActivity;
-import com.test.test168.activity.JuheActivity;
+import com.test.test168.juhe.HealthNewsActivity;
 import com.test.test168.activity.LitePalActivity;
 import com.test.test168.activity.NineGirdActivity;
 import com.test.test168.activity.PanelRecycleViewActivity;
@@ -173,7 +173,7 @@ public class MainFragment extends Fragment {
             put("TestDialogFragmentActivity", TestDialogFragmentActivity.class);
             put("PanelRecycleViewActivity", PanelRecycleViewActivity.class);
             put("NineGirdActivity", NineGirdActivity.class);
-            put("JuheActivity", JuheActivity.class);
+            put("JuheActivity", HealthNewsActivity.class);
         }
     };
 

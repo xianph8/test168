@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.test.test168.utils.L;
+import com.test.test168.utils.XLog;
 import com.test.test168.view.dialog.LoadingSingletonDialog;
 
 public class RefreshLayout extends SwipeRefreshLayout {
@@ -74,7 +74,7 @@ public class RefreshLayout extends SwipeRefreshLayout {
         mLinearLayoutManager = (LinearLayoutManager) this.mRecyclerView.getLayoutManager();
 //        setFootView();
         init();
-        L.i("init refresh layout : ");
+        XLog.i("init refresh layout : ");
     }
 
 
@@ -103,18 +103,18 @@ public class RefreshLayout extends SwipeRefreshLayout {
 
     // init recycler view
     private void init() {
-        L.i("recycler init : ");
+        XLog.i("recycler init : ");
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                L.i("recycler onScrolled : ");
-                L.i("recycler onScrolled dx : " + dx);
-                L.i("recycler onScrolled dy : " + dy);
+                XLog.i("recycler onScrolled : ");
+                XLog.i("recycler onScrolled dx : " + dx);
+                XLog.i("recycler onScrolled dy : " + dy);
                 int totalItemCount = mLinearLayoutManager.getItemCount();
                 int lastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
                 if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
-                    L.i("recycler load : ");
+                    XLog.i("recycler load : ");
                     if (dy > 100) {// dy > 0 scroll to bottom   else   dy < 0 scroll to top
                         if (mOnRefreshLoadListener != null) {
                             mOnRefreshLoadListener.onLoad();

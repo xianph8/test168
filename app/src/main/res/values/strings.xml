@@ -18,5 +18,7 @@
     <string name="title_item_detail">Item Detail</string>
 
     <string name="health_news_class_id_">id: %1$s</string>
+    <string name="health_news_class_description_">description: %1$s</string>
+    <string name="health_news_class_title_">title: %1$s</string>
     <string name="health_news_class_name_">name: %1$s</string>
 </resources>

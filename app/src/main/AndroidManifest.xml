@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.test.test168">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -32,16 +32,16 @@
 
         <service
             android:name=".service.MyIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name=".service.TestIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
 
-        <activity android:name=".activity.TestIntentServiceActivity"></activity>
+        <activity android:name=".activity.TestIntentServiceActivity" />
         <activity
             android:name=".activity.ItemListActivity"
             android:label="@string/title_item_list"
-            android:theme="@style/mAppTheme"></activity>
+            android:theme="@style/mAppTheme" />
         <activity
             android:name=".activity.ItemDetailActivity"
             android:label="@string/title_item_detail"
@@ -51,11 +51,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.ItemListActivity" />
         </activity>
-        <activity android:name=".activity.PanelRecycleViewActivity"></activity>
-        <activity android:name=".activity.ThreadPoolActivity"></activity>
-        <activity android:name=".activity.NineGirdActivity"></activity>
-        <activity android:name=".activity.TestDialogFragmentActivity"></activity>
-        <activity android:name=".activity.JuheActivity"></activity>
+        <activity android:name=".activity.PanelRecycleViewActivity" />
+        <activity android:name=".activity.ThreadPoolActivity" />
+        <activity android:name=".activity.NineGirdActivity" />
+        <activity android:name=".activity.TestDialogFragmentActivity" />
+        <activity android:name=".juhe.HealthNewsActivity" />
+        <activity android:name=".juhe.HealthNewsDetailsActivity" />
+        <activity android:name=".juhe.HealthNewsClassListActivity"></activity>
     </application>
 
 </manifest>

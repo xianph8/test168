@@ -49,9 +49,9 @@ public class ImageUtils {
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .crossFade()
                     .into(imageView);
-            L.v("ImageUtils : " + url);
+            XLog.v("ImageUtils : " + url);
         } else {
-            L.e("ImageUtils : url is null");
+            XLog.e("ImageUtils : url is null");
         }
     }
 
@@ -62,9 +62,9 @@ public class ImageUtils {
                     .error(failedId)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
-            L.v("ImageUtils : " + url);
+            XLog.v("ImageUtils : " + url);
         } else {
-            L.e("ImageUtils : url is null");
+            XLog.e("ImageUtils : url is null");
         }
     }
 
@@ -89,9 +89,9 @@ public class ImageUtils {
                         }
                     })
                     .into(imageView);
-            L.v("ImageUtils : " + file);
+            XLog.v("ImageUtils : " + file);
         } else {
-            L.e("ImageUtils : file is not exists !");
+            XLog.e("ImageUtils : file is not exists !");
         }
     }
 
@@ -103,9 +103,9 @@ public class ImageUtils {
                     .error(failedId)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
-            L.v("ImageUtils : " + uri);
+            XLog.v("ImageUtils : " + uri);
         } else {
-            L.e("ImageUtils : uri is null");
+            XLog.e("ImageUtils : uri is null");
         }
     }
 
@@ -118,9 +118,9 @@ public class ImageUtils {
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .crossFade()
                     .into(imageView);
-            L.v("ImageUtils : " + url);
+            XLog.v("ImageUtils : " + url);
         } else {
-            L.e("ImageUtils : url is null");
+            XLog.e("ImageUtils : url is null");
         }
     }
 

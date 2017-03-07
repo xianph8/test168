@@ -40,7 +40,7 @@ public class ItemListActivity extends BaseActivity {
     protected void initViews() {
         setContentView(R.layout.activity_item_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.include_head_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 

@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 
 import com.test.test168.R;
 import com.test.test168.utils.ImageUtils;
-import com.test.test168.utils.L;
+import com.test.test168.utils.XLog;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -86,7 +86,7 @@ public class SlideView extends FrameLayout {
      * 初始化控件所需的ui
      */
     private void initUI(Context context) {
-        L.i("slide view init ui : ");
+        XLog.i("slide view init ui : ");
         // 图片列表的来源
         imageViewList = new ArrayList<>();
 
@@ -217,7 +217,7 @@ public class SlideView extends FrameLayout {
      * @param play true 为自动轮播，false 为不自动轮播
      */
     public void setAutoPlay(boolean play) {
-        L.i("auto play : " + play);
+        XLog.i("auto play : " + play);
         isAutoPlay = play;
         if (isAutoPlay)
             startPlay();
@@ -256,7 +256,7 @@ public class SlideView extends FrameLayout {
     private void play() {
 
         if (isAutoPlay) {
-            L.i("mViewPager current item : " + mViewPager.getCurrentItem());
+            XLog.i("mViewPager current item : " + mViewPager.getCurrentItem());
             mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1, true);
             handler.postDelayed(runnable, playTime * 1000);
         }

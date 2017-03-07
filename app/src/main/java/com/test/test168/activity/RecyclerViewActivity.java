@@ -1,6 +1,5 @@
 package com.test.test168.activity;
 
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
@@ -10,7 +9,7 @@ import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.bean.DummyContent;
 import com.test.test168.fragment.RecycleFragment;
-import com.test.test168.utils.L;
+import com.test.test168.utils.XLog;
 
 public class RecyclerViewActivity extends BaseActivity implements RecycleFragment.OnListFragmentInteractionListener {
 
@@ -18,7 +17,7 @@ public class RecyclerViewActivity extends BaseActivity implements RecycleFragmen
     protected void initViews() {
 
         setContentView(R.layout.activity_recycler_view);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.include_head_toolbar);
         setSupportActionBar(toolbar);
 
         // init fragment
@@ -38,6 +37,6 @@ public class RecyclerViewActivity extends BaseActivity implements RecycleFragmen
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        L.i("onListFragmentInteraction  : " + item.toString());
+        XLog.i("onListFragmentInteraction  : " + item.toString());
     }
 }

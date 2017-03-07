@@ -73,7 +73,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
-				L.e(e.toString());
+				XLog.e(e.toString());
 			}
 			// 退出程序
 			android.os.Process.killProcess(android.os.Process.myPid());
@@ -116,7 +116,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 				infos.put("versionCode", versionCode);
 			}
 		} catch (NameNotFoundException e) {
-			L.e(
+			XLog.e(
 					"CrashHandler.NameNotFoundException---> error occured when collect package info",
 					e);
 		}
@@ -126,7 +126,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 				field.setAccessible(true);
 				infos.put(field.getName(), field.get(null).toString());
 			} catch (Exception e) {
-				L.e(
+				XLog.e(
 						"CrashHandler.NameNotFoundException---> an error occured when collect crash info",
 						e);
 			}
@@ -161,7 +161,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		String result = writer.toString();
 		sb.append(result);
 		sb.append("--------------------end---------------------------");
-		L.e(sb.toString());
+		XLog.e(sb.toString());
 		return null;
 	}
 }

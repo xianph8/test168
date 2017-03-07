@@ -4,7 +4,7 @@ import android.accounts.NetworkErrorException;
 import android.content.Context;
 
 import com.test.test168.bean.JuheResult;
-import com.test.test168.utils.L;
+import com.test.test168.utils.XLog;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -51,7 +51,7 @@ public abstract class CustomJuheSub<T> extends Subscriber<JuheResult<T>> {
 
     @Override
     public void onError(Throwable e) {
-        L.e(e);
+        XLog.e(e);
         closeDialog();
         if (e instanceof ConnectException) {
             onFailure("网络连接错误");

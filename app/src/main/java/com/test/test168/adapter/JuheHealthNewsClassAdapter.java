@@ -19,8 +19,12 @@ public abstract class JuheHealthNewsClassAdapter extends RecycleViewAdapter<Juhe
 
     @Override
     public void onBindViewHolder(ViewHolder holder, JuheHealthNewsClass list, int position) {
-        holder.setText(R.id.tv_news_class_id, mContext.getString(R.string.health_news_class_id_, list.id));
-        holder.setText(R.id.tv_news_class_name, mContext.getString(R.string.health_news_class_name_, list.name));
+//        holder.setText(R.id.tv_news_class_description, mContext.getString(R.string.health_news_class_description_, list.getDescription() ));
+//        holder.setText(R.id.tv_news_class_title, mContext.getString(R.string.health_news_class_title_, list.getTitle() ));
+//        holder.setText(R.id.tv_news_class_name, mContext.getString(R.string.health_news_class_name_, list.getName()));
+        holder.setText(R.id.tv_news_class_description, list.getDescription());
+        holder.setText(R.id.tv_news_class_title, list.getTitle());
+        holder.setText(R.id.tv_news_class_name, list.getName());
     }
 
     @Override

@@ -1,9 +1,9 @@
 package com.test.test168.api;
 
 import com.test.test168.bean.JuheHealthNewsClass;
+import com.test.test168.bean.JuheResultBean;
 import com.test.test168.bean.JuheResult;
 
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.http.FieldMap;
@@ -22,6 +22,10 @@ public interface JuheApi {
 
     @POST("/yi18/news/newsclass")
     @FormUrlEncoded
-    Observable<JuheResult<List<JuheHealthNewsClass>>> getNewsClass(@FieldMap Map<String, String> params);
+    Observable<JuheResult<JuheResultBean<JuheHealthNewsClass>>> getNewsClass(@FieldMap Map<String, String> params);
+
+    @POST("/yi18/news/list")
+    @FormUrlEncoded
+    Observable<JuheResult<JuheResultBean<JuheHealthNewsClass>>> getNewsClassList(@FieldMap Map<String, String> params);
 
 }

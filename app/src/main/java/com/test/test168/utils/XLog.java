@@ -20,9 +20,9 @@ import java.util.Locale;
  * customTagPrefix:className.methodName(Line:lineNumber),
  * customTagPrefix为空时只输出：className.methodName(Line:lineNumber)。
  */
-public class L {
+public class XLog {
 
-    private static String customTagPrefix = "test--->"; // 自定义Tag的前缀，可以是作者名
+    private static String customTagPrefix = "xian--->"; // 自定义Tag的前缀，可以是作者名
     private static boolean isSaveLog = false; // 是否把保存日志到SD卡中
     private static final String LOG_PATH =
             Environment.getExternalStorageDirectory().getPath(); // SD卡中的根目录
@@ -30,7 +30,7 @@ public class L {
     private static DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd",
             Locale.SIMPLIFIED_CHINESE);
 
-    private L() {
+    private XLog() {
     }
 
     // 容许打印日志的类型，默认是true，设置为false则不打印

@@ -30,22 +30,8 @@ public class JuheApiWrapper {
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
-//                .addNetworkInterceptor(new StethoInterceptor())
-//                .addNetworkInterceptor(new Interceptor() {
-//                    @Override
-//                    public Response intercept(Chain chain) throws IOException {
-//                        Request request = chain.request();
-//                        XLog.d(String.format("\nrequest:\n%s\nheaders:\n%s",
-//                                request.body().toString(), request.headers()));
-//                        Response response = chain.proceed(request);
-//                        XLog.d(String.format("\nrequest:\n%s\nheaders:\n%s",
-//                                response.body().toString(), response.headers()));
-//                        return response;
-//                    }
-//                })
                 .build();
 
-        //Converter.Factory factory = Constants.IS_C8 ? GsonConverterFactory.create() : FastJsonConverterFactory.create();
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

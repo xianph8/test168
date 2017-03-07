@@ -7,7 +7,7 @@
                                             android:theme="@style/mAppTheme.AppBarOverlay">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/include_head_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -15,7 +15,7 @@
         app:popupTheme="@style/mAppTheme.PopupOverlay">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/include_head_title"
             style="@style/activityTitleText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -25,7 +25,7 @@
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/submit"
+            android:id="@+id/include_head_submit"
             style="@style/activitySubmitText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

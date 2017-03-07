@@ -73,7 +73,7 @@ public class NineGirdActivity extends BaseActivity {
         mCurrentFragment = target;
     }
 
-    @OnClick(R.id.submit)
+    @OnClick(R.id.include_head_submit)
     public void onClick() {
     }
 }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
-import com.test.test168.utils.L;
+import com.test.test168.utils.XLog;
 import com.test.test168.utils.T;
 
 import java.util.concurrent.TimeUnit;
@@ -141,7 +141,7 @@ public class RxJavaActivity extends BaseActivity {
     // Rx 的轮询器
     // 启动轮询
     void startLoop() {
-        L.i("start loop :");
+        XLog.i("start loop :");
         if (null == subscribe || subscribe.isUnsubscribed()) {
             subscribe = Observable.interval(0, interval, TimeUnit.SECONDS)
                     //延时0 ，每间隔interval，时间单位 秒
@@ -162,7 +162,7 @@ public class RxJavaActivity extends BaseActivity {
 
     // 停止轮询
     void stopLoop() {
-        L.i("stop loop :");
+        XLog.i("stop loop :");
         if (null != subscribe && !subscribe.isUnsubscribed()) {
             interval = 4;
             subscribe.unsubscribe();

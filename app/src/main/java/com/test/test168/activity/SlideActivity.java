@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.utils.ImageUtils;
-import com.test.test168.utils.L;
+import com.test.test168.utils.XLog;
 import com.test.test168.view.slide.OnImageClickListener;
 import com.test.test168.view.slide.SlideView;
 
@@ -33,7 +33,7 @@ public class SlideActivity extends BaseActivity {
 
         setContentView(R.layout.activity_slide);
         ButterKnife.bind(this);
-        L.i("onCreate :　");
+        XLog.i("onCreate :　");
 
         initView();
 
@@ -41,9 +41,9 @@ public class SlideActivity extends BaseActivity {
     }
 
     private void initView() {
-        L.i("init view : ");
+        XLog.i("init view : ");
         slideView = $(R.id.sv_banner);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.include_head_toolbar);
         setSupportActionBar(toolbar);
 
         iv_test = $(R.id.iv_test);
@@ -57,7 +57,7 @@ public class SlideActivity extends BaseActivity {
     private int rotateTime = 30;// 毫秒
 
     private void startRotate() {
-        L.i("------> rotateLoop : ");
+        XLog.i("------> rotateLoop : ");
         if (handler == null && runnable == null) {
             handler = new Handler();
             runnable = new Runnable() {
@@ -65,7 +65,7 @@ public class SlideActivity extends BaseActivity {
                 public void run() {
                     float rotation = iv_test.getRotation() + 10;
                     iv_test.setRotation(rotation == 360 ? 0 : rotation);
-                    L.i("------> run : " + rotation);
+                    XLog.i("------> run : " + rotation);
                     handler.postDelayed(runnable, rotateTime);
                 }
             };
@@ -82,7 +82,7 @@ public class SlideActivity extends BaseActivity {
     }
 
     private void initData() {
-        L.i("init data : ");
+        XLog.i("init data : ");
         List<String> imageList = new ArrayList<>();
         imageList.add("http://www.emirates.com/cn/chinese/images/Emirates-A380-800_tcm266-2361507.jpg");
         imageList.add("http://cimg.163.com/catchpic/B/BD/BD2BDB5ED1308F46A29BBFD5B4DD335B.jpg");
@@ -98,7 +98,7 @@ public class SlideActivity extends BaseActivity {
             @Override
             public void onClick(int position) {        // 添加监听器，点击有反应
                 showToast("this is : " + position);
-                L.i("position : " + position);
+                XLog.i("position : " + position);
             }
         });
         slideView.setPlayTime(2);// 设置滚动时间间隔为2秒

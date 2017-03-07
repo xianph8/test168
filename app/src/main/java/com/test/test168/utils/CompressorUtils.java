@@ -135,7 +135,7 @@ public class CompressorUtils {
         Cursor cursor = context.getContentResolver().query(uri, proj, null, null, null);//stackoverflow推荐该方法
         // 按我个人理解 这个是获得用户选择的图片的索引值
         int column_index = 0;
-        L.d("cursor : " + cursor);
+        XLog.d("cursor : " + cursor);
         if (cursor != null) {
             column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             //将光标移至开头 ，这个很重要，不小心很容易引起越界
@@ -158,7 +158,7 @@ public class CompressorUtils {
 //        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 //        cursor.moveToFirst();
 //        uriPath = cursor.getString(column_index);
-        L.d("uriPath : " + uriPath);
+        XLog.d("uriPath : " + uriPath);
         return uriPath;
     }
 
