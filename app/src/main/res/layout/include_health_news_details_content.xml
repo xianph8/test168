@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_news_details_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="时间： 2017-03-08 20:12:00" />
+
+    <TextView
+        android:id="@+id/tv_news_details_keyword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关键字：北京市 吸烟 执法人员 监督 卫生" />
+
+    <TextView
+        android:id="@+id/tv_news_details_read_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="阅读次数： 1035" />
+
+
+    <TextView
+        android:id="@+id/tv_news_details_content"
+        android:layout_width="match_parent"
+        android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

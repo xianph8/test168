@@ -55,7 +55,7 @@ public class HealthNewsActivity extends BaseActivity {
                     @Override
                     protected void onSuccess(JuheResultBean<JuheHealthNewsClass> result) {
                         XLog.i("on success : " + result);
-                        setListView(result.getList().getTngou());
+                        setListView(result.list.tList);
                     }
 
                     @Override

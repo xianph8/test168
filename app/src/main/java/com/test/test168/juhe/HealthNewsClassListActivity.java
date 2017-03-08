@@ -7,10 +7,11 @@ import android.widget.TextView;
 
 import com.test.test168.R;
 import com.test.test168.TConstants;
-import com.test.test168.adapter.JuheHealthNewsClassAdapter;
+import com.test.test168.adapter.JuheHealthNewsClassListAdapter;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.bean.JuheHealthNewsClass;
-import com.test.test168.bean.JuheResultBean;
+import com.test.test168.bean.JuheHealthNewsClassList;
+import com.test.test168.bean.JuheHealthNewsClassListItem;
 import com.test.test168.network.CustomJuheSub;
 import com.test.test168.utils.XLog;
 
@@ -26,7 +27,7 @@ public class HealthNewsClassListActivity extends BaseActivity {
     RecyclerView rvNewsClass;
 
     JuheHealthNewsClass newsClass;
-    HealthNewsDetailsListLoader mLoader;
+    HealthNewsClassListLoader mLoader;
 
     @Override
     protected void initViews() {
@@ -44,14 +45,14 @@ public class HealthNewsClassListActivity extends BaseActivity {
 
     public void onRequest(JuheHealthNewsClass newsClass) {
 
-        mLoader = new HealthNewsDetailsListLoader(mActivity);
+        mLoader = new HealthNewsClassListLoader(mActivity);
 
         mLoader.loader(newsClass,
-                new CustomJuheSub<JuheResultBean<JuheHealthNewsClass>>() {
+                new CustomJuheSub<JuheHealthNewsClassList<JuheHealthNewsClassListItem>>() {
                     @Override
-                    protected void onSuccess(JuheResultBean<JuheHealthNewsClass> result) {
+                    protected void onSuccess(JuheHealthNewsClassList<JuheHealthNewsClassListItem> result) {
                         XLog.i("on success : " + result);
-                        setListView(result.getList().getTngou());
+                        setListView(result.list);
                     }
 
                     @Override
@@ -62,13 +63,13 @@ public class HealthNewsClassListActivity extends BaseActivity {
         ;
     }
 
-    private void setListView(List<JuheHealthNewsClass> result) {
+    private void setListView(List<JuheHealthNewsClassListItem> result) {
         rvNewsClass.setLayoutManager(new LinearLayoutManager(mActivity));
-        rvNewsClass.setAdapter(new JuheHealthNewsClassAdapter(mActivity, result) {
+        rvNewsClass.setAdapter(new JuheHealthNewsClassListAdapter(mActivity, result) {
             @Override
-            public void onItemClick(JuheHealthNewsClass item, int position) {
+            public void onItemClick(JuheHealthNewsClassListItem item, int position) {
 //                XLog.i(" item : " + list);
-                Intent intent = new Intent(mActivity, HealthNewsClassListActivity.class);
+                Intent intent = new Intent(mActivity, HealthNewsDetailsActivity.class);
                 intent.putExtra(TConstants.IntentKey.HEALTH_DETAILS, item);
                 startActivity(intent);
             }

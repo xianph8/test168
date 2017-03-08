@@ -6,13 +6,7 @@ package com.test.test168.bean;
 
 public class JuheResultBean<T> {
 
-    public ListBean<T> getList() {
-        return list;
-    }
-
-    public void setList(ListBean<T> list) {
-        this.list = list;
-    }
+    public int total;
 
     public ListBean<T> list;
 

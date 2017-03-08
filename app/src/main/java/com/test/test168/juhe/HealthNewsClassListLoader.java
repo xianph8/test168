@@ -16,7 +16,7 @@ import rx.schedulers.Schedulers;
  * Created by King on 2017/3/7.
  */
 
-public class HealthNewsDetailsListLoader {
+public class HealthNewsClassListLoader {
 
     private Context mContext;
 
@@ -24,7 +24,7 @@ public class HealthNewsDetailsListLoader {
 
     private String limit = "20";
 
-    public HealthNewsDetailsListLoader(Context mContext) {
+    public HealthNewsClassListLoader(Context mContext) {
         this.mContext = mContext;
     }
 

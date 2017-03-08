@@ -1,8 +1,11 @@
 package com.test.test168.api;
 
 import com.test.test168.bean.JuheHealthNewsClass;
-import com.test.test168.bean.JuheResultBean;
+import com.test.test168.bean.JuheHealthNewsClassList;
+import com.test.test168.bean.JuheHealthNewsClassListItem;
+import com.test.test168.bean.JuheHealthNewsDetails;
 import com.test.test168.bean.JuheResult;
+import com.test.test168.bean.JuheResultBean;
 
 import java.util.Map;
 
@@ -26,6 +29,10 @@ public interface JuheApi {
 
     @POST("/yi18/news/list")
     @FormUrlEncoded
-    Observable<JuheResult<JuheResultBean<JuheHealthNewsClass>>> getNewsClassList(@FieldMap Map<String, String> params);
+    Observable<JuheResult<JuheHealthNewsClassList<JuheHealthNewsClassListItem>>> getNewsClassList(@FieldMap Map<String, String> params);
+
+    @POST("/yi18/news/show")
+    @FormUrlEncoded
+    Observable<JuheResult<JuheHealthNewsDetails>> getNewsDetails(@FieldMap Map<String, String> params);
 
 }

@@ -1,5 +1,7 @@
 package com.test.test168.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -12,29 +14,15 @@ public class ListBean<T> {
      */
 
     public boolean status;
-    public List<T> tngou;
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public List<T> getTngou() {
-        return tngou;
-    }
-
-    public void setTngou(List<T> tngou) {
-        this.tngou = tngou;
-    }
+    @SerializedName("tngou")
+    public List<T> tList;
 
     @Override
     public String toString() {
         return "ListBean{" +
                 "status=" + status +
-                ", tngou=" + tngou +
+                ", tList=" + tList +
                 '}';
     }
 }
