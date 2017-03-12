@@ -11,44 +11,63 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+
+
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file("/ph.jks");
+            keyAlias "demo_test168"
+            keyPassword "androidkey"
+            storePassword "androidkey"
         }
         debug {
+            storeFile file("/debug.keystore")
+        }
+    }
+
+    buildTypes {
+        debug {
             minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            debuggable false
+            jniDebuggable false
+            zipAlignEnabled true
+            shrinkResources true
         }
     }
 
     //////打包定义应用名，在 第一个 activity 中不能有 label , 否则不能有效果
     productFlavors {
-        normal {//正常
-            manifestPlaceholders = [APP_NAME: "测试应用"]
+        product360 {
+            manifestPlaceholders = [APP_NAME: "这个是360的包名"]
+            buildConfigField "Boolean", "IS_DEBUG", "false"
+            buildConfigField "String", "SERVER_ADDRESS", "\"http://192.168.1.179:8090/\""
         }
-        ceshi {//测试
-            manifestPlaceholders = [APP_NAME: "测试应用1"]
+        productyinyongbao {
+            manifestPlaceholders = [APP_NAME: "这个是应用宝的包名"]
+            buildConfigField "Boolean", "IS_DEBUG", "true"
+            buildConfigField "String", "SERVER_ADDRESS", "\"http://192.168.1.31:89/\""
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     //    compile 'com.squareup.retrofit2:retrofit:2.2.0'
     //    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     //    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-
     //    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-
     //    compile 'com.jakewharton.rxbinding:rxbinding-support-v4:1.0.1'
     //    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:1.0.1'
     //    compile 'com.jakewharton.rxbinding:rxbinding-design:1.0.1'
     //    compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:1.0.1'
-
     //    compile 'com.jakewharton.rxbinding:rxbinding-leanback-v17:1.0.1'
-
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
     compile 'com.android.support:support-v4:25.2.0'
