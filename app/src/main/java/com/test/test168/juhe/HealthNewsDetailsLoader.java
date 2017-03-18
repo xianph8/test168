@@ -9,8 +9,9 @@ import com.test.test168.network.JuheApiWrapper;
 
 import java.util.HashMap;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by King on 2017/3/7.

@@ -7,20 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.jakewharton.rxbinding.view.RxView;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.utils.XLog;
-import com.test.test168.utils.T;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import rx.Observable;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * 在这个Activity学习使用RxAndroid
@@ -54,7 +52,7 @@ public class RxJavaActivity extends BaseActivity {
 
     private Context mContext;
 
-    private Subscription subscribe;
+    private Disposable subscribe;
     private int interval = 4;
     private int count = 0;
 
@@ -101,31 +99,31 @@ public class RxJavaActivity extends BaseActivity {
         handler.postDelayed(runnable, 1000); // 开始Timer
 
 //        // rx 的点击事件
-        RxView.clicks(btn_click2)
-                .subscribe(new Action1<Void>() {
-                    @Override
-                    public void call(Void aVoid) {
-                        handler.removeCallbacks(runnable);
-                    }
-                });
-        RxView.clicks(btn_click3)
-                .subscribe(new Action1<Void>() {
-                    @Override
-                    public void call(Void aVoid) {
-                        handler.postDelayed(runnable, 1000);
-                    }
-                });
+//        RxView.clicks(btn_click2)
+//                .subscribe(new Action1<Void>() {
+//                    @Override
+//                    public void call(Void aVoid) {
+//                        handler.removeCallbacks(runnable);
+//                    }
+//                });
+//        RxView.clicks(btn_click3)
+//                .subscribe(new Action1<Void>() {
+//                    @Override
+//                    public void call(Void aVoid) {
+//                        handler.postDelayed(runnable, 1000);
+//                    }
+//                });
 //
 //        // Rx
 //        // 防止重复点击
-        RxView.clicks(btn_click)
-                .throttleFirst(interval, TimeUnit.SECONDS)
-                .subscribe(new Action1<Void>() {
-                    @Override
-                    public void call(Void aVoid) {
-                        T.showShort(mContext, interval + "秒后就可以点击一次");
-                    }
-                });
+//        RxView.clicks(btn_click)
+//                .throttleFirst(interval, TimeUnit.SECONDS)
+//                .subscribe(new Action1<Void>() {
+//                    @Override
+//                    public void call(Void aVoid) {
+//                        T.showShort(mContext, interval + "秒后就可以点击一次");
+//                    }
+//                });
 
         // 轮询器启动
         startLoop();
@@ -142,13 +140,13 @@ public class RxJavaActivity extends BaseActivity {
     // 启动轮询
     void startLoop() {
         XLog.i("start loop :");
-        if (null == subscribe || subscribe.isUnsubscribed()) {
+        if (null == subscribe || subscribe.isDisposed()) {
             subscribe = Observable.interval(0, interval, TimeUnit.SECONDS)
                     //延时0 ，每间隔interval，时间单位 秒
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action1<Long>() {
+                    .subscribe(new Consumer<Long>() {
                         @Override
-                        public void call(Long aLong) {
+                        public void accept(Long aLong) {
                             interval--;
 //                            tv_test2.setText(tv_test2.getText() + "\n现在点击没用，还有" + interval + "秒才可以再点击！");
                             tv_test2.setText(tv_test2.getText().toString() + "\n" + interval + "、" + interval + "秒一次，点击文字重新跑");
@@ -163,9 +161,9 @@ public class RxJavaActivity extends BaseActivity {
     // 停止轮询
     void stopLoop() {
         XLog.i("stop loop :");
-        if (null != subscribe && !subscribe.isUnsubscribed()) {
+        if (null != subscribe && !subscribe.isDisposed()) {
             interval = 4;
-            subscribe.unsubscribe();
+            subscribe.dispose();
         }
     }
 }

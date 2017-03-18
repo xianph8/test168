@@ -10,14 +10,15 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeoutException;
 
-import rx.Subscriber;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 
 /**
  * Created by w07 on 2016/9/14 14:04
  * Description : rxjava 的 订阅者 网络调用 的封装
  */
-public abstract class CustomJuheSub<T> extends Subscriber<JuheResult<T>> {
+public abstract class CustomJuheSub<T> implements Observer<JuheResult<T>> {
 
     private Context mContext = null;
 
@@ -30,15 +31,18 @@ public abstract class CustomJuheSub<T> extends Subscriber<JuheResult<T>> {
     }
 
     @Override
+    public void onSubscribe(Disposable disposable) {
+
+    }
+
     public void onStart() {
-        super.onStart();
         if (mContext != null) {
 //            UIUtils.openLoadingDialog(mContext, false);
         }
     }
 
     @Override
-    public void onCompleted() {
+    public void onComplete() {
         closeDialog();
     }
 
