@@ -13,6 +13,8 @@ import android.view.View;
 
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
+import com.test.test168.bean.BingDailyPicture;
+import com.xian.common.utils.XLog;
 
 
 public class BingDailyPicActivity extends BaseActivity {
@@ -41,13 +43,14 @@ public class BingDailyPicActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+//        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+//
+//        // Set up the ViewPager with the sections adapter.
+//        mViewPager = (ViewPager) findViewById(R.id.container);
+//        mViewPager.setAdapter(mSectionsPagerAdapter);
+//        mViewPager.setOffscreenPageLimit(0);
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setOffscreenPageLimit(0);
-
+        loadDailyImage();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +60,26 @@ public class BingDailyPicActivity extends BaseActivity {
                         .setAction("Action", null).show();
             }
         });
+
+    }
+
+    private void loadDailyImage() {
+        showLoadingDialog();
+        BingDailyPictureLoader loader = new BingDailyPictureLoader(mActivity);
+        loader.load(0, new BingSub<BingDailyPicture>() {
+            @Override
+            protected void onSuccess(BingDailyPicture result) {
+                dismissLoadingDialog();
+                XLog.i(" on success : " + result);
+            }
+
+            @Override
+            protected void onFailure(String errorMsg) {
+                dismissLoadingDialog();
+                XLog.i(" on failure : " + errorMsg);
+            }
+        });
+
 
     }
 

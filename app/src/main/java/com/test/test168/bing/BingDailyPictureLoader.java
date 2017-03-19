@@ -27,7 +27,7 @@ public class BingDailyPictureLoader {
     public void load(int index, BingSub<BingDailyPicture> customSub) {
         ApiWrapper.getInstance("http://www.bing.com/")
                 .create(BingApi.class)
-                .loadDialyPicture(getParams(index))
+                .loadDailyPicture(getParams(index))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(customSub);

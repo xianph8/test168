@@ -19,6 +19,6 @@ public interface BingApi {
 
     @POST("/HPImageArchive.aspx")
     @FormUrlEncoded
-    Observable<BingDailyPicture> loadDialyPicture(@FieldMap Map<String, String> params);
+    Observable<BingDailyPicture> loadDailyPicture(@FieldMap Map<String, String> params);
 
 }
