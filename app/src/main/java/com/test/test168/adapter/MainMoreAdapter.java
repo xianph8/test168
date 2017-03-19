@@ -2,6 +2,9 @@ package com.test.test168.adapter;
 
 import android.content.Context;
 
+import com.xian.common.adapter.CommonAdapter;
+import com.xian.common.adapter.ViewHolder;
+
 import java.util.Arrays;
 
 /**

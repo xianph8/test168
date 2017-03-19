@@ -10,7 +10,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.test.test168.R;
-import com.test.test168.view.dialog.LoadingDialog;
+import com.xian.common.widget.dialog.LoadingDialog;
 
 
 /**

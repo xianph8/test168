@@ -8,9 +8,9 @@ import android.widget.RelativeLayout;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.service.TestIntentService;
-import com.test.test168.view.dialog.LoadingDialog;
+import com.xian.common.widget.dialog.LoadingDialog;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -18,9 +18,9 @@ public class TestIntentServiceActivity extends BaseActivity {
 
     protected ProgressDialog progressDialog = null;
 
-    @Bind(R.id.btn_start_intent_service)
+    @BindView(R.id.btn_start_intent_service)
     Button mBtnStartIntentService;
-    @Bind(R.id.activity_test_intent_service)
+    @BindView(R.id.activity_test_intent_service)
     RelativeLayout mActivityTestIntentService;
 
     @Override

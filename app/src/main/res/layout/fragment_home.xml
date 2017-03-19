@@ -3,13 +3,13 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.test.test168.fragment.HomeFragment">
+              tools:context="com.test.test168.fragment.NineGirdHomeFragment">
 
     <include layout="@layout/include_home_head"/>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_menu_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/item_list_home"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

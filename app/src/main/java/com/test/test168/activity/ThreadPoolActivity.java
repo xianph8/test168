@@ -2,8 +2,8 @@ package com.test.test168.activity;
 
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
-import com.test.test168.utils.XLog;
-import com.test.test168.utils.ThreadPool;
+import com.xian.common.utils.ThreadPool;
+import com.xian.common.utils.XLog;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

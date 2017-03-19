@@ -12,18 +12,17 @@ import com.test.test168.base.BaseActivity;
 import com.test.test168.bean.JuheHealthNewsClass;
 import com.test.test168.bean.JuheHealthNewsClassList;
 import com.test.test168.bean.JuheHealthNewsClassListItem;
-import com.test.test168.network.CustomJuheSub;
-import com.test.test168.utils.XLog;
+import com.xian.common.utils.XLog;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HealthNewsClassListActivity extends BaseActivity {
-    @Bind(R.id.include_head_title)
+    @BindView(R.id.include_head_title)
     TextView title;
-    @Bind(R.id.rv_news_class_list)
+    @BindView(R.id.rv_news_class_list)
     RecyclerView rvNewsClass;
 
     JuheHealthNewsClass newsClass;
@@ -46,18 +45,20 @@ public class HealthNewsClassListActivity extends BaseActivity {
     public void onRequest(JuheHealthNewsClass newsClass) {
 
         mLoader = new HealthNewsClassListLoader(mActivity);
-
+showLoadingDialog();
         mLoader.loader(newsClass,
                 new CustomJuheSub<JuheHealthNewsClassList<JuheHealthNewsClassListItem>>() {
                     @Override
                     protected void onSuccess(JuheHealthNewsClassList<JuheHealthNewsClassListItem> result) {
                         XLog.i("on success : " + result);
                         setListView(result.list);
+                        dismissLoadingDialog();
                     }
 
                     @Override
                     protected void onFailure(String errorMsg) {
                         XLog.e(errorMsg);
+                        dismissLoadingDialog();
                     }
                 });
         ;

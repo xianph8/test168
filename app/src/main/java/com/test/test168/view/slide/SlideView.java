@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 
 import com.test.test168.R;
 import com.test.test168.utils.ImageUtils;
-import com.test.test168.utils.XLog;
+import com.xian.common.utils.XLog;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

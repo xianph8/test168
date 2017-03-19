@@ -2,7 +2,7 @@ package com.test.test168.service;
 
 import android.content.Intent;
 
-import com.test.test168.utils.XLog;
+import com.xian.common.utils.XLog;
 
 public class TestIntentService extends BaseIntentService {
 

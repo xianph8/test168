@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.test.test168.api.JuheApi;
 import com.test.test168.bean.JuheHealthNewsClassListItem;
-import com.test.test168.network.CustomJuheSub;
-import com.test.test168.network.JuheApiWrapper;
 
 import java.util.HashMap;
 

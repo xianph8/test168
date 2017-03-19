@@ -28,6 +28,10 @@
 
     <style name="mAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="ApplicationTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="ApplicationTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <!--material design font style -->
     <style name="md_spacing">
         <item name="android:layout_width">match_parent</item>

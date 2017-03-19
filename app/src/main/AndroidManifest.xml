@@ -52,6 +52,7 @@
                 android:value=".activity.ItemListActivity" />
         </activity>
         <activity android:name=".activity.PanelRecycleViewActivity" />
+        <activity android:name=".bing.BingDailyPicActivity" />
         <activity android:name=".activity.ThreadPoolActivity" />
         <activity android:name=".activity.NineGirdActivity" />
         <activity android:name=".activity.TestDialogFragmentActivity" />

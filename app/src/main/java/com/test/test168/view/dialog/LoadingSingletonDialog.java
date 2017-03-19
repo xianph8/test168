@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.view.KeyEvent;
 
 import com.test.test168.event.LoadingEvent;
-import com.test.test168.utils.XLog;
+import com.xian.common.utils.XLog;
 
 import org.greenrobot.eventbus.EventBus;
 

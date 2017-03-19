@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.test.test168.R;
-import com.test.test168.view.dialog.LoadingDialog;
+import com.xian.common.widget.dialog.LoadingDialog;
 
 import butterknife.ButterKnife;
 

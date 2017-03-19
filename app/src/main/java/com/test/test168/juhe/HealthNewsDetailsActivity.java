@@ -9,10 +9,9 @@ import com.test.test168.TConstants;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.bean.JuheHealthNewsClassListItem;
 import com.test.test168.bean.JuheHealthNewsDetails;
-import com.test.test168.network.CustomJuheSub;
-import com.test.test168.utils.XLog;
+import com.xian.common.utils.XLog;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HealthNewsDetailsActivity extends BaseActivity {
@@ -20,15 +19,15 @@ public class HealthNewsDetailsActivity extends BaseActivity {
     JuheHealthNewsClassListItem newsClass;
     HealthNewsDetailsLoader mLoader;
 
-    @Bind(R.id.detail_toolbar)
+    @BindView(R.id.detail_toolbar)
     Toolbar detailToolbar;
-    @Bind(R.id.tv_news_details_time)
+    @BindView(R.id.tv_news_details_time)
     TextView tvNewsDetailsTime;
-    @Bind(R.id.tv_news_details_keyword)
+    @BindView(R.id.tv_news_details_keyword)
     TextView tvNewsDetailsKeyword;
-    @Bind(R.id.tv_news_details_read_count)
+    @BindView(R.id.tv_news_details_read_count)
     TextView tvNewsDetailsReadCount;
-    @Bind(R.id.tv_news_details_content)
+    @BindView(R.id.tv_news_details_content)
     TextView tvNewsDetailsContent;
 
     @Override
@@ -41,6 +40,7 @@ public class HealthNewsDetailsActivity extends BaseActivity {
     }
 
     private void setViews(JuheHealthNewsClassListItem newsClass) {
+        showLoadingDialog();
         detailToolbar.setTitle(newsClass.getTitle());
         mLoader = new HealthNewsDetailsLoader(mActivity);
         mLoader.loader(newsClass,
@@ -49,11 +49,13 @@ public class HealthNewsDetailsActivity extends BaseActivity {
                     protected void onSuccess(JuheHealthNewsDetails result) {
                         XLog.i("on success : " + result);
                         setViewDetails(result);
+                        dismissLoadingDialog();
                     }
 
                     @Override
                     protected void onFailure(String errorMsg) {
                         XLog.e(errorMsg);
+                        dismissLoadingDialog();
                     }
                 });
     }

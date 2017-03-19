@@ -8,6 +8,7 @@ import com.test.test168.base.BaseFragment;
  * A simple {@link BaseFragment} subclass.
  */
 public class SettingFragment extends BaseFragment {
+    public static final String TAG = "SettingFragment";
 
 
     public SettingFragment() {

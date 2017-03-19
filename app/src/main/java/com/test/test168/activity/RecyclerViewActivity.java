@@ -9,7 +9,7 @@ import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.bean.DummyContent;
 import com.test.test168.fragment.RecycleFragment;
-import com.test.test168.utils.XLog;
+import com.xian.common.utils.XLog;
 
 public class RecyclerViewActivity extends BaseActivity implements RecycleFragment.OnListFragmentInteractionListener {
 

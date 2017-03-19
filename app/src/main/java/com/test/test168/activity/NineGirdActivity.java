@@ -8,20 +8,20 @@ import android.view.MenuItem;
 
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
-import com.test.test168.fragment.HomeFragment;
+import com.test.test168.fragment.NineGirdHomeFragment;
 import com.test.test168.fragment.SettingFragment;
 import com.test.test168.fragment.TestDialogFragment;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class NineGirdActivity extends BaseActivity {
 
-    @Bind(R.id.main_bottom_menu)
+    @BindView(R.id.main_bottom_menu)
     BottomNavigationView mMainBottomMenu;
 
     private Map<String, Fragment> homeFragment;
@@ -32,13 +32,14 @@ public class NineGirdActivity extends BaseActivity {
         setContentView(R.layout.activity_nine_gird);
         ButterKnife.bind(this);
         initNavMenu();
+        changeFragment(homeFragment.get(NineGirdHomeFragment.TAG));
     }
 
     private void initNavMenu() {
         homeFragment = new HashMap<>();
-        homeFragment.put("home", new HomeFragment());
-        homeFragment.put("test", new TestDialogFragment());
-        homeFragment.put("setting", new SettingFragment());
+        homeFragment.put(NineGirdHomeFragment.TAG, new NineGirdHomeFragment());
+        homeFragment.put(TestDialogFragment.TAG, new TestDialogFragment());
+        homeFragment.put(SettingFragment.TAG, new SettingFragment());
         mMainBottomMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

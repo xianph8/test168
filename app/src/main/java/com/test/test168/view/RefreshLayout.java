@@ -7,8 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.test.test168.utils.XLog;
 import com.test.test168.view.dialog.LoadingSingletonDialog;
+import com.xian.common.utils.XLog;
 
 public class RefreshLayout extends SwipeRefreshLayout {
 

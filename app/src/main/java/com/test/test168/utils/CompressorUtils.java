@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.xian.common.utils.XLog;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -22,16 +24,19 @@ public class CompressorUtils {
 
     private static String cache_path = ""; // 存放缓存照片的路径
 
-    /*
-    1、  通过Context.getExternalFilesDir()方法可以获取到 SDCard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据
-        通过Context.getExternalCacheDir()方法可以获取到 SDCard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据
-    2、  Context.getFilesDir()可以获取到"/data/data/<package name>/files" 这个方法获取的目录不是在sdcard上，而是在应用安装的目录
-        Context.getCacheDir可以获取到"/data/data/<package name>/cache" 这个方法获取的目录不是在sdcard上，而是在应用安装的目录，这个文件里面的数据在设备内存不足的时候，会被系统删除数据。注意：你不能依赖系统帮你删除这些文件，当这个文件夹里面的数据超过1MB的时候，系统会删除这个文件夹里面的数据。
+    /**
+     * 1、
+     * 通过Context.getExternalFilesDir()方法可以获取到 SDCard/Android/data/<package name>/files/ 目录，一般放一些长时间保存的数据
+     * 通过Context.getExternalCacheDir()方法可以获取到 SDCard/Android/data/<package name>/cache/目录，一般存放临时缓存数据
+     * <p/>
+     * 2、
+     * Context.getFilesDir()可以获取到"/data/data/<package name>/files" 这个方法获取的目录不是在sdcard上，而是在应用安装的目录
+     * Context.getCacheDir可以获取到"/data/data/<package name>/cache" 这个方法获取的目录不是在sdcard上，而是在应用安装的目录
+     * 这个文件里面的数据在设备内存不足的时候，会被系统删除数据。注意：你不能依赖系统帮你删除这些文件，当这个文件夹里面的数据超过1MB的时候，系统会删除这个文件夹里面的数据。
      */
-
     public static String getCompressorImage(Context mContext, String path) {
         if (mContext.getExternalCacheDir() != null) {
-            cache_path = AppUtils.getAppCachePath(mContext) + "/";
+            cache_path = mContext.getExternalCacheDir() + "/";
         } else {
             cache_path = mContext.getCacheDir().getPath() + "/";
         }

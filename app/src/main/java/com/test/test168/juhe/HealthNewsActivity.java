@@ -12,14 +12,12 @@ import com.test.test168.api.JuheApi;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.bean.JuheHealthNewsClass;
 import com.test.test168.bean.JuheResultBean;
-import com.test.test168.network.CustomJuheSub;
-import com.test.test168.network.JuheApiWrapper;
-import com.test.test168.utils.XLog;
+import com.xian.common.utils.XLog;
 
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -29,7 +27,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class HealthNewsActivity extends BaseActivity {
 
-    @Bind(R.id.rv_news_class)
+    @BindView(R.id.rv_news_class)
     RecyclerView rvNewsClass;
 
     @Override
@@ -43,6 +41,7 @@ public class HealthNewsActivity extends BaseActivity {
     }
 
     public void onRequest() {
+        showLoadingDialog();
         HashMap<String, String> map = new HashMap<>();
         map.put("key", JuheApi.key);
         map.put("dtype", JuheApi.dtype);
@@ -56,11 +55,13 @@ public class HealthNewsActivity extends BaseActivity {
                     protected void onSuccess(JuheResultBean<JuheHealthNewsClass> result) {
                         XLog.i("on success : " + result);
                         setListView(result.list.tList);
+                        dismissLoadingDialog();
                     }
 
                     @Override
                     protected void onFailure(String errorMsg) {
                         XLog.e(errorMsg);
+                        dismissLoadingDialog();
                     }
                 });
     }

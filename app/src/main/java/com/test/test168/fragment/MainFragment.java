@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 
 import com.test.test168.R;
 import com.test.test168.activity.ItemListActivity;
-import com.test.test168.juhe.HealthNewsActivity;
 import com.test.test168.activity.LitePalActivity;
 import com.test.test168.activity.NineGirdActivity;
 import com.test.test168.activity.PanelRecycleViewActivity;
@@ -24,11 +23,13 @@ import com.test.test168.activity.RxJavaActivity;
 import com.test.test168.activity.SlideActivity;
 import com.test.test168.activity.TestDialogFragmentActivity;
 import com.test.test168.activity.TestIntentServiceActivity;
-import com.test.test168.adapter.RecycleViewAdapter;
-import com.test.test168.adapter.ViewHolder;
+import com.test.test168.juhe.HealthNewsActivity;
+import com.xian.common.adapter.RecycleViewAdapter;
+import com.xian.common.adapter.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -148,7 +149,7 @@ public class MainFragment extends Fragment {
             }
 
             @Override
-            public void onBindViewHolder(ViewHolder holder, String list, int position) {
+            public void onBindViewHolder(ViewHolder holder, String list) {
                 holder.setText(R.id.list_item, list);
             }
 

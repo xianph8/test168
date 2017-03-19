@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.utils.ImageUtils;
-import com.test.test168.utils.XLog;
 import com.test.test168.view.slide.OnImageClickListener;
 import com.test.test168.view.slide.SlideView;
+import com.xian.common.utils.XLog;
 
 import java.util.ArrayList;
 import java.util.List;

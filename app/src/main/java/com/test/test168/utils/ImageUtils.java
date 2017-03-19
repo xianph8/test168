@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.test.test168.R;
+import com.xian.common.utils.XLog;
 
 import java.io.File;
 

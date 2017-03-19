@@ -14,6 +14,7 @@ import com.test.test168.R;
  * A simple {@link Fragment} subclass.
  */
 public class TestDialogFragment extends DialogFragment {
+    public static final String TAG = "TestDialogFragment";
 
 
     public TestDialogFragment() {

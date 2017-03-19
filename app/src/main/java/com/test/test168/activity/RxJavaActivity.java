@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
-import com.test.test168.utils.XLog;
+import com.xian.common.utils.XLog;
 
 import java.util.concurrent.TimeUnit;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -32,22 +32,22 @@ import io.reactivex.functions.Consumer;
 public class RxJavaActivity extends BaseActivity {
 
 
-    @Bind(R.id.btn_test1)
+    @BindView(R.id.btn_test1)
     Button btn_click;
 
-    @Bind(R.id.btn_test2)
+    @BindView(R.id.btn_test2)
     Button btn_click2;
 
-    @Bind(R.id.btn_test3)
+    @BindView(R.id.btn_test3)
     Button btn_click3;
 
-    @Bind(R.id.btn_test4)
+    @BindView(R.id.btn_test4)
     Button btn_click4;
 
-    @Bind(R.id.tv_test1)
+    @BindView(R.id.tv_test1)
     TextView tv_test1;
 
-    @Bind(R.id.tv_test2)
+    @BindView(R.id.tv_test2)
     TextView tv_test2;
 
     private Context mContext;
