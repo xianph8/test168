@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activity.RxJavaActivity"
+    tools:context=".rx.RxJavaActivity"
     tools:showIn="@layout/activity_rx_java">
 
     <LinearLayout

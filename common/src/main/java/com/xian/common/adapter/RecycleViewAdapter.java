@@ -58,9 +58,9 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycle
         });
     }
 
-    public abstract void onBindViewHolder(ViewHolder holder, T list);
+    public abstract void onBindViewHolder(ViewHolder holder, T item);
 
-    public abstract void onItemClick(T list, int position);
+    public abstract void onItemClick(T item, int position);
 
     public abstract int getItemLayoutId();
 

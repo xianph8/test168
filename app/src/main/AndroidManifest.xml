@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".activity.SlideActivity" />
         <activity
-            android:name=".activity.RxJavaActivity"
+            android:name=".rx.RxJavaActivity"
             android:label="@string/title_activity_test_rx_java"
             android:theme="@style/mAppTheme" />
         <activity android:name=".activity.LitePalActivity" />
@@ -58,7 +58,8 @@
         <activity android:name=".activity.TestDialogFragmentActivity" />
         <activity android:name=".juhe.HealthNewsActivity" />
         <activity android:name=".juhe.HealthNewsDetailsActivity" />
-        <activity android:name=".juhe.HealthNewsClassListActivity"></activity>
+        <activity android:name=".juhe.HealthNewsClassListActivity" />
+        <activity android:name=".rx.RxViewActivity"></activity>
     </application>
 
 </manifest>

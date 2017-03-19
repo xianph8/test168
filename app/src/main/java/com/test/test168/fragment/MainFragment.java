@@ -19,7 +19,7 @@ import com.test.test168.activity.LitePalActivity;
 import com.test.test168.activity.NineGirdActivity;
 import com.test.test168.activity.PanelRecycleViewActivity;
 import com.test.test168.activity.RecyclerViewActivity;
-import com.test.test168.activity.RxJavaActivity;
+import com.test.test168.rx.RxJavaActivity;
 import com.test.test168.activity.SlideActivity;
 import com.test.test168.activity.TestDialogFragmentActivity;
 import com.test.test168.activity.TestIntentServiceActivity;
@@ -29,7 +29,6 @@ import com.xian.common.adapter.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.

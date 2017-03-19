@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_home"
         android:title="Home"/>
     <item
-        android:id="@+id/main_nav_nothing"
+        android:id="@+id/main_nav_rxjava"
         android:icon="@drawable/ic_settings"
         android:title="nothing"/>
     <item

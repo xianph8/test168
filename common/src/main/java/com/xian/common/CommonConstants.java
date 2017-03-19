@@ -5,4 +5,5 @@ package com.xian.common;
  */
 
 public class CommonConstants {
+    public static final String BASE_URL = "www.baidu.com";
 }

@@ -1,7 +1,8 @@
-package com.xian.common.module;
+package com.test.test168.bing;
 
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.xian.common.module.ApiWrapper;
 import com.xian.common.utils.XLog;
 
 import java.io.IOException;
@@ -16,17 +17,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by test168 on 2016/7/28 14:02
- * Description : retrofit 封装类，单例模式
+ * Created by King on 2017/3/19.
  */
-public class ApiWrapper {
+
+public class BingApiWrapper {
 
     public static final int CONNECT_TIMEOUT = 60;// 延时设置得大一点，防止连接超时没得到结果
-    public static String BASE_URL = "";
-    private static ApiWrapper instance;
+    public static String BASE_URL = "http://www.bing.com/";
+    private static BingApiWrapper instance;
     private Retrofit retrofit;
 
-    private ApiWrapper() {
+    private BingApiWrapper() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -58,18 +59,18 @@ public class ApiWrapper {
                 .build();
     }
 
-    private static ApiWrapper newInstance() {
+    private static BingApiWrapper newInstance() {
         if (instance == null) {
             synchronized (ApiWrapper.class) {
                 if (instance == null) {
-                    instance = new ApiWrapper();
+                    instance = new BingApiWrapper();
                 }
             }
         }
         return instance;
     }
 
-    public static ApiWrapper getInstance() {
+    public static BingApiWrapper getInstance() {
         return newInstance();
     }
 

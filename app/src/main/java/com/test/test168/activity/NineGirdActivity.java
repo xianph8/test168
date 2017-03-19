@@ -9,8 +9,8 @@ import android.view.MenuItem;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 import com.test.test168.fragment.NineGirdHomeFragment;
+import com.test.test168.fragment.RxAndroidFragment;
 import com.test.test168.fragment.SettingFragment;
-import com.test.test168.fragment.TestDialogFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +38,7 @@ public class NineGirdActivity extends BaseActivity {
     private void initNavMenu() {
         homeFragment = new HashMap<>();
         homeFragment.put(NineGirdHomeFragment.TAG, new NineGirdHomeFragment());
-        homeFragment.put(TestDialogFragment.TAG, new TestDialogFragment());
+        homeFragment.put(RxAndroidFragment.TAG, new RxAndroidFragment());
         homeFragment.put(SettingFragment.TAG, new SettingFragment());
         mMainBottomMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -46,13 +46,13 @@ public class NineGirdActivity extends BaseActivity {
                 if (item.isChecked()) return false;
                 switch (item.getItemId()) {
                     case R.id.main_nav_home:
-                        changeFragment(homeFragment.get("home"));
+                        changeFragment(homeFragment.get(NineGirdHomeFragment.TAG));
                         break;
-                    case R.id.main_nav_nothing:
-                        changeFragment(homeFragment.get("test"));
+                    case R.id.main_nav_rxjava:
+                        changeFragment(homeFragment.get(RxAndroidFragment.TAG));
                         break;
                     case R.id.main_nav_setting:
-                        changeFragment(homeFragment.get("setting"));
+                        changeFragment(homeFragment.get(SettingFragment.TAG));
                         break;
                 }
                 return true;

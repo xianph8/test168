@@ -80,7 +80,6 @@ public class BingDailyPicActivity extends BaseActivity {
             }
         });
 
-
     }
 
     @Override

@@ -1,14 +1,13 @@
-package com.test.test168.activity;
+package com.test.test168.rx;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding2.view.RxView;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
+import com.xian.common.utils.T;
 import com.xian.common.utils.XLog;
 
 import java.util.concurrent.TimeUnit;
@@ -20,16 +19,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
-/**
- * 在这个Activity学习使用RxAndroid
- */
-
-/***
- * Attention：
- * 1.使用RxBinding的时候，要同时引入支持包
- * 2.
- */
-public class RxJavaActivity extends BaseActivity {
+public class RxViewActivity extends BaseActivity {
 
 
     @BindView(R.id.btn_test1)
@@ -50,8 +40,6 @@ public class RxJavaActivity extends BaseActivity {
     @BindView(R.id.tv_test2)
     TextView tv_test2;
 
-    private Context mContext;
-
     private Disposable subscribe;
     private int interval = 4;
     private int count = 0;
@@ -70,27 +58,11 @@ public class RxJavaActivity extends BaseActivity {
 //    handler.removeCallbacks(runnable); //停止Timer
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rx_java);  //
-        ButterKnife.bind(this);
-        mContext = getApplicationContext();
-        initView();
-    }
-
-    @Override
     protected void initViews() {
+        setContentView(R.layout.activity_rx_view);
+        ButterKnife.bind(this);
 
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        handler.removeCallbacks(runnable);
-        stopLoop();
-    }
-
-    private void initView() {
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
@@ -99,41 +71,48 @@ public class RxJavaActivity extends BaseActivity {
         handler.postDelayed(runnable, 1000); // 开始Timer
 
 //        // rx 的点击事件
-//        RxView.clicks(btn_click2)
-//                .subscribe(new Action1<Void>() {
-//                    @Override
-//                    public void call(Void aVoid) {
-//                        handler.removeCallbacks(runnable);
-//                    }
-//                });
-//        RxView.clicks(btn_click3)
-//                .subscribe(new Action1<Void>() {
-//                    @Override
-//                    public void call(Void aVoid) {
-//                        handler.postDelayed(runnable, 1000);
-//                    }
-//                });
-//
-//        // Rx
-//        // 防止重复点击
-//        RxView.clicks(btn_click)
-//                .throttleFirst(interval, TimeUnit.SECONDS)
-//                .subscribe(new Action1<Void>() {
-//                    @Override
-//                    public void call(Void aVoid) {
-//                        T.showShort(mContext, interval + "秒后就可以点击一次");
-//                    }
-//                });
+        RxView.clicks(btn_click2)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        handler.removeCallbacks(runnable);
+                    }
+                });
+        RxView.clicks(btn_click3)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object aVoid)throws Exception {
+                        handler.postDelayed(runnable, 1000);
+                    }
+                });
+
+        // Rx
+        // 防止重复点击
+        RxView.clicks(btn_click)
+                .throttleFirst(interval, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object aVoid) {
+                        T.showShort(mActivity, interval + "秒后就可以点击一次");
+                    }
+                });
 
         // 轮询器启动
         startLoop();
-        tv_test2.setOnClickListener(new View.OnClickListener() {
+        RxView.clicks(tv_test2).subscribe(new Consumer<Object>() {
             @Override
-            public void onClick(View v) {
+            public void accept(Object o) throws Exception {
                 stopLoop();
                 startLoop();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
+        stopLoop();
     }
 
     // Rx 的轮询器
