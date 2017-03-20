@@ -9,7 +9,11 @@
 
 
 1. 当retrofit 请求返回错误（retrofit java.net.ProtocolException: Too many follow-up requests: 21）的时候
-说明，是服务端出问题，也有可能是自己访问的URL错误了
+说明，是服务端出问题，也有可能是自己访问的URL错误了，而我遇到的是，自己访问错地址
+
+1. 使用 okhttp log 拦截器，当访问接口，无论是成功还是失败，都走 onError 方法，报 java.lang.IllegalStateException: closed
+可能是自行添加的拦截器，把 response 消费了（也就是调用了 response.body().string() 方法，注意是 string() 方法，而不是 toString() 方法）
+，返回到回调的地方已经为关闭了，所以，一直会提示 "closed"
 
 
 
