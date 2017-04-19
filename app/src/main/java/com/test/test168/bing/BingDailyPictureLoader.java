@@ -4,14 +4,11 @@ import android.content.Context;
 
 import com.test.test168.api.BingApi;
 import com.test.test168.bean.BingDailyPicture;
-import com.xian.common.utils.XLog;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -32,27 +29,28 @@ public class BingDailyPictureLoader {
                 .loadDailyPicture(getParams(index))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BingDailyPicture>() {
-                    @Override
-                    public void onSubscribe(Disposable disposable) {
-                        XLog.i(" disposable : " + disposable);
-                    }
-
-                    @Override
-                    public void onNext(BingDailyPicture bingDailyPicture) {
-                        XLog.i(" onNext : " + bingDailyPicture);
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        XLog.e(" onError : " + throwable);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        XLog.e(" onComplete : ");
-                    }
-                });
+                .subscribe(customSub);
+//                .subscribe(new Observer<BingDailyPicture>() {
+//                    @Override
+//                    public void onSubscribe(Disposable disposable) {
+//                        XLog.i(" disposable : " + disposable);
+//                    }
+//
+//                    @Override
+//                    public void onNext(BingDailyPicture bingDailyPicture) {
+//                        XLog.i(" onNext : " + bingDailyPicture);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable throwable) {
+//                        XLog.e(" onError : " + throwable);
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        XLog.e(" onComplete : ");
+//                    }
+//                });
     }
 
     private Map<String, String> getParams(int index) {

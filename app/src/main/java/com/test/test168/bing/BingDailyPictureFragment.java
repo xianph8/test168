@@ -44,11 +44,13 @@ public class BingDailyPictureFragment extends BaseFragment {
         loader.load(section, new BingSub<BingDailyPicture>() {
             @Override
             protected void onSuccess(BingDailyPicture result) {
+                dismissLoadingDialog();
                 XLog.i(" on success : " + result);
             }
 
             @Override
             protected void onFailure(String errorMsg) {
+                dismissLoadingDialog();
                 XLog.i(" on failure : " + errorMsg);
             }
         });
