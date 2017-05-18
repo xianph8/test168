@@ -1,13 +1,13 @@
 package com.test.test168.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import com.test.test168.R;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
-public class TestAutoCompleteTextViewActivity extends AppCompatActivity {
+public class TestAutoCompleteTextViewActivity extends RxAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

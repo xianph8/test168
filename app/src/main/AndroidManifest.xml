@@ -62,6 +62,13 @@
         <activity android:name=".rx.RxViewActivity"/>
         <activity android:name=".activity.TestAutoCompleteTextViewActivity">
         </activity>
+        <activity
+            android:name=".activity.TestWebServiceActivity"
+            android:label="@string/title_activity_test_web_service"
+            android:theme="@style/mAppTheme">
+        </activity>
+        <activity android:name=".activity.TestKotlinActivity">
+        </activity>
     </application>
 
 </manifest>

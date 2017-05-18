@@ -11,6 +11,7 @@ import com.test.test168.R;
 import com.test.test168.activity.LitePalActivity;
 import com.test.test168.activity.RecyclerViewActivity;
 import com.test.test168.activity.TestAutoCompleteTextViewActivity;
+import com.test.test168.activity.TestWebServiceActivity;
 import com.test.test168.activity.ThreadPoolActivity;
 import com.test.test168.adapter.HomeMenuAdapter;
 import com.test.test168.base.BaseFragment;
@@ -70,7 +71,7 @@ public class NineGirdHomeFragment extends BaseFragment implements HomeContract.V
                 put("item2", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_camera),
                         "TestAutoCompleteTextViewActivity", TestAutoCompleteTextViewActivity.class));
                 put("item3", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
-                        "item1", ThreadPoolActivity.class));
+                        "TestWebServiceActivity", TestWebServiceActivity.class));
                 put("item4", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
                         "item1", ThreadPoolActivity.class));
                 put("item5", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
