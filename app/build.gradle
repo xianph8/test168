@@ -1,9 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply from: "../config.gradle"
+//相关库依赖
+def library = ext.supportDependencies
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.test.test168"
         minSdkVersion 15
@@ -77,27 +80,51 @@ dependencies {
     compile project(':common')
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
-    compile 'com.android.support:design:25.3.0'
-    compile 'com.android.support:support-v4:25.3.0'
-    compile 'com.android.support:recyclerview-v7:25.3.0'
-    compile 'com.android.support:cardview-v7:25.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
-    compile 'com.jakewharton:butterknife:8.5.1'
-    compile 'com.github.Aspsine:SwipeToLoadLayout:v1.0.2'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'org.litepal.android:core:1.4.1'
-    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    compile 'com.jakewharton.rxbinding2:rxbinding-support-v4:2.0.0'
-    compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
-    compile 'com.jakewharton.rxbinding2:rxbinding-design:2.0.0'
-    compile 'com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.0.0'
-    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar'
-    compile 'com.f2prateek.rx.preferences2:rx-preferences:2.0.0-RC1'
-    compile 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
-    compile 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
-    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    testCompile library.testJunit
+    androidTestCompile (library.testRunner) {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile (library.testEspressoCore) {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile library.findbugs
+
+    compile library.butterknife
+    annotationProcessor library.butterknifeCompiler
+
+    compile library.supportDesign
+    compile library.supportV4
+    compile library.supportRecyclerView
+    compile library.supportCardView
+    compile library.supportConstraint
+    compile library.supportDesign
+    compile library.supportAnnotations
+
+    compile library.glide
+    compile library.litepal
+
+    // squareup
+    compile library.retrofit
+    compile library.okhttp
+    compile library.rxJavaForRetrofitAdapter
+    compile library.okhttpLoggingInterceptor
+    compile library.rxJava
+    compile library.rxAndroid
+    compile library.Gson
+    compile library.rxLifecycle
+    compile library.rxLifecycleAndroid
+    compile library.rxLifecycleComponents
+    compile library.rxBinding
+    compile library.rxBindingSupportV4
+    compile library.rxBindingSupportAppcompatV7
+    compile library.rxBindingSupportDesign
+    compile library.rxBindingSupportRecyclerView
+    compile library.rxPermissions
+    compile library.rxReferences
+
+//    compile 'com.github.Aspsine:SwipeToLoadLayout:v1.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
 }
 repositories {
     mavenCentral()
