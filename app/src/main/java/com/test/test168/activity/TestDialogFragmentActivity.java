@@ -11,22 +11,25 @@ import com.test.test168.base.BaseActivity;
 import com.test.test168.fragment.TestDialogFragment;
 import com.test.test168.view.dialog.TestBottomSheetDialog;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class TestDialogFragmentActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
         setContentView(R.layout.activity_test_dialog_fragment);
-        ButterKnife.bind(this);
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickView(v);
+            }
+        };
+        findViewById(R.id.btn_test_fragment_test1).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_test_fragment_test2).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_test_fragment_test3).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_test_fragment_test4).setOnClickListener(onClickListener);
     }
 
-    @OnClick({R.id.btn_test_fragment_test1,
-            R.id.btn_test_fragment_test2,
-            R.id.btn_test_fragment_test3,
-            R.id.btn_test_fragment_test4})
-    public void onClick(View view) {
+    public void onClickView(View view) {
         switch (view.getId()) {
             case R.id.btn_test_fragment_test1:
                 AlertDialog.Builder builder = new AlertDialog.Builder(mActivity, R.style.BaseDialog);

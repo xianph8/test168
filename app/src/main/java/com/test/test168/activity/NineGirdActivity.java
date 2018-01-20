@@ -15,13 +15,8 @@ import com.test.test168.fragment.SettingFragment;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class NineGirdActivity extends BaseActivity {
 
-    @BindView(R.id.main_bottom_menu)
     BottomNavigationView mMainBottomMenu;
 
     private Map<String, Fragment> homeFragment;
@@ -30,7 +25,8 @@ public class NineGirdActivity extends BaseActivity {
     @Override
     protected void initViews() {
         setContentView(R.layout.activity_nine_gird);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
+        mMainBottomMenu = findViewById(R.id.main_bottom_menu);
         initNavMenu();
         changeFragment(homeFragment.get(NineGirdHomeFragment.TAG));
     }
@@ -54,6 +50,8 @@ public class NineGirdActivity extends BaseActivity {
                     case R.id.main_nav_setting:
                         changeFragment(homeFragment.get(SettingFragment.TAG));
                         break;
+                    default:
+                        break;
                 }
                 return true;
             }
@@ -74,7 +72,6 @@ public class NineGirdActivity extends BaseActivity {
         mCurrentFragment = target;
     }
 
-    @OnClick(R.id.include_head_submit)
     public void onClick() {
     }
 }

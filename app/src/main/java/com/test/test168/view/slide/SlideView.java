@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.test.test168.R;
-import com.test.test168.utils.ImageUtils;
+import com.test.test168.utils.ImageLoader;
 import com.xian.common.utils.XLog;
 
 import java.lang.reflect.Field;
@@ -113,14 +113,14 @@ public class SlideView extends FrameLayout {
         // 添加第一张图片
         ImageView first = new ImageView(mContext);
         first.setScaleType(ImageView.ScaleType.CENTER_CROP);// 铺满屏幕
-        ImageUtils.slideShowDisplayUrl(mContext, imageUrl.get(imageUrl.size() - 1), first);
+        ImageLoader.display(mContext, imageUrl.get(imageUrl.size() - 1), first);
         imageViewList.add(first);
 
         // 添加所有的图片
         for (int i = 0; i < imageUrl.size(); i++) {
             ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);// 铺满屏幕
-            ImageUtils.slideShowDisplayUrl(mContext, imageUrl.get(i), imageView);  // 为每个 ImageView 加载图片
+            ImageLoader.display(mContext, imageUrl.get(i), imageView);  // 为每个 ImageView 加载图片
             imageView.setTag(imageTag, i);// 为每张图片设置一个标记，点击的时候用到
             imageView.setOnClickListener(imageClick);// 为每张图片设置点击事件
             imageViewList.add(imageView);// 然后添加到整个轮播的列表中去，用于主体的ViewPager
@@ -138,7 +138,7 @@ public class SlideView extends FrameLayout {
         // 添加最后一张图片
         ImageView last = new ImageView(mContext);
 //        last.setScaleType(ImageView.ScaleType.CENTER_CROP);// 铺满屏幕
-        ImageUtils.slideShowDisplayUrl(mContext, imageUrl.get(0), last);
+        ImageLoader.display(mContext, imageUrl.get(0), last);
         imageViewList.add(last);
 
         mViewPager.setFocusable(true);

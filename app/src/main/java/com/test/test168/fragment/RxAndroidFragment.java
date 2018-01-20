@@ -16,7 +16,6 @@ import com.xian.common.adapter.ViewHolder;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -26,7 +25,6 @@ public class RxAndroidFragment extends BaseFragment {
     public static final String TAG = "RxAndroidFragment";
 
 
-    @BindView(R.id.rv_rx_example_list)
     RecyclerView mRvRxExampleList;
 
     public RxAndroidFragment() {
@@ -40,6 +38,7 @@ public class RxAndroidFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
+        mRvRxExampleList = root.findViewById(R.id.rv_rx_example_list);
 
         RxRecyclerView.scrollEvents(mRvRxExampleList).subscribe(new Consumer<RecyclerViewScrollEvent>() {
             @Override

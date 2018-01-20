@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.test.test168.R;
 import com.xian.common.widget.dialog.LoadingDialog;
 
-import butterknife.ButterKnife;
 
 /**
  * Created by w07 on 2016/10/13.
@@ -40,7 +39,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         root = inflater.inflate(getRootViewId(), null);
-        ButterKnife.bind(this, root);
         mContext = getActivity();
         return root;
     }

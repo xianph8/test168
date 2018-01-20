@@ -3,7 +3,6 @@ package com.test.test168.activity;
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
 
-import butterknife.ButterKnife;
 
 public class PanelRecycleViewActivity extends BaseActivity {
 
@@ -11,7 +10,6 @@ public class PanelRecycleViewActivity extends BaseActivity {
     @Override
     protected void initViews() {
         setContentView(R.layout.activity_panel_recycle_view);
-        ButterKnife.bind(this);
 
 
         /*ScrollablePanel mScrollablePanel = (ScrollablePanel) findViewById(R.id.scrollable_panel);

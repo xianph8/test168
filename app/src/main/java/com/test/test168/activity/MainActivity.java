@@ -29,9 +29,10 @@ public class MainActivity extends AppCompatActivity
         mContext = this;
         initView();
     }
+
     private void initView() {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.include_head_toolbar);
+        Toolbar toolbar = findViewById(R.id.include_head_toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -110,8 +111,8 @@ public class MainActivity extends AppCompatActivity
 
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(event.getRepeatCount() == 0){
-            switch (keyCode){
+        if (event.getRepeatCount() == 0) {
+            switch (keyCode) {
                 case KeyEvent.KEYCODE_BACK:
                     //do something...  这里是返回键
                     new AlertDialog.Builder(this)

@@ -12,8 +12,6 @@ import com.xian.common.utils.XLog;
 
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -22,22 +20,16 @@ import io.reactivex.functions.Consumer;
 public class RxViewActivity extends BaseActivity {
 
 
-    @BindView(R.id.btn_test1)
     Button btn_click;
 
-    @BindView(R.id.btn_test2)
     Button btn_click2;
 
-    @BindView(R.id.btn_test3)
     Button btn_click3;
 
-    @BindView(R.id.btn_test4)
     Button btn_click4;
 
-    @BindView(R.id.tv_test1)
     TextView tv_test1;
 
-    @BindView(R.id.tv_test2)
     TextView tv_test2;
 
     private Disposable subscribe;
@@ -60,8 +52,12 @@ public class RxViewActivity extends BaseActivity {
     @Override
     protected void initViews() {
         setContentView(R.layout.activity_rx_view);
-        ButterKnife.bind(this);
-
+        btn_click = findViewById(R.id.btn_test1);
+        btn_click2 = findViewById(R.id.btn_test2);
+        btn_click3 = findViewById(R.id.btn_test3);
+        btn_click4 = findViewById(R.id.btn_test4);
+        tv_test1 = findViewById(R.id.tv_test1);
+        tv_test2 = findViewById(R.id.tv_test2);
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);

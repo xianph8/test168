@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.test.test168.R;
 import com.xian.common.widget.dialog.LoadingDialog;
 
-import butterknife.ButterKnife;
 
 /**
  * Created by w07 on 2016/10/13.
@@ -33,7 +32,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         root = inflater.inflate(getRootViewId(), container, false);
-        ButterKnife.bind(this, root);
         mContext = getActivity();
         initViews();
         return root;

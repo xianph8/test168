@@ -7,16 +7,13 @@ import android.widget.ImageView;
 
 import com.test.test168.R;
 import com.test.test168.base.BaseActivity;
-import com.test.test168.utils.ImageUtils;
+import com.test.test168.utils.ImageLoader;
 import com.test.test168.view.slide.OnImageClickListener;
 import com.test.test168.view.slide.SlideView;
 import com.xian.common.utils.XLog;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 /**
@@ -32,9 +29,7 @@ public class SlideActivity extends BaseActivity {
     protected void initViews() {
 
         setContentView(R.layout.activity_slide);
-        ButterKnife.bind(this);
         XLog.i("onCreate :　");
-
         initView();
 
         initData();
@@ -47,9 +42,22 @@ public class SlideActivity extends BaseActivity {
         setSupportActionBar(toolbar);
 
         iv_test = $(R.id.iv_test);
-        ImageUtils.displayUrl(mActivity, "http://365jia.cn/uploads/13/0926/5244094a0cdda.jpg", iv_test);
+        ImageLoader.display(mActivity, "http://365jia.cn/uploads/13/0926/5244094a0cdda.jpg", iv_test);
 
         startRotate();
+
+        findViewById(R.id.btn_start).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller(v);
+            }
+        });
+        findViewById(R.id.btn_stop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller(v);
+            }
+        });
     }
 
     private Handler handler = null;
@@ -124,7 +132,6 @@ public class SlideActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.btn_start, R.id.btn_stop})
     void controller(View view) {
         switch (view.getId()) {
             case R.id.btn_start:

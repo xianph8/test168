@@ -1,10 +1,5 @@
 package com.test.test168.ThreadPoolManager;
 
-/**
- * Created by w07 on 2017/1/24 14:43
- * Description :
- */
-
 import android.util.Log;
 
 import java.util.LinkedList;
@@ -12,9 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 线程池管理类
- * @author carrey
- *
+ * @author xian
  */
 public class ThreadPoolManager {
 

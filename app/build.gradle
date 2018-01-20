@@ -5,16 +5,17 @@ apply from: "../config.gradle"
 def library = ext.supportDependencies
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.test.test168"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        flavorDimensions "versionCode"
     }
 
 
@@ -47,17 +48,17 @@ android {
     }
 
     applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def file = output.outputFile
-            def fileName = "${variant.buildType.getName()}" +
-                    "-" +
-                    "${variant.flavorName}" +
-                    "-" +
-                    "v${variant.versionName}" +
-                    "-" +
-                    "${rootProject.releaseTime()}" +
-                    ".apk"
-            output.outputFile = new File(file.parent, fileName)
+        variant.outputs.all { output ->
+            def fileName =
+                    "${variant.buildType.getName()}" +
+                            "_" +
+                            "${variant.flavorName}" +
+                            "_" +
+                            "${variant.versionName}" +
+                            "_" +
+                            new Date().format('yyyyMMdd_HHmm') +
+                            ".apk"
+            outputFileName = fileName
         }
     }
 
@@ -79,38 +80,22 @@ android {
 dependencies {
     compile project(':common')
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
     testCompile library.testJunit
-    androidTestCompile (library.testRunner) {
+    androidTestCompile(library.testRunner) {
         exclude module: 'support-annotations'
     }
-    androidTestCompile (library.testEspressoCore) {
+    androidTestCompile(library.testEspressoCore) {
         exclude module: 'support-annotations'
     }
     androidTestCompile library.findbugs
 
-    compile library.butterknife
-    annotationProcessor library.butterknifeCompiler
-
-    compile library.supportDesign
-    compile library.supportV4
-    compile library.supportRecyclerView
-    compile library.supportCardView
-    compile library.supportConstraint
-    compile library.supportDesign
-    compile library.supportAnnotations
-
     compile library.glide
+    annotationProcessor library.glideAnnotationProcessor
     compile library.litepal
 
     // squareup
-    compile library.retrofit
-    compile library.okhttp
-    compile library.rxJavaForRetrofitAdapter
-    compile library.okhttpLoggingInterceptor
     compile library.rxJava
     compile library.rxAndroid
-    compile library.Gson
     compile library.rxLifecycle
     compile library.rxLifecycleAndroid
     compile library.rxLifecycleComponents
@@ -128,6 +113,7 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    google()
 }
 
 

@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import com.test.test168.R;
 import com.test.test168.activity.LitePalActivity;
 import com.test.test168.activity.RecyclerViewActivity;
+import com.test.test168.activity.ShareToWeChatActivity;
 import com.test.test168.activity.TestAutoCompleteTextViewActivity;
 import com.test.test168.activity.TestWebServiceActivity;
 import com.test.test168.activity.ThreadPoolActivity;
@@ -23,9 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import butterknife.BindView;
-
-
 /**
  * A simple {@link BaseFragment} subclass.
  */
@@ -37,7 +35,6 @@ public class NineGirdHomeFragment extends BaseFragment implements HomeContract.V
 
     private HashMap<String, ItemHomeMenu> menuMap;
 
-    @BindView(R.id.home_menu_list)
     RecyclerView mMenuList;
 
     public NineGirdHomeFragment() {
@@ -51,6 +48,7 @@ public class NineGirdHomeFragment extends BaseFragment implements HomeContract.V
 
     @Override
     protected void initViews() {
+        mMenuList = root.findViewById(R.id.home_menu_list);
 
         initMenuValue();
 
@@ -73,7 +71,7 @@ public class NineGirdHomeFragment extends BaseFragment implements HomeContract.V
                 put("item3", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
                         "TestWebServiceActivity", TestWebServiceActivity.class));
                 put("item4", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
-                        "item1", ThreadPoolActivity.class));
+                        "ShareToWeChatActivity", ShareToWeChatActivity.class));
                 put("item5", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
                         "item1", ThreadPoolActivity.class));
                 put("item6", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),

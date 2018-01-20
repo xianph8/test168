@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.test.test168">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.test.test168">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -14,34 +20,34 @@
         tools:replace="android:label">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SlideActivity"/>
+        <activity android:name=".activity.SlideActivity" />
         <activity
             android:name=".rx.RxJavaActivity"
             android:label="@string/title_activity_test_rx_java"
-            android:theme="@style/mAppTheme"/>
-        <activity android:name=".activity.LitePalActivity"/>
+            android:theme="@style/mAppTheme" />
+        <activity android:name=".activity.LitePalActivity" />
         <activity
             android:name=".activity.RecyclerViewActivity"
             android:label="@string/title_activity_recycle_view"
-            android:theme="@style/mAppTheme"/>
+            android:theme="@style/mAppTheme" />
 
         <service
             android:name=".service.MyIntentService"
-            android:exported="false"/>
+            android:exported="false" />
         <service
             android:name=".service.TestIntentService"
-            android:exported="false"/>
+            android:exported="false" />
 
-        <activity android:name=".activity.TestIntentServiceActivity"/>
+        <activity android:name=".activity.TestIntentServiceActivity" />
         <activity
             android:name=".activity.ItemListActivity"
             android:label="@string/title_item_list"
-            android:theme="@style/mAppTheme"/>
+            android:theme="@style/mAppTheme" />
         <activity
             android:name=".activity.ItemDetailActivity"
             android:label="@string/title_item_detail"
@@ -49,26 +55,34 @@
             android:theme="@style/mAppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.ItemListActivity"/>
+                android:value=".activity.ItemListActivity" />
         </activity>
-        <activity android:name=".activity.PanelRecycleViewActivity"/>
-        <activity android:name=".bing.BingDailyPicActivity"/>
-        <activity android:name=".activity.ThreadPoolActivity"/>
-        <activity android:name=".activity.NineGirdActivity"/>
-        <activity android:name=".activity.TestDialogFragmentActivity"/>
-        <activity android:name=".juhe.HealthNewsActivity"/>
-        <activity android:name=".juhe.HealthNewsDetailsActivity"/>
-        <activity android:name=".juhe.HealthNewsClassListActivity"/>
-        <activity android:name=".rx.RxViewActivity"/>
-        <activity android:name=".activity.TestAutoCompleteTextViewActivity">
-        </activity>
+        <activity android:name=".activity.PanelRecycleViewActivity" />
+        <activity android:name=".bing.BingDailyPicActivity" />
+        <activity android:name=".activity.ThreadPoolActivity" />
+        <activity android:name=".activity.NineGirdActivity" />
+        <activity android:name=".activity.TestDialogFragmentActivity" />
+        <activity android:name=".juhe.HealthNewsActivity" />
+        <activity android:name=".juhe.HealthNewsDetailsActivity" />
+        <activity android:name=".juhe.HealthNewsClassListActivity" />
+        <activity android:name=".rx.RxViewActivity" />
+        <activity android:name=".activity.TestAutoCompleteTextViewActivity" />
         <activity
             android:name=".activity.TestWebServiceActivity"
             android:label="@string/title_activity_test_web_service"
-            android:theme="@style/mAppTheme">
-        </activity>
-        <activity android:name=".activity.TestKotlinActivity">
-        </activity>
+            android:theme="@style/mAppTheme" />
+        <activity android:name=".activity.TestKotlinActivity" />
+
+        <service
+            android:name=".service.TestAidlService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.test.test168.service.IRemoteService" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".activity.ShareToWeChatActivity"></activity>
     </application>
 
 </manifest>

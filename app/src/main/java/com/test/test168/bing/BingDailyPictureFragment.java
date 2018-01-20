@@ -8,7 +8,6 @@ import com.test.test168.base.BaseFragment;
 import com.test.test168.bean.BingDailyPicture;
 import com.xian.common.utils.XLog;
 
-import butterknife.BindView;
 
 /**
  * Created by King on 2017/3/18.
@@ -18,7 +17,6 @@ public class BingDailyPictureFragment extends BaseFragment {
 
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-    @BindView(R.id.iv_daily_pic)
     AppCompatImageView ivDailyPic;
 
     public static BingDailyPictureFragment newInstance(int sectionNumber) {
@@ -36,6 +34,7 @@ public class BingDailyPictureFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
+        ivDailyPic = root.findViewById(R.id.iv_daily_pic);
         int section = getArguments().getInt(ARG_SECTION_NUMBER);
         showToast("section : " + section);
         XLog.i(" url : " + "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN");
