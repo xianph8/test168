@@ -14,6 +14,7 @@ import com.test.test168.activity.ShareToWeChatActivity;
 import com.test.test168.activity.TestAutoCompleteTextViewActivity;
 import com.test.test168.activity.TestWebServiceActivity;
 import com.test.test168.activity.ThreadPoolActivity;
+import com.test.test168.activity.UriActivity;
 import com.test.test168.adapter.HomeMenuAdapter;
 import com.test.test168.base.BaseFragment;
 import com.test.test168.bean.ItemHomeMenu;
@@ -75,7 +76,7 @@ public class NineGirdHomeFragment extends BaseFragment implements HomeContract.V
                 put("item5", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
                         "item1", ThreadPoolActivity.class));
                 put("item6", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
-                        "item1", ThreadPoolActivity.class));
+                        "UriActivity", UriActivity.class));
                 put("item7", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
                         "item1", ThreadPoolActivity.class));
             }

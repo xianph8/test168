@@ -4,12 +4,12 @@
     package="com.test.test168">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 在SDCard中创建与删除文件权限 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 往SDCard写入数据权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -67,6 +67,7 @@
         <activity android:name=".juhe.HealthNewsClassListActivity" />
         <activity android:name=".rx.RxViewActivity" />
         <activity android:name=".activity.TestAutoCompleteTextViewActivity" />
+        <activity android:name=".activity.UriActivity" />
         <activity
             android:name=".activity.TestWebServiceActivity"
             android:label="@string/title_activity_test_web_service"
@@ -82,7 +83,12 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".activity.ShareToWeChatActivity"></activity>
+        <activity android:name=".activity.ShareToWeChatActivity" />
+        <activity android:name=".activity.TestViewActivity" />
+        <activity
+            android:name=".activity.TestSlideActivity"
+            android:label="@string/title_activity_test_slide"
+            android:theme="@style/mAppTheme"></activity>
     </application>
 
 </manifest>

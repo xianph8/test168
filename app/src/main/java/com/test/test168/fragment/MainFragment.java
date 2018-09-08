@@ -19,6 +19,8 @@ import com.test.test168.activity.LitePalActivity;
 import com.test.test168.activity.NineGirdActivity;
 import com.test.test168.activity.PanelRecycleViewActivity;
 import com.test.test168.activity.RecyclerViewActivity;
+import com.test.test168.activity.TestKotlinActivity;
+import com.test.test168.activity.TestViewActivity;
 import com.test.test168.rx.RxJavaActivity;
 import com.test.test168.activity.SlideActivity;
 import com.test.test168.activity.TestDialogFragmentActivity;
@@ -171,9 +173,11 @@ public class MainFragment extends Fragment {
             put("TestIntentServiceActivity", TestIntentServiceActivity.class);
             put("ItemListActivity", ItemListActivity.class);
             put("TestDialogFragmentActivity", TestDialogFragmentActivity.class);
+            put("TestKotlinActivity", TestKotlinActivity.class);
             put("PanelRecycleViewActivity", PanelRecycleViewActivity.class);
             put("NineGirdActivity", NineGirdActivity.class);
             put("JuheActivity", HealthNewsActivity.class);
+            put("TestViewActivity", TestViewActivity.class);
         }
     };
 

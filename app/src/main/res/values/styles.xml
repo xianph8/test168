@@ -21,16 +21,16 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="mAppTheme" parent="BaseAppTheme"/>
+    <style name="mAppTheme" parent="BaseAppTheme" />
 
     <!--material design style-->
-    <style name="mAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="mAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="mAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="mAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="ApplicationTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="ApplicationTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="ApplicationTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="ApplicationTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!--material design font style -->
     <style name="md_spacing">

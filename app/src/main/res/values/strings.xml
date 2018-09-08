@@ -22,4 +22,8 @@
     <string name="health_news_class_title_">title: %1$s</string>
     <string name="health_news_class_name_">name: %1$s</string>
     <string name="title_activity_test_web_service">TestWebServiceActivity</string>
+    <string name="title_activity_test_slide">TestSlideActivity</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>

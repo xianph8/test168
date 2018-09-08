@@ -18,6 +18,10 @@ android {
         flavorDimensions "versionCode"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     signingConfigs {
         release {
@@ -78,6 +82,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     compile project(':common')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile library.testJunit
@@ -108,7 +113,8 @@ dependencies {
     compile library.rxReferences
 
 //    compile 'com.github.Aspsine:SwipeToLoadLayout:v1.0.2'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    compile 'com.squareup:javapoet:1.11.1'
 
 }
 repositories {
@@ -123,3 +129,5 @@ repositories {
 
 
 
+
+apply plugin: 'kotlin-android-extensions'
