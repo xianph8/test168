@@ -1,18 +1,20 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: "../config.gradle"
 //相关库依赖
 def library = ext.supportDependencies
+def config = ext.androidConfiguration
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
     defaultConfig {
-        applicationId "com.test.test168"
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         flavorDimensions "versionCode"
@@ -79,41 +81,45 @@ android {
             buildConfigField "String", "SERVER_ADDRESS", "\"http://192.168.1.31:89/\""
         }
     }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    compile project(':common')
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile library.testJunit
-    androidTestCompile(library.testRunner) {
-        exclude module: 'support-annotations'
-    }
-    androidTestCompile(library.testEspressoCore) {
-        exclude module: 'support-annotations'
-    }
-    androidTestCompile library.findbugs
+    implementation project(':common')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    compile library.glide
-    annotationProcessor library.glideAnnotationProcessor
-    compile library.litepal
+    testImplementation library.testJunit
+    androidTestImplementation(library.testRunner) {
+        exclude module: 'support-annotations'
+    }
+    androidTestImplementation(library.testEspressoCore) {
+        exclude module: 'support-annotations'
+    }
+    androidTestImplementation library.findbugs
+
+    implementation library.glide
+    kapt library.glideAnnotationProcessor
+
+    implementation library.litepal
 
     // squareup
-    compile library.rxJava
-    compile library.rxAndroid
-    compile library.rxLifecycle
-    compile library.rxLifecycleAndroid
-    compile library.rxLifecycleComponents
-    compile library.rxBinding
-    compile library.rxBindingSupportV4
-    compile library.rxBindingSupportAppcompatV7
-    compile library.rxBindingSupportDesign
-    compile library.rxBindingSupportRecyclerView
-    compile library.rxPermissions
-    compile library.rxReferences
+    implementation library.rxLifecycle
+    implementation library.rxLifecycleAndroid
+    implementation library.rxLifecycleComponents
+    implementation library.rxBinding
+    implementation library.rxBindingSupportV4
+    implementation library.rxBindingSupportAppcompatV7
+    implementation library.rxBindingSupportDesign
+    implementation library.rxBindingSupportRecyclerView
+    implementation library.rxPermissions
+    implementation library.rxReferences
 
 //    compile 'com.github.Aspsine:SwipeToLoadLayout:v1.0.2'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    compile 'com.squareup:javapoet:1.11.1'
 
 }
@@ -121,13 +127,3 @@ repositories {
     mavenCentral()
     google()
 }
-
-
-
-
-
-
-
-
-
-apply plugin: 'kotlin-android-extensions'

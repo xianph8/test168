@@ -1,39 +1,33 @@
 package com.xian.common.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.v7.widget.RecyclerView;
+import android.text.util.Linkify;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.animation.AlphaAnimation;
+import android.widget.Checkable;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
-/**
- * Created by Administrator on 2015/7/29 0029.
- * ListView GridView RecycleView 的ViewHolder
- */
-public class ViewHolder {
-    //    private Context mContext;
-    private final SparseArray<View> mViews;
-    public int mPosition;
+public class ViewHolder extends RecyclerView.ViewHolder {
+    private SparseArray<View> mViews;
     private View mConvertView;
 
-    private ViewHolder(Context context, ViewGroup parent, int layoutId, int position) {
-//        this.mContext = context;
-        this.mPosition = position;
-        this.mViews = new SparseArray<View>();
-        mConvertView = LayoutInflater.from(context).inflate(layoutId, parent, false);
-        // setTag
-        mConvertView.setTag(this);
-    }
-
-    private ViewHolder(View view) {
+    private ViewHolder(View itemView) {
+        super(itemView);
+        mConvertView = itemView;
         mViews = new SparseArray<View>();
-        mConvertView = view;
-        mConvertView.setTag(mViews);
     }
 
     public static ViewHolder getViewHolder(View view) {
@@ -45,37 +39,18 @@ public class ViewHolder {
         return viewHolder;
     }
 
-    /**
-     * 拿到一个ViewHolder对象
-     *
-     * @param context
-     * @param convertView
-     * @param parent
-     * @param layoutId
-     * @param position
-     * @return
-     */
-    public static ViewHolder get(Context context, View convertView,
-                                 ViewGroup parent, int layoutId, int position) {
-        if (convertView == null) {
-            return new ViewHolder(context, parent, layoutId, position);
-        }
-        return (ViewHolder) convertView.getTag();
+    public static ViewHolder createViewHolder(View itemView) {
+        ViewHolder holder = new ViewHolder(itemView);
+        return holder;
     }
 
-
-    public View getConvertView() {
-        return mConvertView;
+    public static ViewHolder createViewHolder(ViewGroup parent, int layoutId) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
+        return createViewHolder(itemView);
     }
-
-
-    public int getPosition() {
-        return mPosition;
-    }
-
 
     /**
-     * 通过控件的Id获取对于的控件，如果没有则加入views
+     * 通过viewId获取控件
      *
      * @param viewId
      * @return
@@ -89,140 +64,170 @@ public class ViewHolder {
         return (T) view;
     }
 
-    /**
-     * 为控件设置可见属性
-     *
-     * @param viewId
-     * @param visible
-     * @return
-     */
-    public ViewHolder setVisible(int viewId, int visible) {
-        View view = getView(viewId);
-        view.setVisibility(visible);
-        return this;
+    public View getConvertView() {
+        return mConvertView;
     }
 
-    /**
-     * 为View设置点击监听
-     *
-     * @param viewId
-     * @param listener
-     * @return
-     */
-    public ViewHolder setOnClickListener(int viewId, View.OnClickListener listener) {
-        View view = getView(viewId);
-        view.setOnClickListener(listener);
-        return this;
-    }
+
+    /****以下为辅助方法*****/
 
     /**
-     * 为TextView设置字符串
+     * 设置TextView的值
      *
      * @param viewId
      * @param text
      * @return
      */
     public ViewHolder setText(int viewId, String text) {
+        TextView tv = getView(viewId);
+        tv.setText(text);
+        return this;
+    }
+
+    public ViewHolder setImageResource(int viewId, int resId) {
+        ImageView view = getView(viewId);
+        view.setImageResource(resId);
+        return this;
+    }
+
+    public ViewHolder setImageBitmap(int viewId, Bitmap bitmap) {
+        ImageView view = getView(viewId);
+        view.setImageBitmap(bitmap);
+        return this;
+    }
+
+    public ViewHolder setImageDrawable(int viewId, Drawable drawable) {
+        ImageView view = getView(viewId);
+        view.setImageDrawable(drawable);
+        return this;
+    }
+
+    public ViewHolder setBackgroundColor(int viewId, int color) {
+        View view = getView(viewId);
+        view.setBackgroundColor(color);
+        return this;
+    }
+
+    public ViewHolder setBackgroundRes(int viewId, int backgroundRes) {
+        View view = getView(viewId);
+        view.setBackgroundResource(backgroundRes);
+        return this;
+    }
+
+    public ViewHolder setTextColor(int viewId, int textColor) {
         TextView view = getView(viewId);
-        view.setText(text);
+        view.setTextColor(textColor);
         return this;
     }
 
-    /***
-     * 为EditText 设置字符串
-     *
-     * @param viewId
-     * @param text
-     * @return
-     */
-    public ViewHolder setEditText(int viewId, String text) {
-        EditText view = getView(viewId);
-        view.setText(text);
+    @SuppressLint("NewApi")
+    public ViewHolder setAlpha(int viewId, float value) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            getView(viewId).setAlpha(value);
+        } else {
+            // Pre-honeycomb hack to set Alpha value
+            AlphaAnimation alpha = new AlphaAnimation(value, value);
+            alpha.setDuration(0);
+            alpha.setFillAfter(true);
+            getView(viewId).startAnimation(alpha);
+        }
         return this;
     }
 
-    /**
-     * 为Button设置字符串
-     *
-     * @param viewId
-     * @param text
-     * @return
-     */
-    public ViewHolder setButtonText(int viewId, String text) {
-        Button view = getView(viewId);
-        view.setText(text);
+    public ViewHolder setVisible(int viewId, boolean visible) {
+        View view = getView(viewId);
+        view.setVisibility(visible ? View.VISIBLE : View.GONE);
         return this;
     }
 
-    /**
-     * 为TextView设置字体颜色
-     *
-     * @param viewId
-     * @param color
-     * @return
-     */
-    public ViewHolder setTextColor(int viewId, int color) {
+    public ViewHolder linkify(int viewId) {
         TextView view = getView(viewId);
-        view.setTextColor(color);
+        Linkify.addLinks(view, Linkify.ALL);
         return this;
     }
 
-    public ViewHolder setTag(int viewId, long tag) {
+    public ViewHolder setTypeface(Typeface typeface, int... viewIds) {
+        for (int viewId : viewIds) {
+            TextView view = getView(viewId);
+            view.setTypeface(typeface);
+            view.setPaintFlags(view.getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
+        }
+        return this;
+    }
+
+    public ViewHolder setProgress(int viewId, int progress) {
+        ProgressBar view = getView(viewId);
+        view.setProgress(progress);
+        return this;
+    }
+
+    public ViewHolder setProgress(int viewId, int progress, int max) {
+        ProgressBar view = getView(viewId);
+        view.setMax(max);
+        view.setProgress(progress);
+        return this;
+    }
+
+    public ViewHolder setMax(int viewId, int max) {
+        ProgressBar view = getView(viewId);
+        view.setMax(max);
+        return this;
+    }
+
+    public ViewHolder setRating(int viewId, float rating) {
+        RatingBar view = getView(viewId);
+        view.setRating(rating);
+        return this;
+    }
+
+    public ViewHolder setRating(int viewId, float rating, int max) {
+        RatingBar view = getView(viewId);
+        view.setMax(max);
+        view.setRating(rating);
+        return this;
+    }
+
+    public ViewHolder setTag(int viewId, Object tag) {
         View view = getView(viewId);
         view.setTag(tag);
         return this;
     }
 
-
-    /***
-     * 为 Text View 设置背景
-     *
-     * @param viewId
-     * @param drawableId
-     * @return
-     */
-    public ViewHolder setTextViewBackground(int viewId, int drawableId) {
-        TextView view = getView(viewId);
-        view.setBackgroundResource(drawableId);
+    public ViewHolder setTag(int viewId, int key, Object tag) {
+        View view = getView(viewId);
+        view.setTag(key, tag);
         return this;
     }
 
-    public ViewHolder setTextViewBackgroundColor(int viewId, int color) {
-        TextView view = getView(viewId);
-        view.setBackgroundColor(color);
-
+    public ViewHolder setChecked(int viewId, boolean checked) {
+        Checkable view = getView(viewId);
+        view.setChecked(checked);
         return this;
     }
 
     /**
-     * 为ImageView设置图片
-     *
-     * @param viewId
-     * @param drawableId
-     * @return
+     * 关于事件的
      */
-    public ViewHolder setImageResource(int viewId, int drawableId) {
-        ImageView view = getView(viewId);
-        view.setImageResource(drawableId);
-
+    public ViewHolder setOnClickListener(int viewId,
+                                         View.OnClickListener listener) {
+        View view = getView(viewId);
+        view.setOnClickListener(listener);
         return this;
     }
 
-    public ViewHolder setImageBackgroundColor(int viewId, int color) {
-        ImageView view = getView(viewId);
-        view.setBackgroundColor(color);
+    public ViewHolder setOnTouchListener(int viewId,
+                                         View.OnTouchListener listener) {
+        View view = getView(viewId);
+        view.setOnTouchListener(listener);
         return this;
     }
 
-    public ImageView getImageView(int viewId) {
-        ImageView view = getView(viewId);
-        return view;
-    }
-
-    public ViewHolder setImageBitmap(int viewId, Bitmap bm) {
-        ImageView view = getView(viewId);
-        view.setImageBitmap(bm);
+    public ViewHolder setOnLongClickListener(int viewId,
+                                             View.OnLongClickListener listener) {
+        View view = getView(viewId);
+        view.setOnLongClickListener(listener);
         return this;
     }
+
 
 }
