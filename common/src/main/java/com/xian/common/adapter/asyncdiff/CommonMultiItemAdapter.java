@@ -1,17 +1,17 @@
-package com.xian.common.adapter.multi;
+package com.xian.common.adapter.asyncdiff;
+
 
 import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 
-
-import com.xian.common.adapter.CommonAdapter;
 import com.xian.common.adapter.ViewHolder;
+import com.xian.common.adapter.multi.ItemViewDelegate;
+import com.xian.common.adapter.multi.ItemViewDelegateManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public abstract class CommonMultiItemAdapter<T> extends CommonAdapter<T> {
+public abstract class CommonMultiItemAdapter<T> extends CommonAsyncDiffAdapter<T> {
 
     private ItemViewDelegateManager<T> mItemViewDelegateManager;
 
