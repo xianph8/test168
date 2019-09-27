@@ -62,5 +62,8 @@
     <color name="t_gray">#cc7f7f7f</color>
     <color name="t_light_gray">#22ececec</color>
 
+    <color name="main_red_light">#FA5D31</color>
+    <color name="main_red">#EA1F46</color>
+
 
 </resources>

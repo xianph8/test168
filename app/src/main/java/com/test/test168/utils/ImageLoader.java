@@ -7,10 +7,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.xian.common.R;
 
 import java.io.File;
-import java.net.URI;
 
 /**
  * Created by w07 on 2017/5/17 14:42
@@ -18,6 +16,10 @@ import java.net.URI;
  */
 
 public class ImageLoader {
+
+    public static GlideRequests glide(Context context) {
+        return GlideApp.with(context);
+    }
 
     public static void show(Context context, ImageView imageView, String url) {
         Glide.with(context).load(url)

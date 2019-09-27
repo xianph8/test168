@@ -19,11 +19,11 @@ import java.util.List;
  */
 public class AsyncDiffDataManager<T> extends AsyncListDiffer<T> {
 
-    public AsyncDiffDataManager(@NonNull RecyclerView.Adapter adapter, @NonNull DiffUtil.ItemCallback diffCallback) {
+    public AsyncDiffDataManager(@NonNull RecyclerView.Adapter adapter, @NonNull DiffUtil.ItemCallback<T> diffCallback) {
         super(adapter, diffCallback);
     }
 
-    public AsyncDiffDataManager(@NonNull ListUpdateCallback listUpdateCallback, @NonNull AsyncDifferConfig config) {
+    public AsyncDiffDataManager(@NonNull ListUpdateCallback listUpdateCallback, @NonNull AsyncDifferConfig<T> config) {
         super(listUpdateCallback, config);
     }
 

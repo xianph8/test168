@@ -19,13 +19,14 @@ import com.test.test168.activity.LitePalActivity;
 import com.test.test168.activity.NineGirdActivity;
 import com.test.test168.activity.PanelRecycleViewActivity;
 import com.test.test168.activity.RecyclerViewActivity;
-import com.test.test168.activity.TestKotlinActivity;
-import com.test.test168.activity.TestViewActivity;
-import com.test.test168.rx.RxJavaActivity;
 import com.test.test168.activity.SlideActivity;
+import com.test.test168.activity.TestCustomBehaviorActivity;
 import com.test.test168.activity.TestDialogFragmentActivity;
 import com.test.test168.activity.TestIntentServiceActivity;
+import com.test.test168.activity.TestKotlinActivity;
+import com.test.test168.activity.TestViewActivity;
 import com.test.test168.juhe.HealthNewsActivity;
+import com.test.test168.rx.RxJavaActivity;
 import com.xian.common.adapter.RecycleViewAdapter;
 import com.xian.common.adapter.ViewHolder;
 
@@ -51,6 +52,24 @@ public class MainFragment extends Fragment {
     private String mParam2;
     private RecyclerView recyclerView;
     private Context mContext;
+    private HashMap<String, Class> menuList = new HashMap<String, Class>() {
+        {
+            put("SlideActivity", SlideActivity.class);
+            put("LitePalActivity", LitePalActivity.class);
+            put("RxJavaActivity", RxJavaActivity.class);
+            put("RecyclerViewActivity", RecyclerViewActivity.class);
+            put("SwipeRefreshLayout", null);
+            put("TestIntentServiceActivity", TestIntentServiceActivity.class);
+            put("ItemListActivity", ItemListActivity.class);
+            put("TestDialogFragmentActivity", TestDialogFragmentActivity.class);
+            put("TestKotlinActivity", TestKotlinActivity.class);
+            put("PanelRecycleViewActivity", PanelRecycleViewActivity.class);
+            put("NineGirdActivity", NineGirdActivity.class);
+            put("JuheActivity", HealthNewsActivity.class);
+            put("TestViewActivity", TestViewActivity.class);
+            put("TestCustomBehavior", TestCustomBehaviorActivity.class);
+        }
+    };
 
     public MainFragment() {
         // Required empty public constructor
@@ -126,24 +145,8 @@ public class MainFragment extends Fragment {
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-
     private void initData() {
-        recyclerView.setAdapter(new RecycleViewAdapter<String>(mContext,new ArrayList<String>(menuList.keySet())) {
+        recyclerView.setAdapter(new RecycleViewAdapter<String>(mContext, new ArrayList<String>(menuList.keySet())) {
             @Override
             public int getItemLayoutId() {
                 return R.layout.item_main_menu;
@@ -162,29 +165,25 @@ public class MainFragment extends Fragment {
 
     }
 
-
-    private HashMap<String, Class> menuList = new HashMap<String, Class>() {
-        {
-            put("SlideActivity", SlideActivity.class);
-            put("LitePalActivity", LitePalActivity.class);
-            put("RxJavaActivity", RxJavaActivity.class);
-            put("RecyclerViewActivity", RecyclerViewActivity.class);
-            put("SwipeRefreshLayout", null);
-            put("TestIntentServiceActivity", TestIntentServiceActivity.class);
-            put("ItemListActivity", ItemListActivity.class);
-            put("TestDialogFragmentActivity", TestDialogFragmentActivity.class);
-            put("TestKotlinActivity", TestKotlinActivity.class);
-            put("PanelRecycleViewActivity", PanelRecycleViewActivity.class);
-            put("NineGirdActivity", NineGirdActivity.class);
-            put("JuheActivity", HealthNewsActivity.class);
-            put("TestViewActivity", TestViewActivity.class);
-        }
-    };
-
     private void startActivity(Class c) {
         if (c == null) return;
         Intent intent = new Intent(mContext, c);
         startActivity(intent);
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 
 
