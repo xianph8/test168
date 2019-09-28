@@ -27,13 +27,13 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("/ph.jks");
+            storeFile file("ph.jks");
             keyAlias "demo_test168"
             keyPassword "androidkey"
             storePassword "androidkey"
         }
         debug {
-            storeFile file("/debug.keystore")
+            storeFile file("debug.keystore")
         }
     }
 

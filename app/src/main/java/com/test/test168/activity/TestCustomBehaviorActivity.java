@@ -18,6 +18,7 @@ import com.bumptech.glide.request.target.Target;
 import com.test.test168.R;
 import com.test.test168.adapter.TestCustomBehaviorAdapter;
 import com.test.test168.utils.ImageLoader;
+import com.xian.common.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 
@@ -53,6 +54,10 @@ public class TestCustomBehaviorActivity extends AppCompatActivity {
                 add("last10");
             }
         }));
+        StatusBarUtil.transparencyBar(this);
+        StatusBarUtil.statusBarLightMode(this);
+
+        StatusBarUtil.setContentSystemBarPaddingTop(findViewById(R.id.cl_header_layout));
 
         ImageView targetImage = (ImageView) findViewById(R.id.iv_index_header_bg);
 

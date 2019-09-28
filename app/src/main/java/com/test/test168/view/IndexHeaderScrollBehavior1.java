@@ -11,7 +11,10 @@ import android.view.View;
 import com.test.test168.R;
 import com.xian.common.utils.XLog;
 
-public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> {
+/**
+ * version 1.0
+ */
+public class IndexHeaderScrollBehavior1 extends CoordinatorLayout.Behavior<View> {
 
     private boolean isInited = false;
     private View headerLayout;
@@ -27,7 +30,6 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
     private float originalHeaderLayoutHeight = 0;
     private float originalHeaderLayoutBottom = 0;
     private float originalHeaderTitleViewBottom = 0;
-    private float originalHeaderTitleViewTop = 0;
     private float originalHeaderLayoutBgImageBottom = 0;
     private float originalSearchLayoutViewTop = 0;
     private float originalSearchLayoutViewWidth = 0;
@@ -36,7 +38,7 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
     private float mImageDistanceRatio = 1;// 背景图特殊的缩放比例
     private float fixedScaleWidth = 0;// 搜索框需要缩放的宽度大小
 
-    public IndexHeaderScrollBehavior(Context context, AttributeSet attrs) {
+    public IndexHeaderScrollBehavior1(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -62,7 +64,6 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
         // 3. record original view position
         originalSearchLayoutViewTop = getTop(searchLayoutView);
         originalSearchLayoutViewWidth = searchLayoutView.getWidth();
-        originalHeaderTitleViewTop = getTop(headerTitleView);
         originalHeaderTitleViewBottom = getBottom(headerTitleView);
         originalHeaderLayoutBgImageBottom = getBottom(headerLayoutBgImage);
         originalRecyclerViewTop = getTop(recyclerView);
@@ -126,38 +127,49 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
         XLog.i(" onNestedPreScroll dy " + dy);
 
         // 目前列表的位置
-        float currentSearchLayoutTopPosition = getTop(searchLayoutView);
+        float currentRecyclerViewTopPosition = getTop(recyclerView);
         // 已经移动的距离
-        float currentSearchLayoutMoveYDistance = Math.abs(originalSearchLayoutViewTop - currentSearchLayoutTopPosition);
+        float currentRecyclerViewMoveYDistance = Math.abs(originalRecyclerViewTop - currentRecyclerViewTopPosition);
+        // 已经移动距离所占可移动距离的比例
+        float ratio = currentRecyclerViewMoveYDistance / canHeaderLayoutScrollYDistance;
         // 即将要移动到的目标位置
-        float searchLayoutWillMoveToTopPosition = currentSearchLayoutTopPosition - dy;
+        float recyclerViewWillMoveToTopPosition = currentRecyclerViewTopPosition - dy;
         // 经过计算后，recyclerView 可移动的距离
-        float searchLayoutMoveYDistanceResult = 0; // 正值为向下移动，负值为向上移动
-
-        float currentMoveYDistanceRatio = currentSearchLayoutMoveYDistance / canHeaderLayoutScrollYDistance;
-        currentMoveYDistanceRatio = currentMoveYDistanceRatio > 1 ? 1 : currentMoveYDistanceRatio < 0 ? 0 : currentMoveYDistanceRatio;
+        float recyclerViewMoveYDistanceResult = 0;
 
         if (scrollUp) { // 向上
-            if (searchLayoutWillMoveToTopPosition < originalHeaderTitleViewTop) { // 如果移动后会超过原来的位置，就重新计算移动的幅度幅度
-               //float finalDistance = -Math.abs(currentSearchLayoutTopPosition - originalHeaderTitleViewTop);
-               //updateView(0, finalDistance);
-               //consumed[1] = Math.abs((int) (Math.abs(dy) - Math.abs(finalDistance)));
+            if (recyclerViewWillMoveToTopPosition < originalRecyclerViewTop - canHeaderLayoutScrollYDistance) {
+                recyclerViewMoveYDistanceResult = canHeaderLayoutScrollYDistance - currentRecyclerViewMoveYDistance;
             } else {
-                searchLayoutMoveYDistanceResult = -Math.abs(dy);
-                updateView(currentMoveYDistanceRatio, searchLayoutMoveYDistanceResult);
-                consumed[1] = dy;
+                recyclerViewMoveYDistanceResult = dy;
             }
-        } else if (isTop) {// 向下 and recycler view visibility fist item
-            if (searchLayoutWillMoveToTopPosition > originalSearchLayoutViewTop) {// 如果移动后会超过原来的位置，就重新计算移动的幅度幅度
-               // float finalDistance = Math.abs(originalHeaderTitleViewTop - currentSearchLayoutTopPosition);
-               // updateView(1, finalDistance);
-               // consumed[1] = -Math.abs((int) (Math.abs(dy) - finalDistance));
-            } else {
-                searchLayoutMoveYDistanceResult = Math.abs(dy);
-                updateView(currentMoveYDistanceRatio, searchLayoutMoveYDistanceResult);
-                consumed[1] = dy;
+            if (currentRecyclerViewMoveYDistance > canHeaderLayoutScrollYDistance) {
+                currentRecyclerViewMoveYDistance = canHeaderLayoutScrollYDistance;
+            }
+            if (currentRecyclerViewMoveYDistance <= canHeaderLayoutScrollYDistance) {
+                float resultDy = -Math.abs(recyclerViewMoveYDistanceResult);
+                consumed[1] = (int) resultDy;
+                updateView(ratio, resultDy);
+            }
+        } else { // 向下
+            if (isTop) {
+                if (recyclerViewWillMoveToTopPosition > originalRecyclerViewTop) {
+                    recyclerViewMoveYDistanceResult = originalRecyclerViewTop - currentRecyclerViewTopPosition;
+                } else {
+                    recyclerViewMoveYDistanceResult = dy;
+                }
+                if (currentRecyclerViewTopPosition > originalRecyclerViewTop) {
+                    recyclerViewMoveYDistanceResult = originalRecyclerViewTop - currentRecyclerViewTopPosition;
+                    currentRecyclerViewTopPosition = originalRecyclerViewTop;
+                }
+                if (currentRecyclerViewTopPosition <= originalRecyclerViewTop) {
+                    float resultDy = Math.abs(recyclerViewMoveYDistanceResult);
+                    consumed[1] = (int) resultDy;
+                    updateView(ratio, resultDy);
+                }
             }
         }
+
     }
 
     private void updateView(float ratio, float moveViewYDistanceResult) {
@@ -186,6 +198,11 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
 
         searchLayoutView.setY(getTop(searchLayoutView) + moveViewYDistanceResult);
         recyclerView.setY(getTop(recyclerView) + moveViewYDistanceResult);
+
+        // 下面几个 view 保持不动，所以做反向移动
+//        ViewCompat.offsetTopAndBottom(headerTitleView, -(int) moveViewYResult);
+//        ViewCompat.offsetTopAndBottom(childFixedView1, -(int) moveViewYResult);
+//        ViewCompat.offsetTopAndBottom(childFixedView2, -(int) moveViewYResult);
 
     }
 
