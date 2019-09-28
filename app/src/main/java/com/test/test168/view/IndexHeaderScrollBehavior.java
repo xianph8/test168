@@ -16,6 +16,7 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
     private boolean isInited = false;
     private View headerLayout;
     private View headerTitleView;
+    private View headerTitleViewBg;
     private View headerLayoutBgImage;
     private View childFixedView1;
     private View childFixedView2;
@@ -52,6 +53,7 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
         // 1. init view
         headerLayout = parent.findViewById(R.id.cl_header_content_layout);
         headerTitleView = parent.findViewById(R.id.locationText);
+        headerTitleViewBg = parent.findViewById(R.id.cl_header_layout);
         recyclerView = parent.findViewById(R.id.recyclerView);
         searchLayoutView = parent.findViewById(R.id.searchLayout);
         headerLayoutBgImage = parent.findViewById(R.id.iv_index_header_bg);
@@ -127,34 +129,32 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
 
         // 目前列表的位置
         float currentSearchLayoutTopPosition = getTop(searchLayoutView);
-        // 已经移动的距离
-        float currentSearchLayoutMoveYDistance = Math.abs(originalSearchLayoutViewTop - currentSearchLayoutTopPosition);
         // 即将要移动到的目标位置
         float searchLayoutWillMoveToTopPosition = currentSearchLayoutTopPosition - dy;
         // 经过计算后，recyclerView 可移动的距离
         float searchLayoutMoveYDistanceResult = 0; // 正值为向下移动，负值为向上移动
 
-        float currentMoveYDistanceRatio = currentSearchLayoutMoveYDistance / canHeaderLayoutScrollYDistance;
-        currentMoveYDistanceRatio = currentMoveYDistanceRatio > 1 ? 1 : currentMoveYDistanceRatio < 0 ? 0 : currentMoveYDistanceRatio;
+        float searchLayoutWillMoveYDistanceRatio = Math.abs(originalSearchLayoutViewTop - searchLayoutWillMoveToTopPosition) / canHeaderLayoutScrollYDistance;
+        searchLayoutWillMoveYDistanceRatio = searchLayoutWillMoveYDistanceRatio > 1 ? 1 : searchLayoutWillMoveYDistanceRatio < 0 ? 0 : searchLayoutWillMoveYDistanceRatio;
 
         if (scrollUp) { // 向上
             if (searchLayoutWillMoveToTopPosition < originalHeaderTitleViewTop) { // 如果移动后会超过原来的位置，就重新计算移动的幅度幅度
-               //float finalDistance = -Math.abs(currentSearchLayoutTopPosition - originalHeaderTitleViewTop);
-               //updateView(0, finalDistance);
-               //consumed[1] = Math.abs((int) (Math.abs(dy) - Math.abs(finalDistance)));
+                //float finalDistance = -Math.abs(currentSearchLayoutTopPosition - originalHeaderTitleViewTop);
+                //updateView(0, finalDistance);
+                //consumed[1] = Math.abs((int) (Math.abs(dy) - Math.abs(finalDistance)));
             } else {
                 searchLayoutMoveYDistanceResult = -Math.abs(dy);
-                updateView(currentMoveYDistanceRatio, searchLayoutMoveYDistanceResult);
+                updateView(searchLayoutWillMoveYDistanceRatio, searchLayoutMoveYDistanceResult);
                 consumed[1] = dy;
             }
         } else if (isTop) {// 向下 and recycler view visibility fist item
             if (searchLayoutWillMoveToTopPosition > originalSearchLayoutViewTop) {// 如果移动后会超过原来的位置，就重新计算移动的幅度幅度
-               // float finalDistance = Math.abs(originalHeaderTitleViewTop - currentSearchLayoutTopPosition);
-               // updateView(1, finalDistance);
-               // consumed[1] = -Math.abs((int) (Math.abs(dy) - finalDistance));
+                // float finalDistance = Math.abs(originalHeaderTitleViewTop - currentSearchLayoutTopPosition);
+                // updateView(1, finalDistance);
+                // consumed[1] = -Math.abs((int) (Math.abs(dy) - finalDistance));
             } else {
                 searchLayoutMoveYDistanceResult = Math.abs(dy);
-                updateView(currentMoveYDistanceRatio, searchLayoutMoveYDistanceResult);
+                updateView(searchLayoutWillMoveYDistanceRatio, searchLayoutMoveYDistanceResult);
                 consumed[1] = dy;
             }
         }
@@ -171,16 +171,12 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
         headerLayoutBgImage.setAlpha(alpha);
 
         headerTitleView.setAlpha(alpha);
-        headerTitleView.setVisibility(ratio <= 0 ? View.INVISIBLE : View.VISIBLE);
+        headerTitleView.setVisibility(alpha <= 0 ? View.INVISIBLE : View.VISIBLE);
+        headerTitleViewBg.setBackgroundColor(evaluateColor(0x00ffffff, 0xfffd2035, 1 - alpha));
 
         if (ratio > 0) {
             ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) searchLayoutView.getLayoutParams();
-            if (moveViewYDistanceResult < 0) {// up
-                layoutParams.width = (int) (originalSearchLayoutViewWidth - fixedScaleWidth * ratio);
-            } else {// down
-                float targetSearchLayoutWidth = layoutParams.width + (fixedScaleWidth - fixedScaleWidth * ratio);
-                layoutParams.width = (int) (targetSearchLayoutWidth > originalSearchLayoutViewWidth ? originalSearchLayoutViewWidth : targetSearchLayoutWidth);
-            }
+            layoutParams.width = (int) (originalSearchLayoutViewWidth - fixedScaleWidth * ratio);
             searchLayoutView.setLayoutParams(layoutParams);
         }
 
@@ -189,5 +185,26 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
 
     }
 
+    private int evaluateColor(int startValue, int endValue, float fraction) {
+        if (fraction <= 0) {
+            return startValue;
+        }
+        if (fraction >= 1) {
+            return endValue;
+        }
+        int startInt = startValue;
+        int startA = (startInt >> 24) & 0xff;
+        int startR = (startInt >> 16) & 0xff;
+        int startG = (startInt >> 8) & 0xff;
+        int startB = startInt & 0xff;
+
+        int endInt = endValue;
+        int endA = (endInt >> 24) & 0xff;
+        int endR = (endInt >> 16) & 0xff;
+        int endG = (endInt >> 8) & 0xff;
+        int endB = endInt & 0xff;
+
+        return ((startA + (int) (fraction * (endA - startA))) << 24) | ((startR + (int) (fraction * (endR - startR))) << 16) | ((startG + (int) (fraction * (endG - startG))) << 8) | ((startB + (int) (fraction * (endB - startB))));
+    }
 
 }
