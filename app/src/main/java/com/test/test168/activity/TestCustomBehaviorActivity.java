@@ -59,7 +59,7 @@ public class TestCustomBehaviorActivity extends AppCompatActivity {
 
         StatusBarUtil.setContentSystemBarPaddingTop(findViewById(R.id.cl_header_layout));
 
-        ImageView targetImage = (ImageView) findViewById(R.id.iv_index_header_bg);
+        ImageView targetImage = (ImageView) findViewById(R.id.iv_header_bg);
 
         //headerLayout.setBackgroundColor(ContextCompat.getColor(headerLayout.getContext(), R.color.def_bg));
 

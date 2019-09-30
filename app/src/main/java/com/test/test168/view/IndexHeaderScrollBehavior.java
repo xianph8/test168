@@ -1,44 +1,62 @@
 package com.test.test168.view;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.test.test168.R;
+import com.test.test168.utils.ColorHelper;
 import com.xian.common.utils.XLog;
 
+
+/**
+ * 仅用在首页头部的滑动效果
+ */
 public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> {
 
-    private boolean isInited = false;
-    private View headerLayout;
     private View headerTitleView;
-    private View headerTitleViewBg;
     private View headerLayoutBgImage;
-    private View childFixedView1;
-    private View childFixedView2;
+    private ImageView childFixedView1;
+    private ImageView childFixedView2;
     private View recyclerView;
-    private View searchLayoutView;
+    private ViewGroup searchLayoutView;
+    private ImageView searchLayoutIconView;
 
+    private boolean isInited = false;// 记录是否已经初始化过
     private boolean isTop = true; // recyclerView 是否已经滑动到头部
 
-    private float originalHeaderLayoutHeight = 0;
-    private float originalHeaderLayoutBottom = 0;
     private float originalHeaderTitleViewBottom = 0;
     private float originalHeaderTitleViewTop = 0;
     private float originalHeaderLayoutBgImageBottom = 0;
+    private float originalHeaderLayoutBgImageTop = 0;
     private float originalSearchLayoutViewTop = 0;
     private float originalSearchLayoutViewWidth = 0;
     private float originalRecyclerViewTop = 0;// 原始的 recyclerView 的顶部位置
     private float canHeaderLayoutScrollYDistance = 0;// 顶部布局可滑动的距离
-    private float mImageDistanceRatio = 1;// 背景图特殊的缩放比例
     private float fixedScaleWidth = 0;// 搜索框需要缩放的宽度大小
+
+    public IndexHeaderScrollBehavior() {
+    }
 
     public IndexHeaderScrollBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    /**
+     * dp转px
+     */
+    public static int dp2px(Context context, float dpVal) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpVal * scale + 0.5f);
     }
 
     @Override
@@ -51,43 +69,30 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
 
     private void init(@NonNull CoordinatorLayout parent) {
         // 1. init view
-        headerLayout = parent.findViewById(R.id.cl_header_content_layout);
         headerTitleView = parent.findViewById(R.id.locationText);
-        headerTitleViewBg = parent.findViewById(R.id.cl_header_layout);
         recyclerView = parent.findViewById(R.id.recyclerView);
         searchLayoutView = parent.findViewById(R.id.searchLayout);
-        headerLayoutBgImage = parent.findViewById(R.id.iv_index_header_bg);
+        searchLayoutIconView = parent.findViewById(R.id.iv_search_layout_icon);
+        headerLayoutBgImage = parent.findViewById(R.id.iv_header_bg);
         childFixedView1 = parent.findViewById(R.id.iv_scan);
         childFixedView2 = parent.findViewById(R.id.iv_message);
         // 2. location view
-        recyclerView.setY(getBottom(searchLayoutView) + 10);// 定位 recyclerView 的位置
+        recyclerView.setY(getBottom(searchLayoutView) + dp2px(parent.getContext(), 15));// 定位 recyclerView 的位置
         // 3. record original view position
         originalSearchLayoutViewTop = getTop(searchLayoutView);
         originalSearchLayoutViewWidth = searchLayoutView.getWidth();
-        originalHeaderTitleViewTop = getTop(headerTitleView);
+        originalHeaderTitleViewTop = getTop(headerTitleView) + dp2px(parent.getContext(), 3);
         originalHeaderTitleViewBottom = getBottom(headerTitleView);
+        originalHeaderLayoutBgImageTop = getTop(headerLayoutBgImage);
         originalHeaderLayoutBgImageBottom = getBottom(headerLayoutBgImage);
         originalRecyclerViewTop = getTop(recyclerView);
-        originalHeaderLayoutHeight = headerLayout.getHeight();
-        originalHeaderLayoutBottom = getBottom(headerLayout);
-        canHeaderLayoutScrollYDistance = originalSearchLayoutViewTop - getTop(headerTitleView);
-        mImageDistanceRatio = (originalHeaderLayoutBgImageBottom - originalHeaderTitleViewBottom) / canHeaderLayoutScrollYDistance;
-        fixedScaleWidth = getRight(searchLayoutView) - childFixedView1.getX() + 20;
-        XLog.i(" originalSearchLayoutViewTop          : " + originalSearchLayoutViewTop);
-        XLog.i(" originalSearchLayoutViewWidth        : " + originalSearchLayoutViewWidth);
-        XLog.i(" originalHeaderTitleViewBottom        : " + originalHeaderTitleViewBottom);
-        XLog.i(" originalHeaderLayoutBgImageBottom    : " + originalHeaderLayoutBgImageBottom);
-        XLog.i(" originalRecyclerViewTop              : " + originalRecyclerViewTop);
-        XLog.i(" originalHeaderLayoutHeight           : " + originalHeaderLayoutHeight);
-        XLog.i(" originalHeaderLayoutBottom           : " + originalHeaderLayoutBottom);
-        XLog.i(" canHeaderLayoutScrollYDistance       : " + canHeaderLayoutScrollYDistance);
-        XLog.i(" mImageDistanceRatio                  : " + mImageDistanceRatio);
-        XLog.i(" fixedScaleWidth                      : " + fixedScaleWidth);
+        canHeaderLayoutScrollYDistance = originalSearchLayoutViewTop - originalHeaderTitleViewTop;
+        fixedScaleWidth = getRight(searchLayoutView) - childFixedView1.getX() + dp2px(childFixedView1.getContext(), 3);
         isInited = true;
     }
 
     public float getRight(View view) {
-        return view.getX() + view.getWidth();
+        return view.getX() + view.getMeasuredWidth();
     }
 
     public float getTop(View view) {
@@ -95,7 +100,7 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
     }
 
     public float getBottom(View view) {
-        return view.getY() + view.getHeight();
+        return view.getY() + view.getMeasuredHeight();
     }
 
     @Override
@@ -131,80 +136,77 @@ public class IndexHeaderScrollBehavior extends CoordinatorLayout.Behavior<View> 
         float currentSearchLayoutTopPosition = getTop(searchLayoutView);
         // 即将要移动到的目标位置
         float searchLayoutWillMoveToTopPosition = currentSearchLayoutTopPosition - dy;
-        // 经过计算后，recyclerView 可移动的距离
-        float searchLayoutMoveYDistanceResult = 0; // 正值为向下移动，负值为向上移动
-
-        float searchLayoutWillMoveYDistanceRatio = Math.abs(originalSearchLayoutViewTop - searchLayoutWillMoveToTopPosition) / canHeaderLayoutScrollYDistance;
-        searchLayoutWillMoveYDistanceRatio = searchLayoutWillMoveYDistanceRatio > 1 ? 1 : searchLayoutWillMoveYDistanceRatio < 0 ? 0 : searchLayoutWillMoveYDistanceRatio;
+        // 即将要移动到目标位置的比例（1 是最终位置，0 是起始位置）
+        float willMoveYDistanceRatio = Math.abs(originalSearchLayoutViewTop - searchLayoutWillMoveToTopPosition) / canHeaderLayoutScrollYDistance;
+        willMoveYDistanceRatio = willMoveYDistanceRatio > 1 ? 1 : willMoveYDistanceRatio < 0 ? 0 : willMoveYDistanceRatio;
 
         if (scrollUp) { // 向上
-            if (searchLayoutWillMoveToTopPosition < originalHeaderTitleViewTop) { // 如果移动后会超过原来的位置，就重新计算移动的幅度幅度
-                //float finalDistance = -Math.abs(currentSearchLayoutTopPosition - originalHeaderTitleViewTop);
-                //updateView(0, finalDistance);
-                //consumed[1] = Math.abs((int) (Math.abs(dy) - Math.abs(finalDistance)));
+            if (searchLayoutWillMoveToTopPosition < originalHeaderTitleViewTop) { // 如果移动后会超过最终的位置，就直接移动到最终位置
+                updateView(1);
             } else {
-                searchLayoutMoveYDistanceResult = -Math.abs(dy);
-                updateView(searchLayoutWillMoveYDistanceRatio, searchLayoutMoveYDistanceResult);
+                updateView(willMoveYDistanceRatio);
                 consumed[1] = dy;
             }
-        } else if (isTop) {// 向下 and recycler view visibility fist item
-            if (searchLayoutWillMoveToTopPosition > originalSearchLayoutViewTop) {// 如果移动后会超过原来的位置，就重新计算移动的幅度幅度
-                // float finalDistance = Math.abs(originalHeaderTitleViewTop - currentSearchLayoutTopPosition);
-                // updateView(1, finalDistance);
-                // consumed[1] = -Math.abs((int) (Math.abs(dy) - finalDistance));
+        } else if (isTop) {// 向下 and 并且判断 recycler view 是否已经显示第一个 item
+            if (searchLayoutWillMoveToTopPosition > originalSearchLayoutViewTop) {// 如果移动后会超过原来的位置，就直接移动到原始位置
+                updateView(0);
             } else {
-                searchLayoutMoveYDistanceResult = Math.abs(dy);
-                updateView(searchLayoutWillMoveYDistanceRatio, searchLayoutMoveYDistanceResult);
+                updateView(willMoveYDistanceRatio);
                 consumed[1] = dy;
             }
         }
     }
 
-    private void updateView(float ratio, float moveViewYDistanceResult) {
+    private void updateView(float targetRatio) {
 
-        float alpha = 1 - ratio;
-        alpha = alpha < 0.2 ? 0 : alpha > 0.8 ? 1 : alpha;
-        XLog.i(" updateView ratio : " + ratio);
-        XLog.i(" updateView moveViewYResult : " + moveViewYDistanceResult);
+        float targetAlpha = 1 - targetRatio;
+        targetAlpha = targetAlpha < 0.1 ? 0 : targetAlpha > 0.9 ? 1 : targetAlpha;
 
-        headerLayoutBgImage.setY(getTop(headerLayoutBgImage) + (moveViewYDistanceResult * mImageDistanceRatio));
-        headerLayoutBgImage.setAlpha(alpha);
+        float bgImageDistance = originalHeaderLayoutBgImageBottom - originalHeaderTitleViewBottom;
+        headerLayoutBgImage.setY(originalHeaderLayoutBgImageTop - (bgImageDistance * targetRatio));
+        headerLayoutBgImage.setAlpha(targetAlpha);
 
-        headerTitleView.setAlpha(alpha);
-        headerTitleView.setVisibility(alpha <= 0 ? View.INVISIBLE : View.VISIBLE);
-        headerTitleViewBg.setBackgroundColor(evaluateColor(0x00ffffff, 0xfffd2035, 1 - alpha));
+        headerTitleView.setAlpha(targetAlpha);
 
-        if (ratio > 0) {
+        int fixedViewColor = ColorHelper.evaluateColor(0xff555555, 0xffffffff, targetAlpha);
+        ColorStateList fixedViewColorStateList = ColorHelper.createColorStateList(fixedViewColor);
+        int searchLayoutBgColor = ColorHelper.evaluateColor(0xCCF2F2F2, 0xFFFFE9EB, targetAlpha);
+        ColorStateList searchLayoutBgColorStateList = ColorHelper.createColorStateList(searchLayoutBgColor);
+        int searchLayoutIconColor = ColorHelper.evaluateColor(0xff555555, 0xFFEA6E7A, targetAlpha);
+        ColorStateList searchLayoutIconColorStateList = ColorHelper.createColorStateList(searchLayoutIconColor);
+        int searchLayoutTextColor = ColorHelper.evaluateColor(0xFFC0C0C0, 0xFFEA6471, targetAlpha);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            childFixedView1.setImageTintList(fixedViewColorStateList);
+            childFixedView2.setImageTintList(fixedViewColorStateList);
+            searchLayoutIconView.setImageTintList(searchLayoutIconColorStateList);
+            searchLayoutView.setBackgroundTintList(searchLayoutBgColorStateList);
+            for (int i = 0; i < searchLayoutView.getChildCount(); i++) {
+                View searchChild = searchLayoutView.getChildAt(i);
+                updateChildTextViewTextColor(searchLayoutTextColor, searchChild);
+            }
+        }
+
+        if (targetRatio >= 0) {
             ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) searchLayoutView.getLayoutParams();
-            layoutParams.width = (int) (originalSearchLayoutViewWidth - fixedScaleWidth * ratio);
+            layoutParams.width = (int) (originalSearchLayoutViewWidth - (fixedScaleWidth * targetRatio));
             searchLayoutView.setLayoutParams(layoutParams);
         }
 
-        searchLayoutView.setY(getTop(searchLayoutView) + moveViewYDistanceResult);
-        recyclerView.setY(getTop(recyclerView) + moveViewYDistanceResult);
+        searchLayoutView.setY(originalSearchLayoutViewTop - canHeaderLayoutScrollYDistance * targetRatio);
+        recyclerView.setY(originalRecyclerViewTop - canHeaderLayoutScrollYDistance * targetRatio);
 
     }
 
-    private int evaluateColor(int startValue, int endValue, float fraction) {
-        if (fraction <= 0) {
-            return startValue;
+    private void updateChildTextViewTextColor(int searchLayoutTextColor, View searchChild) {
+        if (searchChild instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) searchChild).getChildCount(); i++) {
+                updateChildTextViewTextColor(searchLayoutTextColor, ((ViewGroup) searchChild).getChildAt(i));
+            }
         }
-        if (fraction >= 1) {
-            return endValue;
+        if (searchChild instanceof TextView) {
+            ((TextView) searchChild).setTextColor(searchLayoutTextColor);
+            ((TextView) searchChild).setHintTextColor(searchLayoutTextColor);
         }
-        int startInt = startValue;
-        int startA = (startInt >> 24) & 0xff;
-        int startR = (startInt >> 16) & 0xff;
-        int startG = (startInt >> 8) & 0xff;
-        int startB = startInt & 0xff;
-
-        int endInt = endValue;
-        int endA = (endInt >> 24) & 0xff;
-        int endR = (endInt >> 16) & 0xff;
-        int endG = (endInt >> 8) & 0xff;
-        int endB = endInt & 0xff;
-
-        return ((startA + (int) (fraction * (endA - startA))) << 24) | ((startR + (int) (fraction * (endR - startR))) << 16) | ((startG + (int) (fraction * (endG - startG))) << 8) | ((startB + (int) (fraction * (endB - startB))));
     }
 
 }

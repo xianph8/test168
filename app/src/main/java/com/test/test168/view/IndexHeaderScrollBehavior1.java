@@ -56,7 +56,7 @@ public class IndexHeaderScrollBehavior1 extends CoordinatorLayout.Behavior<View>
         headerTitleView = parent.findViewById(R.id.locationText);
         recyclerView = parent.findViewById(R.id.recyclerView);
         searchLayoutView = parent.findViewById(R.id.searchLayout);
-        headerLayoutBgImage = parent.findViewById(R.id.iv_index_header_bg);
+        headerLayoutBgImage = parent.findViewById(R.id.iv_header_bg);
         childFixedView1 = parent.findViewById(R.id.iv_scan);
         childFixedView2 = parent.findViewById(R.id.iv_message);
         // 2. location view
