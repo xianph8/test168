@@ -1,23 +1,13 @@
 package com.test.test168.activity;
 
-import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.test.test168.R;
 import com.test.test168.adapter.TestCustomBehaviorAdapter;
-import com.test.test168.utils.ImageLoader;
 import com.xian.common.utils.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -30,7 +20,7 @@ public class TestCustomBehaviorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_custom_behavior);
         RecyclerView r = findViewById(R.id.recyclerView);
         r.setLayoutManager(new LinearLayoutManager(this));
-        r.setAdapter(new TestCustomBehaviorAdapter(this, new ArrayList<String>() {
+        r.setAdapter(new TestCustomBehaviorAdapter(new ArrayList<String>() {
             {
                 add("test1");
                 add("test2");

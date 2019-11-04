@@ -1,6 +1,5 @@
 package com.xian.common.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +15,9 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycle
 
     List<T> mList;
 
-    private Context mContext;
 
-    public RecycleViewAdapter(Context context, List<T> list) {
+    public RecycleViewAdapter(List<T> list) {
         this.mList = list;
-        this.mContext = context;
     }
 
     /**
@@ -33,7 +30,7 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<Recycle
      */
     @Override
     public RecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(getItemLayoutId(), parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(getItemLayoutId(), parent, false);
         return new RecycleViewHolder(view);
     }
 

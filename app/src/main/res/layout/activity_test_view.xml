@@ -8,6 +8,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <com.test.test168.view.TestCircleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/red" />
+
         <com.test.test168.view.TestView
             android:layout_width="300dp"
             android:layout_height="400dp"

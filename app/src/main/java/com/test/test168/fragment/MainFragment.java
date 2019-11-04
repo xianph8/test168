@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.test.test168.R;
+import com.test.test168.activity.CustomSmartRefreshHeaderActivity;
 import com.test.test168.activity.ItemListActivity;
 import com.test.test168.activity.LitePalActivity;
 import com.test.test168.activity.NineGirdActivity;
@@ -68,6 +69,7 @@ public class MainFragment extends Fragment {
             put("JuheActivity", HealthNewsActivity.class);
             put("TestViewActivity", TestViewActivity.class);
             put("TestCustomBehavior", TestCustomBehaviorActivity.class);
+            put("CustomSmartRefreshHeader", CustomSmartRefreshHeaderActivity.class);
         }
     };
 
@@ -146,7 +148,7 @@ public class MainFragment extends Fragment {
     }
 
     private void initData() {
-        recyclerView.setAdapter(new RecycleViewAdapter<String>(mContext, new ArrayList<String>(menuList.keySet())) {
+        recyclerView.setAdapter(new RecycleViewAdapter<String>(new ArrayList<String>(menuList.keySet())) {
             @Override
             public int getItemLayoutId() {
                 return R.layout.item_main_menu;

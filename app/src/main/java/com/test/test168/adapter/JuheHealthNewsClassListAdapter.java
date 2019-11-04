@@ -16,7 +16,7 @@ import java.util.List;
 public abstract class JuheHealthNewsClassListAdapter extends RecycleViewAdapter<JuheHealthNewsClassListItem> {
 
     public JuheHealthNewsClassListAdapter(Context context, List<JuheHealthNewsClassListItem> list) {
-        super(context, list);
+        super(list);
     }
 
     @Override

@@ -59,7 +59,7 @@ public class RxAndroidFragment extends BaseFragment {
         rxExampleNameList.add("rx view ");
         rxExampleActivityList.add(RxViewActivity.class);
 
-        mRvRxExampleList.setAdapter(new RecycleViewAdapter<String>(mContext, rxExampleNameList) {
+        mRvRxExampleList.setAdapter(new RecycleViewAdapter<String>(rxExampleNameList) {
             @Override
             public void onBindViewHolder(ViewHolder holder, String item) {
                 holder.setText(R.id.list_item, item);

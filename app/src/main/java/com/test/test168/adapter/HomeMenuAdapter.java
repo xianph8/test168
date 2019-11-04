@@ -18,7 +18,7 @@ import java.util.List;
 public abstract class HomeMenuAdapter extends RecycleViewAdapter<ItemHomeMenu> {
 
     public HomeMenuAdapter(Context context, List<ItemHomeMenu> list) {
-        super(context, list);
+        super(list);
     }
 
     @Override

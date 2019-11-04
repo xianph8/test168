@@ -1,7 +1,5 @@
 package com.test.test168.adapter;
 
-import android.content.Context;
-
 import com.test.test168.R;
 import com.xian.common.adapter.RecycleViewAdapter;
 import com.xian.common.adapter.ViewHolder;
@@ -10,8 +8,8 @@ import java.util.List;
 
 public class TestCustomBehaviorAdapter extends RecycleViewAdapter<String> {
 
-    public TestCustomBehaviorAdapter(Context context, List<String> list) {
-        super(context, list);
+    public TestCustomBehaviorAdapter(List<String> list) {
+        super(list);
     }
 
     @Override

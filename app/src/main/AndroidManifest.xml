@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/mAppTheme"
         tools:replace="android:label">
-        <activity android:name=".activity.TestCustomBehaviorActivity"></activity>
+        <activity android:name=".activity.CustomSmartRefreshHeaderActivity"></activity>
+        <activity android:name=".activity.TestCustomBehaviorActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

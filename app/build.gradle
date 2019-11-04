@@ -122,7 +122,7 @@ dependencies {
 //    compile 'com.github.Aspsine:SwipeToLoadLayout:v1.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    compile 'com.squareup:javapoet:1.11.1'
-
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
 }
 repositories {
     mavenCentral()

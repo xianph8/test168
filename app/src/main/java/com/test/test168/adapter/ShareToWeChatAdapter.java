@@ -1,13 +1,10 @@
 package com.test.test168.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.test.test168.R;
-import com.test.test168.bean.ItemHomeMenu;
 import com.test.test168.utils.ImageLoader;
 import com.xian.common.adapter.RecycleViewAdapter;
 import com.xian.common.adapter.ViewHolder;
@@ -21,7 +18,7 @@ import java.util.List;
 public abstract class ShareToWeChatAdapter extends RecycleViewAdapter<Uri> {
 
     public ShareToWeChatAdapter(Context context, List<Uri> list) {
-        super(context, list);
+        super(list);
     }
 
     @Override
