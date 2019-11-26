@@ -16,7 +16,6 @@ import android.graphics.SweepGradient;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.FloatRange;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
@@ -25,17 +24,18 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 public class IndexSmartRefreshHeaderView extends View {
+    public static final String TAG = "IndexSmartRefreshView";
     public static final int PULLING = 1;
     public static final int REFRESHING = 2;
     public static final int FINISH = 3;
-    public static final int ANIMATOR_TIME = 1000;
+    public static final int ANIMATOR_TIME = 800;
     @ColorInt
-    public static final int viewColor = Color.RED;
+    public int viewColor = Color.WHITE;
 
     // 公共变量
     private int animationRadius = 80;// 圆圈半径，包括全部的圆圈
-    private RectF animationOval;// 动画的范围，包括全部动画的范围
-    private int paintStrokeWidth = 15; // 全部图形的粗细
+    private RectF animationRectF;// 动画的范围，包括全部动画的范围
+    private int paintStrokeWidth = 10; // 全部图形的粗细
     private int drawingGraphics = PULLING;// 正在绘制的图形（PULLING 1: 下拉图形；REFRESHING 2: 刷新动画；FINISH 3: 完成动画）
 
     /************** pulling 下拉动作相关变量****************/
@@ -99,15 +99,18 @@ public class IndexSmartRefreshHeaderView extends View {
         finishPaint.setStrokeCap(Paint.Cap.ROUND);
     }
 
+    public void setColor(@ColorInt int color) {
+        pullingPaint.setColor(color);
+        refreshingPaint.setColor(color);
+        finishPaint.setColor(color);
+        viewColor = color;
+        // initDrawData();
+    }
+
     public void updatePercent(@FloatRange(from = 0f, to = 1f) float percent) {
         drawingGraphics = PULLING;
         pullingAnimationPercent = percent;
         invalidate();
-    }
-
-    public void stopRefreshingAnimation() {
-        drawingGraphics = FINISH;
-        refreshingAnimator.cancel();
     }
 
     public void startRefreshingAnimation() {
@@ -128,16 +131,17 @@ public class IndexSmartRefreshHeaderView extends View {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 isShrinkage = true;// 第二次绘制就表示已经绘制过
-                refreshingAnimator.start();// 循环执行
+                if (drawingGraphics == REFRESHING) {
+                    refreshingAnimator.start();// 循环执行
+                }
             }
         });
         refreshingAnimator.start();// 循环执行
     }
 
-    public void showFinishAnimation() {
+    public void startFinishAnimation() {
         stopRefreshingAnimator();
         drawingGraphics = FINISH; // 圆环动画
-        initFinishAnimationPath();
         finishAnimator = ValueAnimator.ofFloat(0, 2);
         // 动画过程
         finishAnimator.addUpdateListener(animation -> {
@@ -147,36 +151,7 @@ public class IndexSmartRefreshHeaderView extends View {
         finishAnimator.setDuration(ANIMATOR_TIME / 2);// 因为外面的调用者(CustomAnimatorHeader)，只给了 500 毫秒的显示完成时间
         // 插值器
         finishAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        finishAnimator.start();// 循环执行
-    }
-
-    private void initFinishAnimationPath() {
-        float animationWidth = animationOval.width();
-        float animationHeight = animationOval.height();
-        float circleTop = animationOval.top;
-        float circleLeft = animationOval.left;
-
-        // 添加圆环路径
-        finishCirclePath = new Path();
-        float x = animationOval.width() / 2 + circleLeft;
-        float y = animationOval.height() / 2 + circleTop;
-        finishCirclePath.addCircle(x, y, animationRadius, Path.Direction.CW);
-
-        // 添加对勾路径
-        Path path = new Path();
-        // 对号起点
-        float startX = (float) (0.3 * animationWidth) + circleLeft;
-        float startY = (float) (0.5 * animationHeight) + circleTop;
-        path.moveTo(startX, startY);
-        // 对号拐角点
-        float cornerX = (float) (0.43 * animationWidth) + circleLeft;
-        float cornerY = (float) (0.66 * animationHeight) + circleTop;
-        path.lineTo(cornerX, cornerY);
-        // 对号终点
-        float endX = (float) (0.75 * animationWidth) + circleLeft;
-        float endY = (float) (0.4 * animationHeight) + circleTop;
-        path.lineTo(endX, endY);
-        finishRightMarkPath = path;
+        finishAnimator.start();
     }
 
     @Override
@@ -225,10 +200,10 @@ public class IndexSmartRefreshHeaderView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.i("IndexSmartRefreshView", " onDraw : ");
+        Log.i(TAG, " onDraw : " + drawingGraphics);
 
         // 需要在这里初始化这些个变量
-        if (pullingLineBottomPoint == null || animationOval == null) {
+        if (pullingLineBottomPoint == null || animationRectF == null) {
             initDrawData();
         }
 
@@ -242,20 +217,20 @@ public class IndexSmartRefreshHeaderView extends View {
                     pullingPaint.setStyle(Paint.Style.STROKE);
                     float circlePercent = (pullingAnimationPercent - pullingPercent);
                     float endAngle = 360 * circlePercent / (1 - pullingPercent);// 计算圆形绘制的弧度
-                    canvas.drawArc(animationOval, 0, endAngle, false, pullingPaint);
+                    canvas.drawArc(animationRectF, 0, endAngle, false, pullingPaint);
                 }
                 break;
             case REFRESHING:// 正在刷新动画
                 float refreshingCirclePercent = (float) refreshingAnimator.getAnimatedValue();
                 float sweepAngle = 360;
                 if (isShrinkage) {// 绘制正在刷新动画
-                    refreshingCircleMatrix.setRotate(360 * refreshingCirclePercent, animationOval.centerX(), animationOval.centerY());
+                    refreshingCircleMatrix.setRotate(360 * refreshingCirclePercent, animationRectF.centerX(), animationRectF.centerY());
                     refreshingSweepGradient.setLocalMatrix(refreshingCircleMatrix);
                     refreshingPaint.setShader(refreshingSweepGradient);
                 } else {
                     sweepAngle = 360 * refreshingCirclePercent;
                 }
-                canvas.drawArc(animationOval, 0, sweepAngle, false, refreshingPaint);
+                canvas.drawArc(animationRectF, 0, sweepAngle, false, refreshingPaint);
                 break;
             case FINISH:// 完成动画
                 if (finishDstPath == null || finishPathMeasure == null) {
@@ -275,9 +250,9 @@ public class IndexSmartRefreshHeaderView extends View {
                 }
 
                 // 刷新当前截取 Path
-                finishDstPath.reset();
+               //  finishDstPath.reset();
                 // 避免硬件加速的Bug
-                finishDstPath.lineTo(0, 0);
+                // finishDstPath.lineTo(0, 0);
 
                 pathLength = finishPathMeasure.getLength();
                 // 截取片段
@@ -291,31 +266,51 @@ public class IndexSmartRefreshHeaderView extends View {
 
     }
 
-    private void initDrawData() {
-        pullingLineBottomPoint = getPullingLineBottomPoint();
-        animationOval = getCircleRectF();
-        float sweepCenterX = animationOval.left / 2 + animationRadius;
-        float sweepCenterY = animationOval.top / 2 + animationRadius;
+    private void initDrawData() {  // 计算竖线的最低点，因为圆圈是依靠这个最低点计算绘制范围的，所以需要计算精准
+        int stopX = (int) (getMeasuredWidth() / 2 + animationRadius + pullingPaint.getStrokeWidth());
+        int stopY = (int) (getMeasuredHeight() - animationRadius - pullingPaint.getStrokeWidth());
+        pullingLineBottomPoint = new PointF(stopX, stopY);
+        // 根据竖线最低点，确定圆圈的绘制范围
+        animationRectF = new RectF(
+                pullingLineBottomPoint.x - animationRadius * 2, pullingLineBottomPoint.y - animationRadius,
+                pullingLineBottomPoint.x, pullingLineBottomPoint.y + animationRadius);
+        float sweepCenterX = animationRectF.left / 2 + animationRadius;
+        float sweepCenterY = animationRectF.top / 2 + animationRadius;
         refreshingSweepGradient = new SweepGradient(sweepCenterX, sweepCenterY,
-                new int[]{Color.TRANSPARENT, viewColor, viewColor}, new float[]{0.0f, 0.3f, 1f});
+                new int[]{Color.TRANSPARENT, viewColor, viewColor}, new float[]{0.0f, 0.5f, 1f});
         refreshingCircleMatrix = new Matrix();
         refreshingSweepGradient.setLocalMatrix(refreshingCircleMatrix);
         refreshingPaint.setShader(refreshingSweepGradient);
+        initFinishAnimationPath();
     }
 
-    private PointF getPullingLineBottomPoint() {
-        // 计算竖线的最低点，因为圆圈是依靠这个最低点计算绘制范围的，所以需要计算精准
-        int stopX = (int) (getMeasuredWidth() / 2 + animationRadius + pullingPaint.getStrokeWidth());
-        int stopY = (int) (getMeasuredHeight() - animationRadius - pullingPaint.getStrokeWidth());
-        return new PointF(stopX, stopY);
-    }
+    private void initFinishAnimationPath() {
+        float animationWidth = animationRectF.width();
+        float animationHeight = animationRectF.height();
+        float circleTop = animationRectF.top;
+        float circleLeft = animationRectF.left;
 
-    @NonNull
-    private RectF getCircleRectF() {
-        // 根据竖线最低点，确定圆圈的绘制范围
-        return new RectF(
-                pullingLineBottomPoint.x - animationRadius * 2, pullingLineBottomPoint.y - animationRadius,
-                pullingLineBottomPoint.x, pullingLineBottomPoint.y + animationRadius);
+        // 添加圆环路径
+        finishCirclePath = new Path();
+        float x = animationRectF.width() / 2 + circleLeft;
+        float y = animationRectF.height() / 2 + circleTop;
+        finishCirclePath.addCircle(x, y, animationRadius, Path.Direction.CW);
+
+        // 添加对勾路径
+        Path path = new Path();
+        // 对号起点
+        float startX = (float) (0.3 * animationWidth) + circleLeft;
+        float startY = (float) (0.5 * animationHeight) + circleTop;
+        path.moveTo(startX, startY);
+        // 对号拐角点
+        float cornerX = (float) (0.43 * animationWidth) + circleLeft;
+        float cornerY = (float) (0.66 * animationHeight) + circleTop;
+        path.lineTo(cornerX, cornerY);
+        // 对号终点
+        float endX = (float) (0.75 * animationWidth) + circleLeft;
+        float endY = (float) (0.4 * animationHeight) + circleTop;
+        path.lineTo(endX, endY);
+        finishRightMarkPath = path;
     }
 
     private void drawLine(Canvas canvas, float startY) {
@@ -334,11 +329,15 @@ public class IndexSmartRefreshHeaderView extends View {
     }
 
     private void stopFinishAnimator() {
-        finishAnimator.cancel();
+        if (finishAnimator != null) {
+            finishAnimator.cancel();
+        }
     }
 
     private void stopRefreshingAnimator() {
-        refreshingAnimator.cancel();
+        if (refreshingAnimator != null) {
+            refreshingAnimator.cancel();
+        }
     }
 
 }

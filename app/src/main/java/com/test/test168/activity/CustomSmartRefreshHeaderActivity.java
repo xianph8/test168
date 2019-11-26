@@ -1,5 +1,6 @@
 package com.test.test168.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.test.test168.R;
 import com.test.test168.adapter.TestCustomBehaviorAdapter;
-import com.test.test168.view.IndexSmartRefreshHeaderAnimatorView;
+import com.test.test168.view.IndexSmartRefreshHeaderLayoutView;
 import com.xian.common.utils.XLog;
 
 import java.util.ArrayList;
@@ -25,7 +26,9 @@ public class CustomSmartRefreshHeaderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_smart_refresh_header);
 
         SmartRefreshLayout smartRefreshLayout = findViewById(R.id.srl_custom_smart_refresh_header);
-        IndexSmartRefreshHeaderAnimatorView customAnimatorHeader = new IndexSmartRefreshHeaderAnimatorView(this);
+        IndexSmartRefreshHeaderLayoutView customAnimatorHeader = new IndexSmartRefreshHeaderLayoutView(this);
+        customAnimatorHeader.setPaintColor(Color.RED);
+        customAnimatorHeader.getBgImg().setImageResource(R.drawable.def_bg);
         smartRefreshLayout.setEnableAutoLoadMore(false);//使上拉加载具有弹性效果
         smartRefreshLayout.setEnableOverScrollDrag(false);//禁止越界拖动（1.0.4以上版本）
         smartRefreshLayout.setEnableOverScrollBounce(false);//关闭越界回弹功能

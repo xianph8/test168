@@ -16,34 +16,47 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.test.test168.R;
-import com.xian.common.utils.XLog;
 
-public class IndexSmartRefreshHeaderAnimatorView extends FrameLayout implements RefreshHeader {
+
+public class IndexSmartRefreshHeaderLayoutView extends FrameLayout implements RefreshHeader {
+    public static final String TAG = "IndexSmartRefreshView";
 
     private IndexSmartRefreshHeaderView mAnimationView;
     private TextView mAnimationRefreshTipsView;
+    private ImageView mBgImg;
 
-    public IndexSmartRefreshHeaderAnimatorView(Context context) {
+    public IndexSmartRefreshHeaderLayoutView(Context context) {
         super(context);
         initView(context);
     }
 
-    public IndexSmartRefreshHeaderAnimatorView(Context context, AttributeSet attrs) {
+    public IndexSmartRefreshHeaderLayoutView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.initView(context);
     }
 
-    public IndexSmartRefreshHeaderAnimatorView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public IndexSmartRefreshHeaderLayoutView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.initView(context);
     }
 
     private void initView(Context context) {
         View customView = LayoutInflater.from(context).inflate(R.layout.custom_view_animator_header, this);
-        ImageView img = customView.findViewById(R.id.iv_custom_view_animator_header_bg);
-        img.setImageResource(R.drawable.def_bg);
+        mBgImg = customView.findViewById(R.id.iv_custom_view_animator_header_bg);
         mAnimationView = customView.findViewById(R.id.chrv_custom_view_animator_header_refresh_view);
         mAnimationRefreshTipsView = customView.findViewById(R.id.tv_custom_view_animator_header_tips_view);
+    }
+
+    private void i(String log) {
+        Log.i(TAG, " " + log);
+    }
+
+    public ImageView getBgImg() {
+        return mBgImg;
+    }
+
+    public void setRefreshTips(String tips) {
+        mAnimationRefreshTipsView.setText(tips);
     }
 
     @NonNull
@@ -63,22 +76,18 @@ public class IndexSmartRefreshHeaderAnimatorView extends FrameLayout implements 
 
     @Override
     public void onInitialized(@NonNull RefreshKernel kernel, int height, int maxDragHeight) {
-       i(" onInitialized : " + kernel);
-       i(" onInitialized : " + height);
-       i(" onInitialized : " + maxDragHeight);
-    }
-
-    private void i(String log){
-        Log.i("IndexSmartRefreshView", "i: "+log);
+        i(" onInitialized : " + kernel);
+        i(" onInitialized : " + height);
+        i(" onInitialized : " + maxDragHeight);
     }
 
     @Override
     public void onMoving(boolean isDragging, float percent, int offset, int height, int maxDragHeight) {
-       i(" onMoving : " + isDragging);
-       i(" onMoving : " + percent);
-       i(" onMoving : " + offset);
-       i(" onMoving : " + height);
-       i(" onMoving : " + maxDragHeight);
+        i(" onMoving : " + isDragging);
+        i(" onMoving : " + percent);
+        i(" onMoving : " + offset);
+        i(" onMoving : " + height);
+        i(" onMoving : " + maxDragHeight);
 
         if (isDragging) {
             mAnimationView.updatePercent(percent > 1 ? 1 : percent);
@@ -91,29 +100,28 @@ public class IndexSmartRefreshHeaderAnimatorView extends FrameLayout implements 
 
     @Override
     public void onReleased(@NonNull RefreshLayout refreshLayout, int height, int maxDragHeight) {
-       i(" onReleased : " + refreshLayout);
-       i(" onReleased : " + height);
-       i(" onReleased : " + maxDragHeight);
+        i(" onReleased : " + refreshLayout);
+        i(" onReleased : " + height);
+        i(" onReleased : " + maxDragHeight);
 
     }
 
     @Override
     public void onStartAnimator(@NonNull RefreshLayout refreshLayout, int height, int maxDragHeight) {
-       i(" onStartAnimator : " + refreshLayout);
-       i(" onStartAnimator : " + height);
-       i(" onStartAnimator : " + maxDragHeight);
+        i(" onStartAnimator : " + refreshLayout);
+        i(" onStartAnimator : " + height);
+        i(" onStartAnimator : " + maxDragHeight);
 
     }
 
     @Override
     public int onFinish(@NonNull RefreshLayout refreshLayout, boolean success) {
-       i(" onFinish : " + refreshLayout);
-       i(" onFinish : " + success);
+        i(" onFinish : " + refreshLayout);
+        i(" onFinish : " + success);
         if (success) {
+            mAnimationView.startFinishAnimation();
         } else {
         }
-        mAnimationView.stopRefreshingAnimation();
-        mAnimationView.showFinishAnimation();
         return 500;// 延迟500毫秒之后再弹回
     }
 
@@ -129,12 +137,15 @@ public class IndexSmartRefreshHeaderAnimatorView extends FrameLayout implements 
 
     @Override
     public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState, @NonNull RefreshState newState) {
-       i(" onStateChanged : " + refreshLayout);
-       i(" onStateChanged : " + oldState);
-       i(" onStateChanged : " + newState.toString());
+        i(" onStateChanged : " + refreshLayout);
+        i(" onStateChanged : " + oldState);
+        i(" onStateChanged : " + newState.toString());
         if (newState.toHeader().isOpening) {
             mAnimationView.startRefreshingAnimation();
         }
     }
 
+    public void setPaintColor(int red) {
+        mAnimationView.setColor(red);
+    }
 }
