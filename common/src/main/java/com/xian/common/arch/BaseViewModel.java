@@ -11,12 +11,7 @@ public abstract class BaseViewModel extends ViewModel {
     protected final CompositeDisposable disposables = new CompositeDisposable();
 
     protected Consumer<Disposable> onSubscribe() {
-        return new Consumer<Disposable>() {
-            @Override
-            public void accept(Disposable disposable) throws Exception {
-                disposables.add(disposable);
-            }
-        };
+        return disposables::add;
     }
 
     @Override

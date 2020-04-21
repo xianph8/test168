@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -70,5 +71,15 @@ public abstract class BaseFragment extends Fragment {
             progressDialog.dismiss();
             progressDialog = null;
         }
+    }
+
+
+    @Nullable
+    public <T extends View> T findViewById(@IdRes int id) {
+        if (id == View.NO_ID) {
+            return null;
+        }
+        if (getView() == null) return null;
+        return getView().findViewById(id);
     }
 }

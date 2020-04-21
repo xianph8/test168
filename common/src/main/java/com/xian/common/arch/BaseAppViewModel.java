@@ -3,7 +3,10 @@ package com.xian.common.arch;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
+
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -17,25 +20,32 @@ public abstract class BaseAppViewModel extends AndroidViewModel {
         super(application);
     }
 
-    protected Context getContext() {
-        return getApplication();
-    }
-
     protected Consumer<Disposable> onSubscribe() {
-        return new Consumer<Disposable>() {
-            @Override
-            public void accept(Disposable disposable) throws Exception {
-                disposables.add(disposable);
-            }
-        };
+        return disposables::add;
     }
 
     @Override
     protected void onCleared() {
-
         super.onCleared();
         if (!disposables.isDisposed()) {
             disposables.dispose();
         }
     }
+
+    protected <T> boolean loadingResourceDataNull(LoadingLiveData<T> loadingResource) {
+        return loadingResource == null || loadingResource.getValue() == null || loadingResource.getValue().data == null;
+    }
+
+    public String getString(@StringRes int stringId) {
+        return getApplication().getString(stringId);
+    }
+
+    public String getString(@StringRes int resId, Object... formatArgs) {
+        return getApplication().getString(resId, formatArgs);
+    }
+
+    public SharedPreferences getSharedPreferences(String configName) {
+        return getApplication().getSharedPreferences(configName, Context.MODE_PRIVATE);
+    }
+
 }
