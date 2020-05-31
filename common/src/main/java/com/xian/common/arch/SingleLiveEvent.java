@@ -17,9 +17,9 @@
 package com.xian.common.arch;
 
 
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.MainThread;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.MainThread;
+import androidx.annotation.Nullable;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

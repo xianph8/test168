@@ -1,7 +1,7 @@
 package com.test.test168.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.xian.common.adapter.CommonAdapter;
 import com.xian.common.adapter.ViewHolder;

@@ -1,6 +1,6 @@
 package com.xian.common.adapter.multi;
 
-import android.support.v7.util.DiffUtil;
+import androidx.recyclerview.widget.DiffUtil;
 
 import com.xian.common.adapter.BaseDiffCallBack;
 

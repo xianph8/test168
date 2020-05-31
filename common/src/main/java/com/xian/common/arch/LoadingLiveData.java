@@ -1,9 +1,9 @@
 package com.xian.common.arch;
 
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LiveData;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.annotation.Nullable;
 
 /**
  * 供 监听者 使用

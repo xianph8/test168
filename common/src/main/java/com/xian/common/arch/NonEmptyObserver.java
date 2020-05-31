@@ -1,8 +1,8 @@
 package com.xian.common.arch;
 
-import android.arch.lifecycle.Observer;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public abstract class NonEmptyObserver implements Observer {
     @Override

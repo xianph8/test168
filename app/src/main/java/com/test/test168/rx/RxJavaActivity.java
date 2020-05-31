@@ -2,9 +2,9 @@ package com.test.test168.rx;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.test.test168.R;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.xian.common.utils.XLog;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +23,7 @@ import io.reactivex.functions.Consumer;
  * 2.
  * @author xian
  */
-public class RxJavaActivity extends RxAppCompatActivity {
+public class RxJavaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

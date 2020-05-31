@@ -1,11 +1,11 @@
 package com.xian.common.widget;
 
 import android.content.Context;
-import android.support.annotation.AttrRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
-import android.support.v7.widget.ListPopupWindow;
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.widget.ListPopupWindow;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;

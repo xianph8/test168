@@ -1,6 +1,6 @@
 package com.xian.common.adapter.multi;
 
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 
 import com.xian.common.adapter.ViewHolder;
 

@@ -1,6 +1,6 @@
 package com.test.test168.activity
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.test.test168.R
 import com.test.test168.utils.rxphoto.RxPhotoTool

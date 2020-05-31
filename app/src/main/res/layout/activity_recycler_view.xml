@@ -4,8 +4,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fitsSystemWindows="true"
-                            android:orientation="vertical"
-                            tools:context=".activity.RecyclerViewActivity">
+                            android:orientation="vertical">
 
     <include
         android:id="@+id/head"
@@ -17,7 +16,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/head"/>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

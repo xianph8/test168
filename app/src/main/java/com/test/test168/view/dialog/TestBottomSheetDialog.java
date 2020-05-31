@@ -1,9 +1,10 @@
 package com.test.test168.view.dialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialogFragment;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import android.view.View;
 
 import com.test.test168.R;
@@ -23,6 +24,7 @@ public class TestBottomSheetDialog extends BottomSheetDialogFragment {
 
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void setupDialog(Dialog dialog, int style) {
         super.setupDialog(dialog, style);

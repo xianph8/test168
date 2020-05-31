@@ -5,15 +5,18 @@ def library = ext.supportDependencies
 def config = ext.androidConfiguration
 
 android {
-    compileSdkVersion config.compileSdkVersion
-    buildToolsVersion config.buildToolsVersion
+    compileSdkVersion 29
+
     defaultConfig {
-        minSdkVersion config.minSdkVersion
-        targetSdkVersion config.targetSdkVersion
-        versionCode config.versionCode
-        versionName config.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        minSdkVersion 29
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        multiDexEnabled true
+        flavorDimensions "versionCode"
     }
+
     buildTypes {
         release {
             debuggable false
@@ -33,15 +36,21 @@ android {
 
 dependencies {
     testImplementation library.testJunit
+    androidTestImplementation library.testRules
+    androidTestImplementation library.testExtJunit
+    androidTestImplementation library.testExtTruth
+    androidTestImplementation library.testRunner
+    androidTestImplementation library.testEspressoCore
 
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api  library.supportV4
-    api  library.supportAppcompatV7
-    api  library.supportRecyclerView
-    api  library.supportV13
-    api  library.supportDesign
-    api  library.supportCardView
-    api  library.supportConstraint
+    api library.androidxV4
+    api library.androidxAppcompatV7
+    api library.androidxRecyclerView
+    api library.androidxDesign
+    api library.androidxCardView
+    api library.androidxConstraint
+
+    api library.archExtensions
 
     // reactivex
     api library.rxJava

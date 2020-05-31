@@ -1,7 +1,7 @@
 package com.xian.common.adapter.asyncdiff;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.ViewGroup;
 
 import com.xian.common.adapter.ViewHolder;

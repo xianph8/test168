@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
-import com.test.test168.R;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class TestAutoCompleteTextViewActivity extends RxAppCompatActivity {
+import com.test.test168.R;
+
+public class TestAutoCompleteTextViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,7 @@ public class TestAutoCompleteTextViewActivity extends RxAppCompatActivity {
         //数据适配准备
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line,
-                new String[]{"asdfasdf","asdf","ertr","hkjhk","h4684kjhk","897431k"});
+                new String[]{"asdfasdf", "asdf", "ertr", "hkjhk", "h4684kjhk", "897431k"});
         //单一的自动完成
         AutoCompleteTextView auto_txt = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         auto_txt.setAdapter(adapter);

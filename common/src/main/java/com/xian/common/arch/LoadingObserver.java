@@ -1,7 +1,7 @@
 package com.xian.common.arch;
 
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.annotation.Nullable;
 
 
 public interface LoadingObserver<T> extends Observer<T> {

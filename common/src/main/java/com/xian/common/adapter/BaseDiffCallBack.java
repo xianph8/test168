@@ -1,11 +1,11 @@
 package com.xian.common.adapter;
 
-import android.support.v7.util.DiffUtil;
+import androidx.recyclerview.widget.DiffUtil;
 
 import java.util.List;
 
 /**
- * 这个部分代码是抄 {@link android.support.v7.recyclerview.extensions.AsyncListDiffer}
+ * 这个部分代码是抄 {@link androidx.recyclerview.widget.AsyncListDiffer}
  * 可放心食用
  *
  * @param <T>

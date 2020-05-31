@@ -1,7 +1,7 @@
 package com.test.test168.bing;
 
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.test.test168.R;
 import com.test.test168.base.BaseFragment;

@@ -1,7 +1,7 @@
 package com.xian.common.arch;
 
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 
 public class LoadingException extends Exception {

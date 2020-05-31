@@ -1,6 +1,6 @@
 package com.xian.common.adapter.multi;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.ViewGroup;
 
 

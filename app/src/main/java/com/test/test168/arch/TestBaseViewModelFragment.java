@@ -1,14 +1,15 @@
 package com.test.test168.arch;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.annotation.NonNull;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.test.test168.R;
 import com.test.test168.arch.model.DetailsUI;
-import com.test.test168.bean.Response;
 import com.test.test168.base.BaseLoadingFragment;
+import com.test.test168.bean.Response;
 
 import java.util.List;
 

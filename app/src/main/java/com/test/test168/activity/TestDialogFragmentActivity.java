@@ -1,7 +1,7 @@
 package com.test.test168.activity;
 
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AlertDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
