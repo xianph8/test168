@@ -20,6 +20,7 @@ import com.test.test168.base.BaseFragment;
 import com.test.test168.bean.ItemHomeMenu;
 import com.test.test168.bing.BingDailyPicActivity;
 import com.test.test168.contract.HomeContract;
+import com.test.test168.motionlayout.MotionLayoutActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +79,7 @@ public class NineGirdHomeFragment extends BaseFragment implements HomeContract.V
                 put("item6", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
                         "UriActivity", UriActivity.class));
                 put("item7", new ItemHomeMenu(getResDrawable(R.drawable.ic_menu_share),
-                        "item1", ThreadPoolActivity.class));
+                        "MotionLayoutActivity", MotionLayoutActivity.class));
             }
         };
 

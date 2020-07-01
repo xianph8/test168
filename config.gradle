@@ -115,6 +115,7 @@ ext {
             archExtensions              : "androidx.lifecycle:lifecycle-extensions:${archVersion}",
             // alternatively - just ViewModel
             archViewModel               : "androidx.lifecycle:viewmodel:${archVersion}", // use -ktx for Kotlin,
+            archViewModelKtx            : "androidx.lifecycle:lifecycle-viewmodel-ktx:${archVersion}", // use -ktx for Kotlin,
             // alternatively - just LiveData
             archLiveData                : "androidx.lifecycle:lifecycle-livedata:${archVersion}",
             // alternatively - Lifecycles only (no ViewModel or LiveData).
