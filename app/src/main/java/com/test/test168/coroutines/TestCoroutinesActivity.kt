@@ -14,6 +14,12 @@ class TestCoroutinesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_coroutines)
+        val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
+            throwable.printStackTrace()
+        }
+        GlobalScope.launch(handler) {
+
+        }
         /*GlobalScope.launch {
             Log.i(TAG, "current thread name 1 : ${Thread.currentThread().name}")
         }
