@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.IdRes;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
 
 import com.test.test168.R;
 import com.xian.common.widget.dialog.LoadingDialog;
@@ -34,15 +37,20 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         root = inflater.inflate(getRootViewId(), container, false);
         mContext = getActivity();
-        initViews();
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initViews();
     }
 
     protected abstract int getRootViewId();
 
     protected abstract void initViews();
 
-    protected void startActivity(Class cls) {
+    protected void startActivity(Class<? extends Activity> cls) {
         Intent i = new Intent(mContext, cls);
         startActivity(i);
     }
@@ -59,7 +67,7 @@ public abstract class BaseFragment extends Fragment {
         showLoadingDialog(R.string.loading);
     }
 
-    protected void showLoadingDialog(int resId) {
+    protected void showLoadingDialog(@StringRes int resId) {
         if (progressDialog == null) {
             progressDialog = LoadingDialog.getInstance(mContext, resId, false, false);
             progressDialog.show();

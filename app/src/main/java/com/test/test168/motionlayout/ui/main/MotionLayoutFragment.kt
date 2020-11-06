@@ -1,30 +1,40 @@
 package com.test.test168.motionlayout.ui.main
 
-import androidx.lifecycle.ViewModelProviders
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.test.test168.R
+import com.test.test168.base.BaseFragment
+import com.test.test168.test.TestScrollerFragment
+import kotlinx.android.synthetic.main.motion_layout_fragment.*
 
-class MotionLayoutFragment : Fragment() {
+class MotionLayoutFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = MotionLayoutFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun getRootViewId(): Int {
+        return R.layout.motion_layout_fragment
+    }
+
+    override fun initViews() {
+        vp2.adapter = object : FragmentStateAdapter(childFragmentManager, lifecycle) {
+            override fun getItemCount(): Int {
+                return 5
+            }
+
+            override fun createFragment(position: Int): Fragment {
+                return TestScrollerFragment.newInstance()
+            }
+        }
+
+
+
     }
 
 }
