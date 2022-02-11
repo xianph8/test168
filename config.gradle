@@ -27,6 +27,9 @@ ext {
     supportDependencies = [
             // 官方库
             androidxCore                : 'androidx.core:core:1.3.0',
+            androidxCorektx             : 'androidx.core:core-ktx:1.5.0@aar',
+            androidxAct                 : 'androidx.activity:activity:1.4.0@aar',
+            androidxActktx              : 'androidx.activity:activity-ktx:1.4.0@aar',
             androidxV4                  : 'androidx.legacy:legacy-support-v4:1.0.0',
             androidxAppcompatV7         : 'androidx.appcompat:appcompat:1.1.0',
             androidxCardView            : 'androidx.cardview:cardview:1.0.0',

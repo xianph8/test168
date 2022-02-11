@@ -2,9 +2,10 @@ package com.test.test168.activity
 
 import android.content.Intent
 import android.net.Uri
+import android.view.View
+import android.widget.EditText
 import com.test.test168.R
 import com.test.test168.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_uri.*
 
 class UriActivity : BaseActivity() {
 
@@ -12,8 +13,14 @@ class UriActivity : BaseActivity() {
 
         setContentView(R.layout.activity_uri)
 
-        btn_change.setOnClickListener {
-            et_uri_string.setText(schemeToIntentUriString(et_scheme.text.toString()))
+        findViewById<View>(R.id.btn_change).setOnClickListener {
+            findViewById<EditText>(R.id.et_uri_string).setText(
+                schemeToIntentUriString(
+                    findViewById<EditText>(
+                        R.id.et_scheme
+                    ).text.toString()
+                )
+            )
         }
 
     }

@@ -1,40 +1,51 @@
 package com.test.test168.activity
 
 import android.os.Bundle
-import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
-import androidx.core.view.GravityCompat
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.test.test168.R
-import kotlinx.android.synthetic.main.activity_test_slide.*
-import kotlinx.android.synthetic.main.app_bar_test_slide.*
+import com.test.test168.databinding.ActivityTestSlideBinding
+import com.test.test168.databinding.AppBarTestSlideBinding
 
 class TestSlideActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private val viewBinding by lazy {
+        ActivityTestSlideBinding.inflate(layoutInflater).apply { setContentView(root) }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test_slide)
-        setSupportActionBar(toolbar)
+//        setContentView(R.layout.activity_test_slide)
 
-        fab.setOnClickListener { view ->
+        val toolbarViewBinding = AppBarTestSlideBinding.bind(viewBinding.root)
+        setSupportActionBar(toolbarViewBinding.toolbar)
+
+        toolbarViewBinding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                .setAction("Action", null).show()
         }
 
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
+            this,
+            viewBinding.drawerLayout,
+            toolbarViewBinding.toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        viewBinding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        viewBinding.navView.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (viewBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            viewBinding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -78,7 +89,7 @@ class TestSlideActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             }
         }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
+        viewBinding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 }

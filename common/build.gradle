@@ -28,6 +28,10 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -39,6 +43,10 @@ dependencies {
     androidTestImplementation library.testEspressoCore
 
     api fileTree(dir: 'libs', include: ['*.jar'])
+    api library.androidxCore
+    api library.androidxCorektx
+    api library.androidxAct
+    api library.androidxActktx
     api library.androidxV4
     api library.androidxAppcompatV7
     api library.androidxRecyclerView

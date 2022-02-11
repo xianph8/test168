@@ -16,12 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/mAppTheme"
         tools:replace="android:label">
-        <activity android:name=".coroutines.TestCoroutinesActivity"></activity>
+        <activity android:name=".coroutines.TestCoroutinesActivity" />
         <activity android:name=".motionlayout.MotionLayoutActivity" />
         <activity android:name=".arch.TestBaseViewModelActivity" />
         <activity android:name=".activity.CustomSmartRefreshHeaderActivity" />
         <activity android:name=".activity.TestCustomBehaviorActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

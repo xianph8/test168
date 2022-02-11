@@ -3,10 +3,10 @@ package com.test.test168.motionlayout.ui.main
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.test.test168.R
 import com.test.test168.base.BaseFragment
 import com.test.test168.test.TestScrollerFragment
-import kotlinx.android.synthetic.main.motion_layout_fragment.*
 
 class MotionLayoutFragment : BaseFragment() {
 
@@ -23,7 +23,7 @@ class MotionLayoutFragment : BaseFragment() {
     }
 
     override fun initViews() {
-        vp2.adapter = object : FragmentStateAdapter(childFragmentManager, lifecycle) {
+        findViewById<ViewPager2>(R.id.vp2)?.adapter = object : FragmentStateAdapter(childFragmentManager, lifecycle) {
             override fun getItemCount(): Int {
                 return 5
             }
